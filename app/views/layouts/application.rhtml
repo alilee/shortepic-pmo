@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title><%= @page_title || @item.title %></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-au" />
+    <%= stylesheet_link_tag 'exa', :media => 'all' %>
+		<%= javascript_include_tag :defaults %>
+		<%= stylesheet_link_tag 'calendar-system.css' %>
+		<%= stylesheet_link_tag 'calendar-brown.css' %>
+    <%= javascript_include_tag 'calendar', 'calendar-en', 'calendar-setup' %>
+	</head>
+
+	<body>
+    <%= render :partial => 'layouts/navigation' %>
+	    
+	  <div id="main">
+	    <div id="leftcol">
+        <%= render :partial => 'layouts/view_links' %>
+        <% # TODO: B - Breadcrumbs view - last 5 views %>
+        <!-- % cache(:controller => 'person', :action => 'static_links', :id => session[:person].id) do % -->
+          <%= render :partial => 'layouts/project_links' %>
+          <%= render :partial => 'layouts/admin_links' %>
+        <!-- % end % -->
+      </div>
+      
+      <%= @content_for_layout %>
+    </div>  
+    
+    <!-- % cache(:controller => 'application', :action => 'footer', :id => 0) do % -->
+		  <%= render :partial => 'layouts/footer' %>
+		<!-- % end % -->
+		
+	</body>
+</html>

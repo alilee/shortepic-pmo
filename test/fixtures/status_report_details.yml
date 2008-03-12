@@ -1,0 +1,22 @@
+--- 
+status_report_details_001: 
+  code_id_traffic: "25"
+  status_report_id: "36"
+  period_ending_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
+  support_required: ""
+  id: "1"
+  achievements: ""
+status_report_details_002: 
+  code_id_traffic: "25"
+  status_report_id: "37"
+  period_ending_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
+  support_required: ""
+  id: "2"
+  achievements: ""
+status_report_details_003: 
+  code_id_traffic: "25"
+  status_report_id: "38"
+  period_ending_on: <%= 14.7.days.ago.to_formatted_s(:db) %>
+  support_required: ""
+  id: "3"
+  achievements: ""

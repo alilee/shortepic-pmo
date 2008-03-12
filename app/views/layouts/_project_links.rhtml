@@ -1,0 +1,14 @@
+<div id="project-links">
+
+  <h2>Projects</h2>
+  
+  <table>
+    <% session[:project_link_cache].each do |p| %>
+      <tr>
+        <td><img src="<%= url_for :controller => 'project', :action => 'logo', :id => p[:id] %>" width=20 height=20 alt="Logo" /></td>
+        <td><%= link_to_class Project, p[:title], p[:id]  %></td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>

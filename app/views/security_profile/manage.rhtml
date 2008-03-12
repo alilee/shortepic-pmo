@@ -1,0 +1,79 @@
+<h2>Profiles</h2>
+
+<p><%= flash[:notice] %></p>
+<p><%= flash[:error] %></p>
+<%= error_messages_for 'new_profile' %>
+
+<%= anchor_link('ref_toc') -%>
+<% @profiles.collect {|p| p.security_profile_code.value }.uniq.each do |profile_name| -%>
+  <p> <%= link_to_anchor(profile_name, "ref_#{profile_name}") %> </p>
+<% end -%>
+  <p> &nbsp; </p>
+  <p> <%= link_to_anchor('New profile access...', 'ref_new') %> </p>
+  <p> &nbsp; </p>
+
+<%= form_tag(:action => 'manage') %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Profile</th>
+      <th>Controller</th>
+      <th>Function</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  
+  <%  profile_name = ''
+      @profiles.each do |profile|
+        if profile.security_profile_code.value != profile_name
+          profile_name = profile.security_profile_code.value
+          profile_name_text = h profile_name
+          anchor = true
+          cont_name = ''
+        end
+        if profile.controller_name != cont_name
+          cont_name = profile.controller_name
+          cont_name_text = cont_name
+        end %>
+        <tr>
+          <td><%= profile.id %></td>
+          <td>
+            <% if anchor %>
+              <%= anchor_link("ref_#{profile_name}") %> 
+            <% end %>
+            <%= profile_name_text %> &nbsp;
+          </td>
+          <td>
+            <%= cont_name_text %> &nbsp;
+          </td>
+          <td>
+            <% div_id = "action_#{profile.id}" %>
+            <div id="<%= div_id %>"><%= h profile.action %></div>
+            <%= in_place_editor(div_id, { :loading_text => 'Updating...', 
+                  :url => { :action => 'edit_action', :profile_id => profile.id}, :size => 10 } ) %>
+          </td>
+          <td>&nbsp;</td>
+        </tr>      
+        <%  profile_name_text = cont_name_text = ''
+            anchor = false
+      end %>
+      
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <%= anchor_link('ref_new') %>
+        <td>&nbsp;</td>
+        <td><%= select('new_profile', 'code_id_security_profile', Code.find_all_by_type_name_and_name('Role', 'Security profile').collect {|c| [c.value, c.id]}) %></td>
+        <td><%= text_field('new_profile', 'controller_name') %></td>
+        <!-- # TODO: C - use Rails Recipe: Lightning fast local autocompletion -->
+        <td><%= text_field('new_profile', 'action') %></td>
+        <td><%= submit_tag 'Add' %></td>  
+      </tr>
+    </tfoot>
+  </table>
+</form>

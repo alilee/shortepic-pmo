@@ -1,0 +1,12 @@
+--- 
+test_observation_details_001: 
+  steps_to_reproduce: ""
+  code_id_root_cause: "49"
+  expected_results: ""
+  code_id_severity: "48"
+  id: "1"
+  test_observation_id: "49"
+  actual_results: ""
+  milestone_id_phase_introduced: "24"
+  milestone_id_phase_detected: "25"
+  milestone_id_phase_resolved: "25"

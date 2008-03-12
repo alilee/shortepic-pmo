@@ -1,0 +1,5 @@
+totals_id = "#{@table_name}_totals"
+line_id = "#{@table_name}_#{@line.id}"
+
+page.visual_effect :fade, line_id
+page.replace totals_id, :partial => 'item/child_table', :locals => { :section => :totals, :collection => @child_collection }

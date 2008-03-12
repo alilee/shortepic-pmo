@@ -1,0 +1,11 @@
+--- 
+system_settings_001: 
+  name: helpurl
+  category: Links
+  id: "1"
+  value: http://wiki.shortepic.com/
+system_settings_002: 
+  name: OK
+  category: Traffic lights
+  id: "2"
+  value: green

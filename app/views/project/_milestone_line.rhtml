@@ -1,0 +1,52 @@
+
+<% if section == :head %>
+
+  <table>
+    
+    <thead>
+      
+      <tr>
+        <th>Priority</th>
+        <th><%= icon(:escalated_up) %></th>
+        <th>Milestone</th>
+        <th><%= icon(:escalated_here) %></th>
+        <th>Responsibility</th>
+        <th>Due on</th>
+        <th>Forecast</th>
+        <th>Baseline end</th>
+        <th>Deadline</th>
+      </tr>
+      
+    </thead>
+
+    <tbody>
+      
+<% elsif section == :body %>
+
+    <tr>  
+      <td><%= milestone_line.priority_code %></td>
+      <td><%= icon(:escalated_up) if milestone_line.escalated_up?(@project) %></td>
+      <td><%= link_to_item milestone_line %></td>
+      <td><%= icon(:escalated_here) if milestone_line.escalated_here?(@project) %></td>
+      <td><%= link_to_item milestone_line.role %></td>
+      <td <%= overdue_class(milestone_line) %>> 
+        <%= milestone_line.due_on.strftime(date_format) unless milestone_line.due_on.nil? %>
+      </td>
+      <td <%= overdue_class(milestone_line.last_status_report_line.forecast_complete_on) unless milestone_line.last_status_report_line.nil? %>> 
+        <%= milestone_line.last_status_report_line.forecast_complete_on.strftime(date_format) if !milestone_line.last_status_report_line.nil? && !milestone_line.last_status_report_line.forecast_complete_on.nil? %>
+      </td>
+      <td <%= overdue_class(milestone_line.baseline_ends_on) %>>
+        <%= milestone_line.baseline_ends_on.strftime(date_format) unless milestone_line.baseline_ends_on.nil? %>
+      </td>
+      <td <%= overdue_class(milestone_line.detail.deadline_on) %>>
+        <%= milestone_line.detail.deadline_on.strftime(date_format) unless milestone_line.detail.deadline_on.nil? %>
+      </td>
+    </tr>
+    
+<% elsif section == :foot %>
+
+    </tbody>
+    
+  </table>
+
+<% end %>

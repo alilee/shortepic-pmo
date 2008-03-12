@@ -1,0 +1,8 @@
+--- 
+meeting_details_001: 
+  finish_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
+  resolved: ""
+  id: "1"
+  start_at: <%= 4.0.days.from_now.to_formatted_s(:db) %>
+  meeting_id: "42"
+  location: ""

@@ -1,0 +1,351 @@
+--- 
+codes_050: 
+  name: Environment
+  sequence: "50"
+  id: "50"
+  enabled: t
+  value: SYST
+  type_name: TestCase
+codes_039: 
+  name: Type
+  sequence: "40"
+  id: "46"
+  enabled: t
+  value: Positive
+  type_name: TestCondition
+codes_028: 
+  name: Priority
+  sequence: "50"
+  id: "17"
+  enabled: t
+  value: A
+  type_name: Timesheet
+codes_017: 
+  name: Priority
+  sequence: "50"
+  id: "15"
+  enabled: t
+  value: B
+  type_name: Role
+codes_006: 
+  name: Priority
+  sequence: "50"
+  id: "19"
+  enabled: t
+  value: A
+  type_name: StatusReport
+codes_040: 
+  name: Security profile
+  sequence: "50"
+  id: "28"
+  enabled: t
+  value: User
+  type_name: Role
+codes_029: 
+  name: Area
+  sequence: "50"
+  id: "45"
+  enabled: t
+  value: Auditability
+  type_name: Requirement
+codes_018: 
+  name: Priority
+  sequence: "50"
+  id: "26"
+  enabled: t
+  value: A
+  type_name: Absence
+codes_007: 
+  name: Priority
+  sequence: "50"
+  id: "11"
+  enabled: t
+  value: A
+  type_name: Milestone
+codes_041: 
+  name: Environment
+  sequence: "50"
+  id: "23"
+  enabled: t
+  value: PROD
+  type_name: ActionItem
+codes_030: 
+  name: Priority
+  sequence: "50"
+  id: "10"
+  enabled: t
+  value: B
+  type_name: ActionItem
+codes_019: 
+  name: Pre impact
+  sequence: "50"
+  id: "32"
+  enabled: t
+  value: A
+  type_name: Risk
+codes_008: 
+  name: Priority
+  sequence: "50"
+  id: "40"
+  enabled: t
+  value: Standard
+  type_name: TestCondition
+codes_042: 
+  name: Purpose
+  sequence: "50"
+  id: "24"
+  enabled: t
+  value: Travel
+  type_name: ChangeRequest
+codes_031: 
+  name: Timezone
+  sequence: "50"
+  id: "5"
+  enabled: t
+  value: UTC
+  type_name: Person
+codes_020: 
+  name: Type
+  sequence: "50"
+  id: "43"
+  enabled: t
+  value: Functional
+  type_name: Requirement
+codes_043: 
+  name: Priority
+  sequence: "50"
+  id: "13"
+  enabled: t
+  value: A
+  type_name: ChangeRequest
+codes_032: 
+  name: Priority
+  sequence: "50"
+  id: "7"
+  enabled: t
+  value: A
+  type_name: Issue
+codes_021: 
+  name: Priority
+  sequence: "50"
+  id: "8"
+  enabled: t
+  value: B
+  type_name: Issue
+codes_010: 
+  name: Priority
+  sequence: "50"
+  id: "14"
+  enabled: t
+  value: B
+  type_name: ChangeRequest
+codes_009: 
+  name: Priority
+  sequence: "50"
+  id: "6"
+  enabled: t
+  value: B
+  type_name: Project
+codes_044: 
+  name: Severity
+  sequence: "50"
+  id: "48"
+  enabled: t
+  value: High
+  type_name: TestObservation
+codes_033: 
+  name: Priority
+  sequence: "50"
+  id: "9"
+  enabled: t
+  value: A
+  type_name: ActionItem
+codes_022: 
+  name: Priority
+  sequence: "50"
+  id: "37"
+  enabled: t
+  value: B
+  type_name: Meeting
+codes_011: 
+  name: Priority
+  sequence: "50"
+  id: "16"
+  enabled: t
+  value: B
+  type_name: Person
+codes_045: 
+  name: Strategy
+  sequence: "50"
+  id: "33"
+  enabled: t
+  value: Absorb
+  type_name: Risk
+codes_034: 
+  name: Type
+  sequence: "50"
+  id: "47"
+  enabled: t
+  value: Negative
+  type_name: TestCondition
+codes_023: 
+  name: Post impact
+  sequence: "50"
+  id: "35"
+  enabled: t
+  value: A
+  type_name: Risk
+codes_012: 
+  name: Priority
+  sequence: "50"
+  id: "41"
+  enabled: t
+  value: Standard
+  type_name: TestCase
+codes_001: 
+  name: Priority
+  sequence: "50"
+  id: "18"
+  enabled: t
+  value: B
+  type_name: Timesheet
+codes_046: 
+  name: Pre likelihood
+  sequence: "50"
+  id: "31"
+  enabled: t
+  value: A
+  type_name: Risk
+codes_035: 
+  name: Contact
+  sequence: "50"
+  id: "21"
+  enabled: t
+  value: Mobile
+  type_name: Person
+codes_024: 
+  name: Type
+  sequence: "50"
+  id: "44"
+  enabled: t
+  value: Non-functional
+  type_name: Requirement
+codes_013: 
+  name: Priority
+  sequence: "50"
+  id: "1"
+  enabled: t
+  value: A
+  type_name: Project
+codes_002: 
+  name: Post likelihood
+  sequence: "50"
+  id: "34"
+  enabled: t
+  value: A
+  type_name: Risk
+codes_047: 
+  name: Contact
+  sequence: "50"
+  id: "22"
+  enabled: t
+  value: Home phone
+  type_name: Person
+codes_036: 
+  name: Priority
+  sequence: "50"
+  id: "20"
+  enabled: t
+  value: B
+  type_name: StatusReport
+codes_025: 
+  name: Priority
+  sequence: "50"
+  id: "29"
+  enabled: t
+  value: A
+  type_name: Risk
+codes_014: 
+  name: Traffic
+  sequence: "50"
+  id: "25"
+  enabled: t
+  value: OK
+  type_name: StatusReport
+codes_003: 
+  name: Security profile
+  sequence: "50"
+  id: "4"
+  enabled: t
+  value: Root
+  type_name: Role
+codes_048: 
+  name: Security profile
+  sequence: "50"
+  id: "38"
+  enabled: t
+  value: Administrator
+  type_name: Role
+codes_037: 
+  name: Priority
+  sequence: "50"
+  id: "3"
+  enabled: t
+  value: A
+  type_name: Role
+codes_026: 
+  name: Priority
+  sequence: "50"
+  id: "30"
+  enabled: t
+  value: B
+  type_name: Risk
+codes_015: 
+  name: Priority
+  sequence: "50"
+  id: "42"
+  enabled: t
+  value: Standard
+  type_name: TestObservation
+codes_004: 
+  name: Priority
+  sequence: "50"
+  id: "39"
+  enabled: t
+  value: Standard
+  type_name: Requirement
+codes_049: 
+  name: Root cause
+  sequence: "50"
+  id: "49"
+  enabled: t
+  value: Design error
+  type_name: TestObservation
+codes_038: 
+  name: Priority
+  sequence: "50"
+  id: "2"
+  enabled: t
+  value: A
+  type_name: Person
+codes_027: 
+  name: Availability
+  sequence: "50"
+  id: "27"
+  enabled: t
+  value: email
+  type_name: Absence
+codes_016: 
+  name: Priority
+  sequence: "50"
+  id: "36"
+  enabled: t
+  value: A
+  type_name: Meeting
+codes_005: 
+  name: Priority
+  sequence: "50"
+  id: "12"
+  enabled: t
+  value: B
+  type_name: Milestone

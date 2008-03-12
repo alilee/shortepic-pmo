@@ -1,0 +1,229 @@
+--- 
+status_transitions_038: 
+  status_id_from: "0"
+  id: "37"
+  status_id_to: "0"
+  type_name: TestObservation
+  code_id_security_profile: "38"
+status_transitions_027: 
+  status_id_from: "0"
+  id: "1"
+  status_id_to: "0"
+  type_name: Project
+  code_id_security_profile: "4"
+status_transitions_016: 
+  status_id_from: "0"
+  id: "31"
+  status_id_to: "0"
+  type_name: Requirement
+  code_id_security_profile: "38"
+status_transitions_005: 
+  status_id_from: "0"
+  id: "28"
+  status_id_to: "0"
+  type_name: Risk
+  code_id_security_profile: "38"
+status_transitions_028: 
+  status_id_from: "0"
+  id: "20"
+  status_id_to: "0"
+  type_name: ActionItem
+  code_id_security_profile: "38"
+status_transitions_017: 
+  status_id_from: "3"
+  id: "12"
+  status_id_to: "34"
+  type_name: Role
+  code_id_security_profile: "28"
+status_transitions_006: 
+  status_id_from: "0"
+  id: "22"
+  status_id_to: "0"
+  type_name: ChangeRequest
+  code_id_security_profile: "38"
+status_transitions_030: 
+  status_id_from: "0"
+  id: "35"
+  status_id_to: "0"
+  type_name: TestCase
+  code_id_security_profile: "38"
+status_transitions_029: 
+  status_id_from: "0"
+  id: "5"
+  status_id_to: "0"
+  type_name: ChangeRequest
+  code_id_security_profile: "4"
+status_transitions_018: 
+  status_id_from: "0"
+  id: "16"
+  status_id_to: "0"
+  type_name: Risk
+  code_id_security_profile: "4"
+status_transitions_007: 
+  status_id_from: "0"
+  id: "15"
+  status_id_to: "3"
+  type_name: Role
+  code_id_security_profile: "28"
+status_transitions_019: 
+  status_id_from: "0"
+  id: "32"
+  status_id_to: "0"
+  type_name: Requirement
+  code_id_security_profile: "4"
+status_transitions_008: 
+  status_id_from: "0"
+  id: "6"
+  status_id_to: "0"
+  type_name: Role
+  code_id_security_profile: "4"
+status_transitions_031: 
+  status_id_from: "0"
+  id: "27"
+  status_id_to: "0"
+  type_name: Absence
+  code_id_security_profile: "38"
+status_transitions_020: 
+  status_id_from: "0"
+  id: "19"
+  status_id_to: "0"
+  type_name: Issue
+  code_id_security_profile: "38"
+status_transitions_009: 
+  status_id_from: "0"
+  id: "2"
+  status_id_to: "0"
+  type_name: Issue
+  code_id_security_profile: "4"
+status_transitions_032: 
+  status_id_from: "37"
+  id: "14"
+  status_id_to: "0"
+  type_name: Role
+  code_id_security_profile: "28"
+status_transitions_021: 
+  status_id_from: "0"
+  id: "7"
+  status_id_to: "0"
+  type_name: Person
+  code_id_security_profile: "4"
+status_transitions_010: 
+  status_id_from: "0"
+  id: "26"
+  status_id_to: "0"
+  type_name: StatusReport
+  code_id_security_profile: "38"
+status_transitions_033: 
+  status_id_from: "0"
+  id: "10"
+  status_id_to: "0"
+  type_name: Absence
+  code_id_security_profile: "4"
+status_transitions_022: 
+  status_id_from: "0"
+  id: "33"
+  status_id_to: "0"
+  type_name: TestCondition
+  code_id_security_profile: "38"
+status_transitions_011: 
+  status_id_from: "0"
+  id: "30"
+  status_id_to: "0"
+  type_name: Meeting
+  code_id_security_profile: "4"
+status_transitions_034: 
+  status_id_from: "0"
+  id: "36"
+  status_id_to: "0"
+  type_name: TestCase
+  code_id_security_profile: "4"
+status_transitions_023: 
+  status_id_from: "0"
+  id: "3"
+  status_id_to: "0"
+  type_name: ActionItem
+  code_id_security_profile: "4"
+status_transitions_012: 
+  status_id_from: "0"
+  id: "18"
+  status_id_to: "0"
+  type_name: Project
+  code_id_security_profile: "38"
+status_transitions_001: 
+  status_id_from: "0"
+  id: "8"
+  status_id_to: "0"
+  type_name: Timesheet
+  code_id_security_profile: "4"
+status_transitions_035: 
+  status_id_from: "66"
+  id: "11"
+  status_id_to: "3"
+  type_name: Role
+  code_id_security_profile: "28"
+status_transitions_024: 
+  status_id_from: "0"
+  id: "4"
+  status_id_to: "0"
+  type_name: Milestone
+  code_id_security_profile: "4"
+status_transitions_013: 
+  status_id_from: "0"
+  id: "9"
+  status_id_to: "0"
+  type_name: StatusReport
+  code_id_security_profile: "4"
+status_transitions_002: 
+  status_id_from: "34"
+  id: "13"
+  status_id_to: "36"
+  type_name: Role
+  code_id_security_profile: "28"
+status_transitions_036: 
+  status_id_from: "0"
+  id: "21"
+  status_id_to: "0"
+  type_name: Milestone
+  code_id_security_profile: "38"
+status_transitions_025: 
+  status_id_from: "0"
+  id: "24"
+  status_id_to: "0"
+  type_name: Person
+  code_id_security_profile: "38"
+status_transitions_014: 
+  status_id_from: "0"
+  id: "29"
+  status_id_to: "0"
+  type_name: Meeting
+  code_id_security_profile: "38"
+status_transitions_003: 
+  status_id_from: "0"
+  id: "17"
+  status_id_to: "0"
+  type_name: Meeting
+  code_id_security_profile: "0"
+status_transitions_037: 
+  status_id_from: "0"
+  id: "25"
+  status_id_to: "0"
+  type_name: Timesheet
+  code_id_security_profile: "38"
+status_transitions_026: 
+  status_id_from: "0"
+  id: "34"
+  status_id_to: "0"
+  type_name: TestCondition
+  code_id_security_profile: "4"
+status_transitions_015: 
+  status_id_from: "0"
+  id: "23"
+  status_id_to: "0"
+  type_name: Role
+  code_id_security_profile: "38"
+status_transitions_004: 
+  status_id_from: "0"
+  id: "38"
+  status_id_to: "0"
+  type_name: TestObservation
+  code_id_security_profile: "4"

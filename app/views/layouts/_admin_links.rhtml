@@ -1,0 +1,33 @@
+<% admin_links = 
+    [
+      { :icon => :code, :name => 'Codes', :url => code_url, :controller => 'code', :action => 'manage'  },
+      { :icon => :status, :name => 'Status', :url => status_url, :controller => 'status', :action => 'manage'  },
+      { :icon => :transition, :name => 'Transition', :url => transition_url, :controller => 'status', :action => 'manage_transition'  },
+      { :icon => :security, :name => 'Security', :url => security_profile_url, :controller => 'security_profile', :action => 'manage'  },
+      { :icon => :system, :name => 'System', :url => system_setting_url, :controller => 'system_setting', :action => 'manage'  },
+      { :icon => :sql, :name => 'SQL', :url => sql_url, :controller => 'application', :action => 'sql' },
+      { :icon => :ruby, :name => 'Ruby', :url => ruby_url, :controller => 'application', :action => 'ruby'  }
+    ] %>
+
+<% if admin_links.detect {|l| authorised?(l[:controller], l[:action]) } %>
+
+  <div id="admin">
+  
+    <h2>Administration</h2>
+
+    <table>
+
+      <% admin_links.each do |l|
+           if authorised?(l[:controller], l[:action]) %>
+              <tr>
+                <td><%= icon(:bullet) %></td>
+                <td><%= link_to l[:name], l[:url] %></td>
+              </tr>
+        <% end 
+         end %>
+
+    </table>
+      
+  </div>
+  
+<% end %>

@@ -1,0 +1,1184 @@
+systemsettings:
+  - name: helpurl
+    value: http://help.cm.shortepic.com/wiki/
+    category: Links
+  - name: Good
+    value: '#BAF2AF'
+    category: Traffic lights
+  - name: Medium
+    value: '#FDF6BC'
+    category: Traffic lights
+  - name: Critical
+    value: '#FBD3D5'
+    category: Traffic lights
+
+statuses:
+  Project:
+    New: 1-new
+    Deferred: 2-pending
+    In progress: 3-in progress
+    Complete: 5-complete
+    Cancelled: 6-withdrawn
+  
+  Role:
+    Proposed: 1-new 
+    Approved: 3-in progress
+    Funded: 3-in progress
+    Assigned: 5-complete
+    Discharged: 6-withdrawn
+  
+  Person:
+    Candidate: 1-new
+    Selected: 3-in progress
+    Orientation: 3-in progress
+    Deployed: 3-in progress
+    Egress: 4-review
+    Retired: 6-withdrawn
+    
+  Milestone:
+    New: 1-new
+    Pending: 2-pending
+    In progress: 3-in progress
+    Review: 4-review
+    Complete: 5-complete
+  
+  Issue:
+    Identified: 3-in progress
+    Planned: 5-complete
+    Complete: 6-withdrawn
+
+  ActionItem:
+    Identified: 3-in progress
+    Planned: 5-complete
+    Complete: 6-withdrawn
+    
+  ChangeRequest:
+    Proposed: 3-in progress
+    Review: 4-review
+    Approved: 5-complete
+    Cancelled: 6-withdrawn
+    
+  Timesheet:
+    New: 3-in progress
+    Review: 4-review
+    Approved: 5-complete
+    Reconciled: 6-withdrawn
+
+  StatusReport:
+    New: 1-new
+    Pending: 2-pending
+    In progress: 3-in progress
+    Review: 4-review
+    Complete: 5-complete
+    
+codes:
+  Project:
+    Priority: [a-Troubled, b-Strategic, c-Normal, d-Optional]
+  
+  Role:
+    Priority: [Normal]
+  
+  Person:
+    Priority: [Contractor, Permanent]
+    Rights: [CLIENT_COST, SI_COST]
+    Contact: [Mobile, Office direct line, Office extension, Home phone, Desk location, Home email, Other]
+    
+  Milestone:
+    Priority: [a-critical and slipping, b-critical, c-slipping, d-on track, e-non-critical]
+
+  Issue:
+    Priority: [a-critical, b-high, c-medium, d-low]
+  
+  ActionItem:
+    Priority: [a-critical, b-high, c-medium, d-low]
+
+  ChangeRequest:
+    Priority: [a-critical, b-high, c-normal, d-low]
+    Purpose: [Travel]
+    
+  Timesheet:
+    Priority: [a-late, b-normal]
+
+  StatusReport:
+    Priority: [a-critical, b-high, c-medium, d-low]
+    Traffic: [Good, Medium, Critical]
+    
+people:
+  David Hyland:
+    project: Project Orphan
+    status_code: Deployed
+    priority_code: Permanent
+    person: David Hyland
+    role: Project Manager - Orphan
+    email: dh@test.shortepic.com
+    
+  Blanad Murphy:
+    project: Project Orphan
+    status_code: Deployed
+    priority_code: Contractor
+    person: Blanad Murphy
+    role: Project Manager - Orphan
+    email: bm@test.shortepic.com
+
+  Jason Stickles:
+    project: Project Orphan
+    status_code: Retired
+    priority_code: Contractor
+    person: Jason Stickles
+    role: Project Manager - Orphan
+    email: js@test.shortepic.com
+
+  Tony Adcock:
+    project: Program Alpha
+    status_code: Deployed
+    priority_code: Contractor
+    person: Tony Adcock
+    role: Program Manager - Alpha
+    email: ta@test.shortepic.com
+
+  Michael Suckling:
+    project: Program Alpha
+    status_code: Deployed
+    priority_code: Permanent
+    person: Anthony Smith
+    role: Program Director - Alpha
+    email: ms@test.shortepic.com
+
+  Anthony Smith:
+    project: Program Alpha
+    status_code: Deployed
+    priority_code: Permanent
+    person: Anthony Smith
+    role: Program Manager - Alpha
+    email: as@test.shortepic.com
+    administrator: true
+
+  Bernie Armistead:
+    project: Project Bravo
+    status_code: Deployed
+    priority_code: Contractor
+    person: Bernie Armistead
+    role: Program Manager - Alpha
+    email: ba@test.shortepic.com
+
+  Shona McInnes:
+    project: Project Bravo
+    status_code: Deployed
+    priority_code: Contractor
+    person: Shona McInnes
+    role: Project Manager (Project Bravo)
+    email: sm@test.shortepic.com
+    
+  Sean Parker:
+    project: Project Charlie
+    status_code: Deployed
+    priority_code: Contractor
+    person: Sean Parker
+    role: Program Manager - Alpha
+    email: sp@test.shortepic.com
+  
+  Stewart Johnson:
+    project: Project Charlie
+    status_code: Deployed
+    priority_code: Contractor
+    person: Stewart Johnson
+    role: Project Manager (Project Charlie)
+    email: sj@test.shortepic.com
+
+  Karen Badin:
+    project: Project Charlie
+    status_code: Deployed
+    priority_code: Contractor
+    person: Karen Badin
+    role: Project Manager (Project Charlie)
+    email: kb@test.shortepic.com
+  
+  Conrad Bates:
+    project: Project Charlie
+    status_code: Deployed
+    priority_code: Contractor
+    person: Conrad Bates
+    role: Project Manager (Project Charlie)
+    email: cb@test.shortepic.com
+
+  Craig Parkinson:
+    project: Development Team
+    status_code: Deployed
+    priority_code: Contractor
+    person: Conrad Bates
+    role: Dev Team Leader
+    email: cp@test.shortepic.com
+
+  Will Wenkhart:
+    project: Development Team
+    status_code: Deployed
+    priority_code: Contractor
+    person: Will Wenkhart
+    role: Dev Team Leader
+    email: ww@test.shortepic.com
+
+  Mitchell Seeto:
+    project: Development Team
+    status_code: Deployed
+    priority_code: Contractor
+    person: Mitchell Seeto
+    role: Dev Team Leader
+    email: mseeto@test.shortepic.com
+
+  Perry Boylan:
+    project: Development Team
+    status_code: Deployed
+    priority_code: Permanent
+    person: Perry Boylan
+    role: Dev Team Leader
+    email: pb@test.shortepic.com
+
+  Maria Tan:
+    project: Project Charlie
+    status_code: Deployed
+    priority_code: Contractor
+    person: Maria Tan
+    role: Project Manager (Project Charlie)
+    email: mt@test.shortepic.com
+
+  Eric Sorensen:
+    project: Test Team
+    status_code: Deployed
+    priority_code: Contractor
+    person: Eric Sorensen
+    role: Test Team Leader
+    email: es@test.shortepic.com
+
+  Rosa Sanderson:
+    project: Test Team
+    status_code: Deployed
+    priority_code: Contractor
+    person: Rosa Sanderson
+    role: Test Team Leader
+    email: rs@test.shortepic.com
+
+  Stuart Gent:
+    project: Test Team
+    status_code: Deployed
+    priority_code: Contractor
+    person: Stuart Gent
+    role: Test Team Leader
+    email: gs@test.shortepic.com
+
+  Debbie Scott:
+    project: Test Team
+    status_code: Deployed
+    priority_code: Contractor
+    person: Debbie Scott
+    role: Test Team Leader
+    email: ds@test.shortepic.com
+    
+  Tracey Davidson:
+    project: mymerch
+    status_code: Deployed
+    priority_code: Contractor
+    person: Tracey Davidson
+    role: PM
+    email: tracey_davidson@onlres.com
+
+  Alister Lee:
+    project: mymerch
+    status_code: Deployed
+    priority_code: Contractor
+    person: Tracey Davidson
+    role: Ninja Assassin
+    email: ali@shortepic.com
+    
+projects:
+  Project Orphan:
+    description: > 
+      Project Orphan will investigate the value of implementing
+      finance shared services for the Trans-Tasman operations of
+      Treadstone 71. The project will report back the case for 
+      change and a high-level implementation strategy in time for 
+      the June Board of Directors meeting.
+    project: ~
+    status_code: In progress
+    priority_code: d-Optional
+    person: David Hyland 
+    role: Project Manager - Orphan
+    discount_rate: 0.10
+  
+  Program Alpha:
+    description: >
+      Program Alpha will be implementing the PeopleSoft Financials suite 
+      and a data warehouse containing financial and customer account 
+      information.
+    project: ~
+    status_code: In progress
+    priority_code: b-Strategic
+    person: Anthony Smith
+    role: Program Director - Alpha 
+    discount_rate: 0.15
+    
+  Project Bravo:
+    description: >
+      Project Bravo manifesto goes here.
+    project: Program Alpha
+    status_code: In progress
+    priority_code: c-Normal
+    person: Anthony Smith
+    role: Program Manager - Alpha
+    discount_rate: 0.18
+      
+  Project Charlie:
+    description: >
+      Project Charlie manifesto goes here.
+    project: Program Alpha
+    status_code: In progress
+    priority_code: c-Normal
+    person: Anthony Smith
+    role: Program Manager - Alpha
+    discount_rate: 0.12
+
+  Development Team:
+    description: >
+      The Development team is a collection of specialist Data Warehouse
+      software specialists assembled to design, build and successfully
+      implement the solution for Project Charlie.
+    project: Project Charlie
+    status_code: In progress
+    priority_code: c-Normal
+    person: Anthony Smith
+    role: Dev Team Leader
+    discount_rate: 0.15
+
+  Test Team:
+    description: >
+      The Test team is a collection of specialist System and Integration
+      Testers assembled to design and execute a comprehensive program of 
+      testing for the Data warehouse solution for Project Charlie.
+    project: Project Charlie
+    status_code: In progress
+    priority_code: a-Troubled
+    person: Anthony Smith
+    role: Test Team Leader
+    discount_rate: 0.13
+    
+  mymerch:
+    project: ~
+    status_code: In progress
+    priority_code: d-Optional
+    person: Tracey Davidson
+    role: PM
+    discount_rate: 0.10
+  S1:
+    project: mymerch
+    status_code: In progress
+    priority_code: d-Optional
+    person: Tracey Davidson
+    role: PM
+    discount_rate: 0.10
+  S2:
+    project: mymerch
+    status_code: In progress
+    priority_code: d-Optional
+    person: Tracey Davidson
+    role: PM
+    discount_rate: 0.10
+  S1.1:
+    project: S1
+    status_code: In progress
+    priority_code: d-Optional
+    person: Tracey Davidson
+    role: PM
+    discount_rate: 0.10
+  S1.1.1:
+    project: S1.1
+    status_code: In progress
+    priority_code: d-Optional
+    person: Tracey Davidson
+    role: PM
+    discount_rate: 0.10
+    escalation: mymerch
+    
+roles:
+  Project Manager - Orphan:
+    project: Project Orphan
+    status_code: Assigned
+    priority_code: Normal
+    person: David Hyland
+    role: Project Manager - Orphan
+    assignments:
+      - person: David Hyland
+        start_on: <%= 30.days.ago.to_formatted_s(:db) %>
+        end_on: <%= 3.months.from_now.to_formatted_s(:db) %>
+        committed_hours: 80
+        costs:
+          - rights_code: CLIENT_COST
+            normal_hourly_rate: 150
+            normal_hours_per_day: 8        
+      
+  Program Manager - Alpha:
+    project: Program Alpha
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Program Manager - Alpha
+    assignments:
+      - person: Tony Adcock
+        start_on: <%= 6.months.ago.to_formatted_s(:db) %>
+        end_on: <%= 3.months.from_now.to_formatted_s(:db) %>
+        committed_hours_days: 250
+        costs:
+          - rights_code: CLIENT_COST
+            normal_hourly_rate: 200
+            normal_hours_per_day: 8
+          - rights_code: SI_COST
+            normal_hourly_rate: 150
+            normal_hours_per_day: 8        
+
+  Program Director - Alpha:
+    project: Program Alpha
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Program Director - Alpha
+    assignments:
+    - person: Michael Suckling
+      start_on: <%= 6.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 3.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 300
+      costs:
+      - rights_code: CLIENT_COST
+        normal_hourly_rate: 150
+        normal_hours_per_day: 8
+
+  Finance Analyst:
+    project: Project Orphan
+    status_code: Assigned
+    priority_code: Normal
+    person: David Hyland
+    role: Project Manager - Orphan
+    assignments:
+    - person: Blanad Murphy
+      start_on: <%= 1.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 2.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 160
+      costs:
+      - rights_code: CLIENT_COST
+        normal_hourly_rate: 100
+        normal_hours_per_day: 8
+        overtime_hourly_rate: 100
+    - person: Jason Stickles
+      start_on: <%= 6.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 20.days.ago.to_formatted_s(:db) %>
+      committed_hours: 105
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 80
+          normal_hours_per_day: 8
+
+  Program Officer:
+    project: Program Alpha
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Program Manager - Alpha
+    assignments:
+      - person: Anthony Smith
+        start_on: <%= 5.months.ago.to_formatted_s(:db) %>
+        end_on: <%= 3.months.from_now.to_formatted_s(:db) %>
+        committed_hours: 220
+        costs:
+          - rights_code: CLIENT_COST
+            normal_hourly_rate: 80
+            normal_hours_per_day: 8
+
+  Project Manager (Project Bravo):
+    project: Program Alpha
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Program Manager - Alpha
+    assignments:
+      - person: Bernie Armistead
+        start_on: <%= 1.year.ago.to_formatted_s(:db) %>
+        end_on: <%= 3.months.from_now.to_formatted_s(:db) %>
+        committed_hours: 250
+        costs:
+          - rights_code: CLIENT_COST
+            normal_hourly_rate: 200
+            normal_hours_per_day: 8
+          - rights_code: SI_COST
+            normal_hourly_rate: 150
+            normal_hours_per_day: 8        
+
+  Project Manager (Project Charlie):
+    project: Project Charlie
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Program Manager - Alpha
+    assignments:
+    - person: Sean Parker
+      start_on: <%= 7.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 3.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 280
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 200
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8        
+
+  Business Analyst:
+    project: Project Bravo
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Project Manager (Project Bravo)
+    assignments:
+    - person: Shona McInnes
+      start_on: <%= 6.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 3.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 180
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 80
+          normal_hours_per_day: 8        
+
+  Technical Lead:
+    project: Project Charlie
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Project Manager (Project Charlie)
+    assignments:
+    - person: Stewart Johnson
+      start_on: <%= 6.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 3.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 180
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 80
+          normal_hours_per_day: 8        
+
+  Release Manager:
+    project: Project Charlie
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Project Manager (Project Charlie)
+    assignments:
+    - person: Karen Badin
+      start_on: <%= 3.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 1.month.from_now.to_formatted_s(:db) %>
+      committed_hours: 80
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 90
+          normal_hours_per_day: 8        
+
+  Dev Team Leader:
+    project: Project Charlie
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Project Manager (Project Charlie)
+    assignments:
+    - person: Conrad Bates
+      start_on: <%= 6.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 3.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 180
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 100
+          normal_hours_per_day: 8        
+
+  Test Team Leader:
+    project: Project Charlie
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Project Manager (Project Charlie)
+    assignments:
+    - person: Maria Tan
+      start_on: <%= 3.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 2.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 100
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 80
+          normal_hours_per_day: 8        
+
+  Programmer:
+    project: Project Charlie
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Dev Team Leader
+    assignments:
+    - person: Craig Parkinson
+      start_on: <%= 6.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 2.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 160
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 70
+          normal_hours_per_day: 8        
+    - person: Will Wenkhart
+      start_on: <%= 5.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 2.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 140
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 60
+          normal_hours_per_day: 8        
+    - person: Mitchell Seeto
+      start_on: <%= 4.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 1.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 100
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 120
+          normal_hours_per_day: 8
+        - rights_code: SI_COST
+          normal_hourly_rate: 50
+          normal_hours_per_day: 8        
+
+  Database Administrator:
+    project: Project Charlie
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Dev Team Leader
+    assignments:
+    - person: Perry Boylan
+      start_on: <%= 2.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 10.days.from_now.to_formatted_s(:db) %>
+      committed_hours: 50
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 40
+          normal_hours_per_day: 8
+
+  System Tester:
+    project: Project Charlie
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Test Team Leader
+    assignments:
+    - person: Eric Sorensen
+      start_on: <%= 1.month.ago.to_formatted_s(:db) %>
+      end_on: <%= 1.month.from_now.to_formatted_s(:db) %>
+      committed_hours: 40
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 80
+          normal_hours_per_day: 8
+    - person: Rosa Sanderson
+      start_on: <%= 1.month.ago.to_formatted_s(:db) %>
+      end_on: <%= 10.days.from_now.to_formatted_s(:db) %>
+      committed_hours: 180
+      costs:
+        - rights_code: CLIENT_COST
+          normal_hourly_rate: 60
+          normal_hours_per_day: 8
+          overtime_hourly_rate: 60
+  
+  Integration Tester:
+    project: Project Charlie
+    status_code: Assigned
+    priority_code: Normal
+    person: Anthony Smith
+    role: Test Team Leader
+    assignments:
+    - person: Stuart Gent
+      start_on: <%= 1.month.ago.to_formatted_s(:db) %>
+      end_on: <%= 2.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 60
+      costs:
+      - rights_code: CLIENT_COST
+        normal_hourly_rate: 120
+        normal_hours_per_day: 8
+      - rights_code: SI_COST
+        normal_hourly_rate: 80
+        normal_hours_per_day: 8
+    - person: Debbie Scott
+      start_on: <%= 1.month.ago.to_formatted_s(:db) %>
+      end_on: <%= 2.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 60
+      costs:
+      - rights_code: CLIENT_COST
+        normal_hourly_rate: 40
+        normal_hours_per_day: 8
+        overtime_hourly_rate: 40
+      
+  Traveller:
+    project: Project Orphan
+    status_code: Assigned
+    priority_code: Normal
+    person: David Hyland
+    role: Project Manager - Orphan
+    assignments:
+    - person: Blanad Murphy
+      start_on: <%= 1.months.ago.to_formatted_s(:db) %>
+      end_on: <%= 2.months.from_now.to_formatted_s(:db) %>
+      committed_hours: 0
+      
+  PM:
+    project: mymerch
+    status_code: Assigned
+    priority_code: Normal
+    person: Tracey Davidson
+    role: PM
+    assignments:
+      - person: Tracey Davidson
+        start_on: <%= 30.days.ago.to_formatted_s(:db) %>
+        end_on: <%= 30.days.from_now.to_formatted_s(:db) %>
+        committed_hours: 60
+        costs:
+          - rights_code: CLIENT_COST
+            normal_hourly_rate: 150
+            normal_hours_per_day: 8        
+
+  Ninja Assassin:
+    project: mymerch
+    status_code: Assigned
+    priority_code: Normal
+    person: Tracey Davidson
+    role: PM
+    assignments:
+      - person: Alister Lee
+        start_on: <%= 30.days.ago.to_formatted_s(:db) %>
+        end_on: <%= 30.days.from_now.to_formatted_s(:db) %>
+        committed_hours: 60
+        costs:
+          - rights_code: CLIENT_COST
+            normal_hourly_rate: 150
+            normal_hours_per_day: 8        
+      
+      
+milestones:
+  Feasibility Study:
+    project: Project Orphan
+    status_code: In progress
+    priority_code: b-critical
+    person: Blanad Murphy
+    role: Project Manager - Orphan
+
+  Project Charter:
+    project: Project Orphan
+    status_code: Complete
+    priority_code: b-critical
+    person: David Hyland
+    role: Project Manager - Orphan
+    
+  System Requirements Specification:
+    project: Project Charlie
+    status_code: Complete
+    priority_code: b-critical
+    person: Michael Suckling
+    role: Project Manager (Project Charlie)
+    
+  Technical Architecture Definition:
+    project: Project Charlie
+    status_code: Complete
+    priority_code: b-critical
+    person: Tony Adcock
+    role: Project Manager (Project Charlie)
+    
+  Detailed Functional Design:
+    project: Development Team
+    status_code: Complete
+    priority_code: a-critical and slipping
+    person: Sean Parker
+    role: Dev Team Leader
+    
+  Code complete:
+    project: Development Team
+    status_code: In progress
+    priority_code: a-critical and slipping
+    person: Conrad Bates
+    role: Dev Team Leader
+    escalation: Project Charlie
+    
+  Test Strategy:
+    project: Project Charlie
+    status_code: Complete
+    priority_code: d-on track
+    person: Michael Suckling
+    role: Test Team Leader
+    
+  System Test Plan:
+    project: Project Charlie
+    status_code: Complete
+    priority_code: d-on track
+    person: Sean Parker
+    role: Test Team Leader
+    
+  Integration Test Plan:
+    project: Project Charlie
+    status_code: Complete
+    priority_code: c-slipping
+    person: Sean Parker
+    role: Test Team Leader
+    
+  System Test Preparation:
+    project: Test Team
+    status_code: Complete
+    priority_code: d-on track
+    person: Sean Parker
+    role: Test Team Leader
+    
+  Integration Test Preparation:
+    project: Test Team
+    status_code: Complete
+    priority_code: c-slipping
+    person: Sean Parker
+    role: Test Team Leader
+
+  System Test Execution:
+    project: Test Team
+    status_code: In progress
+    priority_code: b-critical
+    person: Eric Sorensen
+    role: System Tester
+    
+  Integration Test Execution:
+    project: Test Team
+    status_code: Pending
+    priority_code: b-critical
+    person: Stuart Gent
+    role: Integration Tester
+      
+      
+  Ma:
+    project: mymerch
+    status_code: In progress
+    priority_code: b-critical
+    person: Tracey Davidson
+    role: PM
+  Mb:
+    project: mymerch
+    status_code: In progress
+    priority_code: b-critical
+    person: Tracey Davidson
+    role: PM
+  M1a:
+    project: S1
+    status_code: In progress
+    priority_code: b-critical
+    person: Tracey Davidson
+    role: PM
+  M1b:
+    project: S1
+    status_code: In progress
+    priority_code: b-critical
+    person: Tracey Davidson
+    role: PM
+  M1.1a:
+    project: S1.1
+    status_code: In progress
+    priority_code: b-critical
+    person: Tracey Davidson
+    role: PM
+  M1.1b:
+    project: S1.1
+    status_code: In progress
+    priority_code: b-critical
+    person: Tracey Davidson
+    role: PM
+    escalation: mymerch
+  M1.1.1a:
+    project: S1.1.1
+    status_code: In progress
+    priority_code: b-critical
+    person: Tracey Davidson
+    role: PM
+
+issues:
+  Test environment build completion days: 
+    project: Test Team
+    status_code: Identified
+    priority_code: b-high
+    person: Maria Tan
+    role: Test Team Leader
+    due_on: <%= 1.week.from_now.to_formatted_s(:db) %>
+    
+  Vendor library defects:
+    description: >
+      libfaux.pas is broken, but no support contract in place to get
+      resolution. We can fix, but will create problems for supporting
+      the solution once we leave. Please advise.
+    project: Development Team
+    status_code: Planned
+    priority_code: b-high
+    person: Conrad Bates
+    role: Dev Team Leader
+    due_on: <%= 1.week.from_now.to_formatted_s(:db) %>
+    associations:
+      - Project Bravo
+      - Test environment build completion days
+    comments:
+      - body: >
+          This library can be replaced by libfoobar.so, a GNU solution.
+          Make sure we cover off the licensing issues.
+        person: Stewart Johnson
+        created_at: <%= 3.days.ago %>
+    
+  Changes to functional spec causing test rework:
+    project: Test Team
+    status_code: Identified
+    priority_code: a-critical
+    person: Stewart Johnson
+    role: Dev Team Leader
+    escalation: Project Charlie
+    due_on: <%= 1.week.from_now.to_formatted_s(:db) %>
+
+  Legacy application documentation inadequate for test preparation:
+    project: Test Team
+    status_code: Identified
+    priority_code: b-high
+    person: Debbie Scott
+    role: Test Team Leader
+    due_on: <%= 1.week.from_now.to_formatted_s(:db) %>
+    associations:
+      - Vendor library defects
+  
+  Business availability for consultation slowing progress:
+    project: Development Team
+    status_code: Identified
+    priority_code: b-high
+    person: Conrad Bates
+    role: Dev Team Leader
+    due_on: <%= 2.days.from_now.to_formatted_s(:db) %>
+  
+  Karen Badin maternity leave:
+    description: >
+      Completely unexpectedly, Karen is going on maternity leave from 
+      <%= 3.weeks.from_now.to_formatted_s(:db) %> for six months.
+    project: Project Charlie
+    status_code: Identified
+    priority_code: c-medium
+    person: Conrad Bates
+    role: Dev Team Leader
+    due_on: <%= 3.weeks.from_now.to_formatted_s(:db) %>
+    associations: 
+      - Blanad Murphy
+    comments:
+      - body: >
+          Is Blanad a potential replacement for Karen?
+        person: Sean Parker
+        created_at: <%= 2.days.ago %>
+      - body: >
+          No, she does not have the technical background.
+        person: Conrad Bates
+        created_at: <%= 1.day.ago %>
+  
+actionitems:
+  Finish extension to prototype: 
+    project: Project Charlie
+    status_code: Planned
+    priority_code: b-high
+    person: Sean Parker
+    role: Project Manager (Project Charlie)
+    due_on: <%= 6.week.from_now.to_formatted_s(:db) %>
+
+  Team lunch planning: 
+    project: Project Charlie
+    status_code: Planned
+    priority_code: b-high
+    person: Conrad Bates
+    role: Dev Team Leader
+    due_on: <%= 1.week.from_now.to_formatted_s(:db) %>
+
+changerequests:
+  Project Orphan establishment:
+    project: Project Orphan
+    status_code: Approved
+    priority_code: b-high
+    person: David Hyland
+    role: Project Manager - Orphan
+    date_lines:
+      - milestone: Feasibility Study
+        start_on: <%= 3.months.ago.to_formatted_s(:db) %>
+        end_on: <%= 1.month.ago.to_formatted_s(:db) %>
+      - milestone: Project Charter
+        start_on: <%= 3.months.ago.to_formatted_s(:db) %>
+        end_on: <%= 2.months.ago.to_formatted_s(:db) %>
+    effort_lines:
+      - milestone: Project Charter
+        role: Project Manager - Orphan
+        hours: <%= 40 * 8 %>
+        effort_budget: 32000
+      - milestone: Project Charter
+        role: Finance Analyst
+        hours: <%= 180 * 8 %>
+        effort_budget: 144000
+      - milestone: Feasibility Study
+        role: Project Manager - Orphan
+        hours: <%= 120 * 8 %>
+        effort_budget: <%= 120*8*100 %>
+      - milestone: Feasibility Study
+        role: Finance Analyst
+        hours: <%= 20 * 8 %>
+        effort_budget: <%= 20*8*100 %>
+    expense_lines:
+      - milestone: Feasibility Study
+        role: Traveller
+        purpose_code: Travel
+        expense_budget: 10000
+        
+  Project Orphan extension of timeframe:
+    project: Project Orphan
+    status_code: Proposed
+    priority_code: b-high
+    person: David Hyland
+    role: Project Manager - Orphan
+    date_lines:
+      - milestone: Feasibility Study
+        start_on: <%= 3.months.ago.to_formatted_s(:db) %>
+        end_on: <%= 1.month.from_now.to_formatted_s(:db) %>
+    effort_lines:
+      - milestone: Feasibility Study
+        role: Project Manager - Orphan
+        hours: <%= 120 * 8 %>
+        effort_budget: <%= 40*8*100 %>
+      - milestone: Feasibility Study
+        role: Finance Analyst
+        hours: <%= 40 * 8 %>
+        effort_budget: <%= 40*8*100 %>
+    expense_lines:
+      - milestone: Feasibility Study
+        role: Traveller
+        purpose_code: Travel
+        expense_budget: 2000
+  
+  Program Alpha initial budget:
+     project: Program Alpha
+     status_code: Approved
+     priority_code: b-high
+     person: Michael Suckling
+     role: Program Director - Alpha
+     date_lines:
+       - milestone: Code complete
+         start_on: <%= 3.months.ago.to_formatted_s(:db) %>
+         end_on: <%= 2.months.from_now.to_formatted_s(:db) %>
+     effort_lines:
+       - milestone: Code complete
+         role: Program Director - Alpha
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Program Manager - Alpha
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Program Officer
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Project Manager (Project Bravo)
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Business Analyst
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Project Manager (Project Charlie)
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Release Manager
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Technical Lead
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Dev Team Leader
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Test Team Leader
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Programmer
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Database Administrator
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: System Tester
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+       - milestone: Code complete
+         role: Integration Tester
+         hours: <%= 40 * 8 %>
+         effort_budget: <%= 40*8*100 %>
+
+  mymerch establishment:
+    project: mymerch
+    status_code: Approved
+    priority_code: b-high
+    person: Tracey Davidson
+    role: PM
+    effort_lines:
+    - milestone: Ma
+      role: PM
+      hours: 1
+      effort_budget: 100
+    - milestone: Mb
+      role: PM
+      hours: 1
+      effort_budget: 100
+    - milestone: M1a
+      role: PM
+      hours: 1
+      effort_budget: 100
+    - milestone: M1b
+      role: PM
+      hours: 1
+      effort_budget: 100
+    - milestone: M1.1a
+      role: PM
+      hours: 1
+      effort_budget: 100
+    - milestone: M1.1b
+      role: Ninja Assassin
+      hours: 1
+      effort_budget: 100
+    - milestone: M1.1.1a
+      role: PM
+      hours: 1
+      effort_budget: 100
+    
+    

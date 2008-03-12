@@ -1,0 +1,80 @@
+= WELCOME =
+
+This is the source distribution of Short Epic - Program Management Office (PMO).
+
+Short Epic PMO is a work-flow system to enable management and governance of medium to large IT programs and/or projects. 
+
+It supports management of the following domains: 
+ Team (Project, Person, Role), 
+ Operations (Issue, Risk, Meeting), 
+ Financial (Change Request, Timesheet, Expense claim), 
+ Quality (Requirement, Defect, Test Case), and 
+ Configuration (Component, Release).  
+
+The software is developed in Ruby on Rails, currently against PostgresQL and is Open Source.
+
+For more information, see http://www.shortepic.com
+
+
+= INSTALLATION = 
+
+== Development and Test == 
+
+Gems dependencies:
+* RedCloth
+* ...
+
+1. Create databases, populate config/database.yml.
+2. $ rake db:migrate
+3. $ rake test
+4. $ rake load_fixtures
+5. $ script/server
+
+== Deployment using Capistrano ==
+
+Assumptions regarding host:
+* Postgresql with tsearch2
+* Mongrel_cluster, pound
+* ...
+
+1. Edit config/deploy.rb
+2. $ rake remote:setup
+3. $ rake remote:exec ACTION=update
+4. $ rake remote:exec ACTION=migrate
+5. $ rake remote:exec ACTION=remote_initial_data
+6. $ rake remote:exec ACTION=configure_mongrel_cluster
+7. $ rake remote:spinner
+
+= SUPPORT =
+
+Support for your installation is available through hosted@shortepic.com.
+
+
+= CONTRIBUTE FIXES AND ENHANCEMENTS =
+
+Your contribution is warmly welcomed. Please read the file DEVELOPERS for contacts and standards.
+
+
+= OPEN SOURCE LICENSE =  
+
+The MIT License
+
+Copyright (c) 2006, 2007 Short Epic Pty Limited
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

@@ -1,0 +1,11 @@
+hidden_line_key = "#{@table_name}_hidden_line"
+errors_id = "#{@table_name}_errors"
+editor_id = "#{@table_name}_editor"
+line_id = "#{@table_name}_#{@line.id}"
+
+page.show session[hidden_line_key] if session[hidden_line_key]
+session[hidden_line_key] = line_id
+page.remove errors_id
+page.remove editor_id
+page.insert_html :before, session[hidden_line_key], :partial => 'item/child_table', :locals => { :section => :editor }
+page.hide session[hidden_line_key]

@@ -1,0 +1,65 @@
+<h2>Login</h2>
+
+<%= form_tag(:action => 'login') %>
+  <div id="manage">
+
+    <table class="fullwidth">
+
+      <% unless flash[:error].nil? %>
+        <%= label_value_pair('Errors', flash[:error]) %>
+      <% end %>
+
+      <% unless flash[:notice].nil? %>
+        <%= label_value_pair('Notice', flash[:notice]) %>
+      <% end %>
+
+      <%= label_value_pair('Email address', text_field_tag('email', params[:email], :class => (flash[:error_email] ? 'field-error text-field' : 'no-field-error text-field'), :size => 30 )) %>
+
+      <%= label_value_pair('Password', password_field_tag('password', '', :class => (flash[:error_password] ? 'field-error' : 'no-field-error')),
+            :row_id => 'old-password') %>
+
+      <tr id="ch-pass">
+        <td>&nbsp;</td>
+        <td><%= link_to 'Change password', '#', 
+                  { :onclick => "
+                    Element.hide('ch-pass'); 
+                    Effect.Appear('new-password'); 
+                    Effect.Appear('confirm-password'); 
+                    return false;" } %></td>
+      </tr>
+
+      <%= label_value_pair('New password', password_field_tag('new_password', ''), 
+            :field_class => (flash[:error_new_password] ? 'field-error' : nil), 
+            :row_id => 'new-password',
+            :row_style => 'display:none;') %>
+
+      <%= label_value_pair('Confirm password', password_field_tag('confirm_password', ''), 
+            :field_class => (flash[:error_confirm_password] ? 'field-error' : nil),
+            :row_id => 'confirm-password',
+            :row_style => 'display:none;') %>
+            
+      <tr id="reset-pass">
+        <td>&nbsp;</td>
+        <td><%= link_to 'Reset password', '#',
+                  { :onclick => "
+                    Element.hide('ch-pass');
+                    Element.hide('old-password');
+                    Element.hide('reset-pass');
+                    Effect.Appear('reset-password');
+                    return false;" } %></td>
+      </tr>
+
+      <%= label_value_pair('Reset password', check_box_tag('reset_password', "1", false, :class => 'checkbox'), 
+            :row_id => 'reset-password',
+            :row_style => 'display:none;') %>
+              
+      <tr class="submit">
+        <td colspan="2"> 
+          <%= submit_tag 'login', :class => 'button' %>
+        </td>
+      </tr>
+    </table>
+    
+  </div>
+</form>
+  

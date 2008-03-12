@@ -1,0 +1,18 @@
+<div id="centrecol">
+
+  <h1>Plan</h1>
+  
+  <% unless @milestones.empty? && @milestones.empty? %>
+
+    <h2>Milestones</h2>
+
+    <%= render :partial => 'milestone_line', :locals => {:section => :head} %>
+
+    <%= render :partial => 'milestone_line', :locals => {:section => :body },
+          :collection => @milestones %>
+
+    <%= render :partial => 'milestone_line', :locals => {:section => :foot} %>
+
+  <% end %>
+
+</div>

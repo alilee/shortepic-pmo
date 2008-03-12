@@ -1,0 +1,23 @@
+--- 
+requirement_details_001: 
+  res_rgt: "4"
+  person_id_sponsor: "2"
+  person_id_expert: "2"
+  id: "3"
+  requirement_id: "45"
+  code_id_type: "43"
+  res_lft: "3"
+  requirement_detail_id_parent: "2"
+  code_id_area: "45"
+  detail: ""
+requirement_details_002: 
+  res_rgt: "2"
+  person_id_sponsor: "2"
+  person_id_expert: "2"
+  id: "2"
+  requirement_id: "44"
+  code_id_type: "43"
+  res_lft: "1"
+  requirement_detail_id_parent: "0"
+  code_id_area: "45"
+  detail: ""

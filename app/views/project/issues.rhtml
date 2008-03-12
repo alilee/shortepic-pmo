@@ -1,0 +1,21 @@
+<div id="centrecol">
+
+  <h1>Issues</h1>
+  
+  <% unless @escalated_issues.empty? && @not_escalated_issues.empty? %>
+
+    <h2>Issues</h2>
+
+    <%= render :partial => 'issue_line', :locals => {:section => :head} %>
+
+    <%= render :partial => 'issue_line', :locals => {:section => :body },
+          :collection => @escalated_issues %>
+      
+    <%= render :partial => 'issue_line', :locals => {:section => :body },
+          :collection => @not_escalated_issues %>
+
+    <%= render :partial => 'issue_line', :locals => {:section => :foot} %>
+
+  <% end %>
+
+</div>

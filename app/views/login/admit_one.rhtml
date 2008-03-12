@@ -1,0 +1,48 @@
+<h2>Create new user</h2>
+
+<p>This form enables you to:</p>
+<ul>
+  <li>create a new Person record for yourself,</li>
+  <li>create a new Project assigned to you, and</li>
+  <li>place yourself in a Role as an administrator of that Project.</li>
+</ul>
+<p>Your login credentials will be emailed to the address you specify.</p>
+
+<p>You WON'T need to use this form unless you:</p>
+<ol>
+  <li>Don't already have a Person record on this server,</li>
+  <li>Require an independent project hierarchy (ie. a new root Project). </li>
+</ol>
+
+<p>If you just want to participate in a Project on this server, ask the administrator of that project to create a Person record for you and place you in a Role on that project.</p>
+
+<%= form_tag(:action => 'admit_one') %>
+  <div id="manage">
+
+    <table class="fullwidth">
+
+      <% unless @person.errors.empty? %>
+        <%= label_value_pair('Person errors', error_messages_for('person')) %>
+      <% end %>
+
+      <% unless @detail.errors.empty? %>
+        <%= label_value_pair('Email errors', error_messages_for('detail')) %>
+      <% end %>
+
+      <% unless @project.errors.empty? %>
+        <%= label_value_pair('Project errors', error_messages_for('project')) %>
+      <% end %>
+
+      <%= label_value_pair('Your name', text_field('person', 'title', :class => (@person.errors[:title] ? 'field-error text-field' : 'no-field-error text-field'), :size => 30 )) %>
+      <%= label_value_pair('Your email', text_field('detail', 'email', :class => (@detail.errors[:email] ? 'field-error text-field' : 'no-field-error text-field'), :size => 30 )) %>
+      <%= label_value_pair('Initial project name', text_field('project', 'title', :class => (@project.errors[:title] ? 'field-error text-field' : 'no-field-error text-field'), :size => 30 )) %>
+
+      <tr class="submit">
+        <td colspan="2"> 
+          <%= submit_tag 'create', :class => 'button' %>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+</form>

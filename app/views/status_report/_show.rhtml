@@ -1,0 +1,11 @@
+<!-- TODO: C - should show prior forecast and slip -->
+
+<%
+  @display_rows = @status_report.status_report_lines
+  @child_class = StatusReportLine
+  @table_name = 'Milestones'
+  @table_fields = [:milestone_id, :code_id_traffic, :percent_complete, :forecast_complete_on, :last_forecast_complete_on, :baseline_end_on]
+  @table_totals = []
+  @table_titles = {}
+%>
+<%= render :partial => 'item/display_table' unless @display_rows.empty? %>

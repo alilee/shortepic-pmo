@@ -1,0 +1,50 @@
+<% if section == :head %>
+  
+  <table>
+    
+    <thead>
+
+      <tr>
+        <th colspan="2">Title</th>
+        <th>Version</th>
+        <th>Date</th>
+      </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <% @odd = true %>
+
+<% elsif section == :subhead %>
+
+      <tr>
+        <th colspan="4"><%= heading %></th>
+      </tr>
+
+<% elsif section == :body %>
+
+      <tr>
+        <td colspan="4"><%= link_to_item library_line %></td>
+      </tr>
+      <% library_line.attachments.each do |a| %>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+          <%= link_to h(a.filename),
+                :controller => 'milestone',
+                :id => library_line.id,
+                :action => 'download_attachment',
+                :attachment_id => a.id %>
+        </td>
+        <td><%= a.version %></td>
+        <td><%= a.created_at.strftime(time_format) %></td>
+      </tr>
+      <% end %>
+      
+<% elsif section == :foot %>
+
+    </tbody>
+  </table>
+
+<% end %>

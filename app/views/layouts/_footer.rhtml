@@ -1,0 +1,5 @@
+<div id="footer">
+  <p>Consultant Manager Beta Copyright 2007 <%= link_to 'Shortepic.com', 'http://www.shortepic.com/' %> All rights reserved</p>
+  <p><%= Inflector.humanize(RAILS_ENV) %> environment on <%= $hostname %><%= Pathname.new(RAILS_ROOT).realpath %></p>
+  <p>Source <%= link_to $app_branch, $app_branch %>@<%= $app_rev %></p>
+</div>

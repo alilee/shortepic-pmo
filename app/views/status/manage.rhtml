@@ -1,0 +1,87 @@
+<h2>Item types</h2>
+
+<p><%= flash[:notice] %></p>
+<p><%= flash[:error] %></p>
+<%= error_messages_for 'new_status' %>
+
+<%= anchor_link('ref_toc') -%>
+<% @statuses.collect {|s| s.type_name}.uniq.each do |type_name| -%>
+  <p> <%= link_to_anchor(type_name, "ref_#{type_name}") %> </p>
+<% end -%>
+  <p> &nbsp; </p>
+  <p> <%= link_to_anchor('New status...', 'ref_new') %> </p>
+  <p> &nbsp; </p>
+
+<%= form_tag(:action => 'manage') %>
+
+<table>
+  
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Item type</th>
+      <th>Status</th>
+      <th>Sequence</th>
+      <th>Generic stage</th>
+      <th>Enabled</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+
+<%  type_name = ''
+    @statuses.each do |status|
+      if status.type_name != type_name
+        type_name = status.type_name
+        type_name_text = h type_name
+        anchor = true
+      end %>
+      <tr>
+        <td><%= status.id %></td>
+        <td>
+          <% if anchor %>
+            <%= anchor_link("ref_#{type_name}") %> 
+          <% end %>
+          <%= type_name_text %> &nbsp;
+        </td>
+        <td>
+          <% div_id = "value_#{status.id}" %>
+          <div id="<%= div_id %>"><%= h status.value %></div>
+          <%= in_place_editor(div_id, { :loading_text => 'Updating...', 
+                :url => "/status/#{status.id}/edit_value", 
+                :size => status.value.length+5 } ) %>
+        </td>
+        <td>
+          <% div_id = "sequence_#{status.id}" %>
+          <div id="<%= div_id %>"><%= status.sequence %></div>
+          <%= in_place_editor(div_id, { :loading_text => 'Updating...', 
+                :url => "/status/#{status.id}/edit_sequence", 
+                :size => 5 } ) %>
+        </td>
+        <td><%= h status.generic_stage %></td>
+        <td><%= status.enabled? ? '' : 'False' %></td>
+        <td>&nbsp;</td>
+      </tr>      
+      <%
+          type_name_text = ''
+          anchor = false
+    end %>
+  </tbody>
+
+  <tfoot>
+    <tr id="ref_new">
+      <td>&nbsp;</td>
+      <td><%= select('new_status', 'type_name', Status::VALID_TYPE_NAMES) %></td>
+      <td><%= text_field('new_status', 'value') %></td>
+      <td><%= text_field('new_status', 'sequence') %></td>
+      <td><%= select('new_status', 'generic_stage', Status::VALID_GENERIC) %></td>
+      <td><%= check_box('new_status', 'enabled') %></td>
+      <td><%= submit_tag 'Add' %></td>  
+    </tr>
+  </tfoot>
+  
+</table>
+
+</form>
+        

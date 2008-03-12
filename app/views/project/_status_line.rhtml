@@ -1,0 +1,57 @@
+<% if section == :head %>
+  
+  <table>
+    
+    <tbody>
+    
+<% elsif section == :main %>
+
+      <!-- status_line is a StatusReport -->
+      <% unless status_line.nil? %>
+        <tr>
+          <th>Traffic</th>
+          <th colspan="3">Summary</th> 
+        </tr>
+
+        <tr>
+          <td style="background-color: <%= get_background_color(status_line.detail.traffic_code.to_s) %>">
+            <% # TODO: B - put date in status report cell, highlighting age of status report %>
+            <%= status_line.detail.period_ending_on.strftime(date_format) %>
+            <%= link_to_item status_line, status_line.detail.traffic_code.value %>
+          </td>
+          <td colspan="3"><%= tx_no_p status_line.description %></td>
+        </tr>
+      <% end %>
+          
+<% elsif section == :subs %>
+
+      <!-- status_line is a project -->
+      <% sr = status_line.latest_complete_status_report %>
+
+      <% if status_line_counter == 0 %>
+        <tr>
+          <th colspan="4">Sub-projects</th>
+        </tr>
+      <% end %>
+      
+      <tr>
+        <% if sr.nil? %>
+          <td>&nbsp;</td>
+        <% else %>
+          <td style="background-color: <%= get_background_color(sr.detail.traffic_code.to_s) %>">
+            <%= sr.detail.period_ending_on.strftime(date_format) %>
+            <%= link_to_item sr, sr.detail.traffic_code.value %>
+          </td>
+        <% end %>
+        <td><%= icon(:escalated_up) if status_line.escalated_up?(@project) %></td>
+        <td><%= link_to_item status_line %></td>
+        <td><%= icon(:escalated_here) if status_line.escalated_here?(@project) %></td>
+      </tr>
+      
+<% elsif section == :foot %>
+
+    </tbody>
+    
+  </table>
+  
+<% end %>

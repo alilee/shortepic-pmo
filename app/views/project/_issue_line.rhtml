@@ -1,0 +1,42 @@
+
+<% if section == :head %>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Priority</th>
+        <th><%= icon :escalated_up %></th>
+        <th>Title</th>
+        <th><%= icon :escalated_here %></th>
+        <th>Status</th>
+        <th>Assigned to</th>
+        <th>Due</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      
+<% elsif section == :body %>
+
+      <!-- locals: issue_line is the Issue to be displayed
+      -->
+
+      <tr>
+        <td><%= issue_line.priority_code %></td>
+        <td><%= icon :escalated_up if issue_line.escalated_up?(@project) %></td>
+        <td><%= link_to_item issue_line %></td>
+        <td><%= icon :escalated_here if issue_line.escalated_here?(@project) %></td>
+        <td><%= issue_line.status %></td>
+        <td><%= link_to_item issue_line.assignee %></td>
+        <td <%= 'class="overdue"' if issue_line.overdue? %>>
+          <%= issue_line.due_on.strftime(date_format) unless issue_line.due_on.nil? %>
+        </td>
+      </tr>
+      
+<% elsif section == :foot %>
+
+    </tbody>
+  </table>
+  
+<% end %>

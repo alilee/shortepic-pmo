@@ -1,0 +1,254 @@
+
+<% if section == :table %>
+
+  <% if editing? || !@child_collection.empty? %>
+
+    <h2><%= @table_title || @table_name.pluralize.titleize.humanize %></h2>
+
+    <% if editing? %>
+      <% session["#{@table_name}_hidden_line"] = nil %>
+      <%= form_remote_tag :url => { :action => 'edit_table_lines', :id => @item.id, :task => 'save', :table => @table_name } %>
+    <% end %>
+
+    <%= render :partial => 'item/child_table', :locals => { :section => :head } %>
+    <%= render :partial => 'item/child_table', :locals => { :section => :body }, :collection => @child_collection %>
+    <%= render :partial => 'item/child_table', :locals => { :section => :foot } %>
+
+    <%= '</form>' if editing? %>
+
+  <% end %>
+
+<% elsif section == :just_table %>
+
+  <%= render :partial => 'item/child_table', :locals => { :section => :head } %>
+  <%= render :partial => 'item/child_table', :locals => { :section => :body }, :collection => @child_collection %>
+  <%= render :partial => 'item/child_table', :locals => { :section => :foot } %>
+    
+<% elsif section == :head %>
+      <table id="table_<%= @table_name %>">
+        <thead>
+          <tr>
+            <% for col_name in @table_fields do 
+                if @table_titles[col_name] %>
+                <th><%= @table_titles[col_name] %></th>
+            <%  else
+                  column = @child_class.columns.find {|col| col_name.to_s == col.name }
+                  case column.name
+                    when 'id', 'created_at', 'updated_at', 'created_on', 'updated_on' %>
+                      <!-- ignore system columns -->
+                <%  when Inflector.foreign_key(@item.class.name) %>
+                      <!-- ignore foreign key column -->
+                <%  when /^res_/ %>
+                      <!-- ignore reserved column -->
+                <%  when /^code_id_/ %>
+                      <th><%= $'.humanize %></th>
+                <%  when /_id$/ %>
+                      <th><%= $`.humanize %></th>
+                <%  when /_id_/ %>
+                      <th><%= $'.humanize %></th>
+                <%  else %>
+                      <th><%= column.human_name %></th>
+                <% end
+                 end
+               end %>
+
+            <% if editing? %>
+              <th>Action</th>
+            <% end %>
+          </tr>
+        </thead>
+  
+        <tbody id="<%= "#{@table_name}_body" %>">
+
+<% elsif section == :body %>
+
+      <% if @line && @line.id == child_table.id %>
+        <%= render :partial => 'item/child_table', :locals => { :section => :editor } %>
+      <% else %> 
+
+        <tr id="<%= "#{@table_name}_#{child_table.id}" %>">
+          <% for column in @child_class.columns do %>
+            <%  case column.name 
+                when 'id', 'created_at', 'updated_at', 'created_on', 'updated_on' %>
+                  <!-- ignore system columns -->
+            <%  when Inflector.foreign_key(@item.class.name) %>
+                  <!-- ignore foreign key column -->
+            <%  when /^res_/ %>
+                  <!-- ignore reserved column -->
+            <%  when /^code_id_/ %>
+                  <td><%= child_table[column.name].nil? ? h('<na>') : Code.find(child_table[column.name]).value %></td>
+            <%  when /_id$/ %>
+                  <td><%= link_to_item Item.find(child_table[column.name].to_i) %></td>
+            <%  when /_id_/ %>
+                  <td><%= link_to_item Item.find(child_table[column.name].to_i) %></td>
+            <%  when /_at$/ %>        
+                  <td><%= child_table[column.name].strftime(time_format) %></td>
+            <%  when /_on$/ %>
+                  <td><%= child_table[column.name].strftime(date_format) unless child_table[column.name].nil? %></td>
+            <%  else
+                  if column.number? %> 
+                    <td class="right"><%= number_with_delimiter child_table[column.name] %></td>
+              <%  else %>
+                    <td><%= h child_table[column.name] %></td>
+              <%  end %>
+            <%  end %>
+          <% end %>
+        
+          <% if editing? %>
+            <td>
+              <%= link_to_remote icon(:edit_row), :url => { :action => 'edit_table_lines', :id => @item.id, 
+                    :task => 'edit', :table => @table_name, :line_id => child_table.id } %>
+              <%= link_to_remote icon(:delete), :url => { :action => 'edit_table_lines', :id => @item.id,
+                    :task => 'delete', :table => @table_name, :line_id => child_table.id} %>
+             </td>
+          <% end %>
+        </tr>
+      <% end %>
+      
+<% elsif section == :foot %>
+
+          <% if editing? && @line.nil? %>
+            <% @line = @child_class.new %>
+            <%= render :partial => 'item/child_table', :locals => { :section => :editor } %>
+          <% end %>  
+
+        </tbody>
+
+        <%= render :partial => 'item/child_table', :locals => { :section => :totals, :collection => @child_collection } %>
+      
+      </table>
+    
+<% elsif section == :editor %>
+
+  <tr id="<%= "#{@table_name}_errors" %>">
+    <% unless @line.errors.empty? %>
+      <td colspan="<%= @table_cols %>">
+        <%= @line.errors.full_messages.join('<br/>') %>
+      </td>
+    <% end %>
+  </tr>
+
+  <tr id="<%= "#{@table_name}_editor" %>">
+    <% for column in @child_class.columns do %>
+      <%  case column.name 
+          when 'id', 'created_at', 'updated_at', 'created_on', 'updated_on' %>
+            <!-- ignore system columns -->
+      <%  when Inflector.foreign_key(@item.class.name) %>
+            <!-- ignore foreign key column -->
+      <%  when /^res_/ %>
+            <!-- ignore reserved column -->
+      <%  when /^code_id_/ %>
+            <td <%= 'class="field-error"' if @line.errors[column.name] %>>
+              <%= select('line', column.name, select_for_code(@item.class, $'.humanize)) %>
+            </td>
+      <%  when /_id($|_)/ %>
+            <td <%= 'class="field-error"' if @line.errors[column.name] %>>
+              <% if @table_selects && @table_selects[column.name.to_sym] == :look_any %>
+                <%= select('line', column.name, select_for_visibility_to_user(Object.const_get($`.camelize.singularize))) %>
+              <% elsif @table_selects && @table_selects[column.name.to_sym] == :look_escalated %>
+                <%= select('line', column.name, select_for_escalation((Object.const_get($`.camelize.singularize)), @item)) %>
+              <% elsif @table_selects && @table_selects[column.name.to_sym] == :look_across %>
+                <%= select('line', column.name, select_for_peer((Object.const_get($`.camelize.singularize)), @item)) %>
+              <% elsif @table_selects && @table_selects[column.name.to_sym] == :look_down %>
+                <%= select('line', column.name, select_for_visibility_from_item((Object.const_get($`.camelize.singularize)), @item)) %>
+              <% else%>
+                <%= select('line', column.name, select_for_visibility_and_authority((Object.const_get($`.camelize.singularize)), @item)) %>
+              <% end %>
+            </td>
+      <%  when /_id_/ %>
+        <td <%= 'class="field-error"' if @line.errors[column.name] %>>
+              <%= select('line', column.name, select_for_visibility_and_authority((Object.const_get($`.camelize.singularize)), @item)) %>
+        </td>
+      <%  when /_at$/ %>
+        <td <%= 'class="field-error"' if @line.errors[column.name] %>>
+          <%= datetime_select('line', column.name, :use_short_month => true) %>
+        </td>
+      <%  when /_on$/ %>
+        <td <%= 'class="field-error"' if @line.errors[column.name] %>>
+          <%= text_field('line', column.name, :size => 15)+popup_calendar('line', column.name) %>
+        </td>
+      <%  when /^is_/ %>
+        <td <%= 'class="field-error"' if @line.errors[column.name] %>>
+          <%= check_box('line', column.name) %>
+        </td>
+      <%  else
+            if column.klass == Fixnum || column.klass == Float %>
+              <td class="right <%= 'field-error' if @line.errors[column.name] %>">
+                <%= text_field('line', column.name, :size => 10, :class => 'right' ) %>
+              </td>
+        <%  else %>
+              <td <%= 'class="field-error"' if @line.errors[column.name] %>>
+                <%= text_field('line', column.name) %>  
+              </td>
+        <%  end %>
+      <%  end %>
+    <% end %>
+    <% # FIXME: B - check error feedback in child tables.. %>
+    <td class="buttons">
+      <%= hidden_field('line', :id) %>
+      <%= image_submit_tag 'row_commit.gif', :alt => 'Save', :width => '20', :height => '20' %>
+      <%= link_to_remote(icon(:cancel), :url => { :action => 'edit_table_lines', :id => @item.id, 
+            :task => 'cancel', :table => @table_name, :line_id => @line.id }) if @line.id %> 	    
+    </td>
+  </tr>
+
+<% elsif section == :totals %>
+
+  <% totals_reqd = false
+
+     for column in @child_class.columns do 
+      case column.name
+      when 'id', 'created_at', 'updated_at', 'created_on', 'updated_on'
+        next
+      when /^res_/
+        next
+      when /^code_id_/ 
+        next
+      when /_id$/
+        next
+      when /_id_/ 
+        next
+      else
+        totals_reqd = column.number? && @table_totals.include?(column.name.to_sym)
+        break if totals_reqd
+      end
+     end
+   
+     if totals_reqd %>
+       <tfoot>
+         <tr id="<%= "#{@table_name}_totals" %>">
+           <% for column in @child_class.columns do 
+               case column.name
+               when 'id', 'created_at', 'updated_at', 'created_on', 'updated_on' %>
+                 <!-- ignore system columns -->
+            <% when Inflector.foreign_key(@item.class.name) %>
+                 <!-- ignore foreign key column -->
+            <% when /^res_/ %>
+                 <!-- ignore reserved columns -->
+            <% when /^code_id_/ %>
+                 <td></td>
+            <% when /_id$/ %>
+                 <td></td>
+            <% when /_id_/ %>
+                 <td></td>
+            <% else
+                 if column.number? && @table_totals.include?(column.name.to_sym) 
+                   total = @child_collection.inject(0) {|sum, line| sum + line.send(column.name).to_i } %>
+                   <td class="right"><%= number_with_delimiter total %></td>
+              <% else %>
+                   <td></td>
+              <% end 
+               end
+             end
+           
+             if editing? %>
+              <td></td>
+           <% end %>
+         </tr>
+       </tfoot>
+  
+  <% end %>
+
+<% else 
+     raise StandardError.new("Illegal section in #{__FILE__} being #{section.to_s}")
+   end %>

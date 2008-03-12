@@ -1,0 +1,48 @@
+<div id="centrecol"> 
+
+  <h1>Time</h1>
+    
+  <table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Person</th>
+        <th>Baseline hours</th>
+        <th>Actual hours</th>
+        <th>Residual</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% @roles.each do |role| %>
+        
+        <tr>
+          <td colspan="2"><%= link_to_item role %></td>
+          
+          <% role_baseline_lines = @baseline_effort_lines.select {|el| el.role_id == role.id }
+             role_actual_lines = @actual_effort_lines.select {|al| al.role_id == role.id }
+          %>
+          
+          <td><%= role_baseline_hours = role_baseline_lines.inject(0) {|m,o| m + o.hours } %></td>
+          <td><%= role_actual_hours = role_actual_lines.inject(0) {|m,o| m + (o.normal_hours || 0) + (o.overtime_hours || 0) } %></td>
+          <td><%= role_baseline_hours - role_actual_hours %></td>
+        <tr>
+        
+        <% person_actual_lines = Set.new(role_actual_lines).classify {|al| al.timesheet.detail.worker } %>
+        <% person_actual_lines.each_pair do |person, lines| %>
+        <tr>
+          <td>&nbsp;</td>
+          <td><%= link_to_item person %></td>
+          <td>&nbsp;</td>
+          <td><%= lines.inject(0) {|m,o| m + (o.normal_hours || 0) + (o.overtime_hours || 0) } %>    
+          <td>&nbsp;</td>
+        </tr>
+        <% end %>
+
+      <% end %>
+      
+    </tbody>
+  </table>
+    
+</div>
+

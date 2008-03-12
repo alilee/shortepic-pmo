@@ -1,0 +1,17 @@
+Assignments: <%= $app_root %><%= url_for :controller => 'person', :action => 'assignments', :id => @recipient.id %>
+ Total: <%= @total_assignments %>
+ Overdue: <%= @overdue_assignments %>
+
+Responsibilities: <%= $app_root %><%= url_for :controller => 'person', :action => 'responsibilities', :id => @recipient.id %>
+ Total: <%= @total_responsibilities %>
+ Overdue: <%= @overdue_responsibilities %>
+<% unless @assigned_projects.empty? -%>
+
+Your assignments include the following projects:
+<% @assigned_projects.each do |p| -%>
+ <%= p.title %> (<%= $app_root %><%= url_for :controller => 'project', :id => p.id %>)
+<% end -%>
+<% end -%>
+
+Regards,
+<%= $email_signoff %>

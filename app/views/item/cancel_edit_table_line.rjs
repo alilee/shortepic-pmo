@@ -1,0 +1,14 @@
+hidden_line_key = "#{@table_name}_hidden_line"
+errors_id = "#{@table_name}_errors"
+editor_id = "#{@table_name}_editor"
+totals_id = "#{@table_name}_totals"
+body_id = "#{@table_name}_body"
+line_id = "#{@table_name}_#{@line.id}"
+
+page.show line_id
+session[hidden_line_key] = nil
+page.remove errors_id
+page.remove editor_id
+@line.copy_instance_variables_from(@line.class.new)
+page.insert_html :bottom, body_id, :partial => 'item/child_table', :locals => { :section => :editor }
+page.visual_effect :highlight, editor_id

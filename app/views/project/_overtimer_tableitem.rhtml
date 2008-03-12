@@ -1,0 +1,11 @@
+<!-- Called from ProjectSummary view 
+  -->
+<tr>
+  <td><%= link_to(overtimer_tableitem['person_title'], 
+            :controller => 'person', :id => overtimer_tableitem['person_id']) %>
+  </td>
+  <td><%= overtimer_tableitem['overtime'] %></td>
+	<td><%= link_to(overtimer_tableitem['manager_title'], 
+	          :controller => 'role', :id => overtimer_tableitem['manager_id']) %>
+	</td>
+</tr>

@@ -1,0 +1,141 @@
+<div id="centrecol">
+	<% if @item.new_record? %>      
+    <%= form_tag :action => 'edit', :project_id => (@item.project_id || 0) %>
+  <% else %>
+    <%= form_tag :action => 'edit', :id => @item.id %>
+  <% end %>
+  
+    <div id="action">
+      <span class="action-label">Status</span> 
+      <span class="action-value"><%= select('item', 'status_id', select_for_next_valid_status(@old_item), 
+        :class => ( @item.errors[:status_id] ? 'field-error' : 'no_field_error' )) %></span> 
+      <span>|</span> 
+      <span class="action-label">Assigned to</span> 
+      <span class="action-value"><%= select('item', 'person_id', select_for_authorised_people(@item), 
+        :class => ( @item.errors[:person_id] ? 'field-error' : 'no_field_error' )) %></span> 
+      <span>|</span> <span class="action-label">Due date</span> 
+      <span class="action-value">
+        <% due_on_value = @item.due_on.nil? ? '' : @item.due_on.to_date.to_formatted_s(:db) %>
+        <%= text_field('item', 'due_on', :size => 15, :value => due_on_value, :class => ( @item.errors[:due_on] ? 'field-error' : 'no_field_error')) %>
+        <%= popup_calendar('item', 'due_on') %> </span>  
+    </div>
+
+    <div id="manage">
+      <table class="fullwidth">
+        <%= label_value_pair('Errors', error_messages_for('item')) unless @item.errors.empty? %>
+        <%= label_value_pair('Notice', flash[:notice]) unless flash[:notice].nil? %>
+        <%= label_value_pair('Title', text_field('item', 'title', :size => '40', 
+          :class => ( @item.errors[:title] ? 'field-error' : 'no_field_error'))) %>
+        <%= label_value_pair('Description', text_area('item', 'description', :cols => '69', :rows => '10', 
+          :class => ( @item.errors[:description] ? 'field-error' : 'no_field_error'))) %>
+        
+        <% @item.project_id = 0 if @item.project_id.nil? %>
+        <%= label_value_pair('Parent project', select('item', 'project_id', select_for_visibility_to_user(Project, @item.class == Project), {}, 
+          :class => ( @item.errors[:project_id] ? 'field-error' : 'no_field_error'))) %>
+          
+        <%= label_value_pair('Responsible role', select('item', 'role_id', select_for_visibility_and_authority(Role, @item), {}, 
+          :class => ( @item.errors[:role_id] ? 'field-error' : 'no_field_error')))%>
+        <%= label_value_pair('Priority', select('item', 'code_id_priority', select_for_code(@item.class, 'Priority'), {}, 
+          :class => ( @item.errors[:code_id_priority] ? 'field-error' : 'no_field_error'))) %>
+        <%= label_value_pair('Project escalated to', select('item', 'project_id_escalation', select_for_project_escalation(@item), {}, 
+          :class => ( @item.errors[:project_id_escalation] ? 'field-error' : 'no_field_error'))) %>
+        <%= label_value_pair('Link to', (check_box_tag('link_to_referrer', '1', params[:link_to_referrer], 
+          :class => 'checkbox')+(Item.find(params[:item_id_created_from]).title))) if @item.new_record? && params[:item_id_created_from] %>
+      </table>
+      <%= hidden_field_tag('item_id_created_from', params[:item_id_created_from]) if @item.new_record? && params[:item_id_created_from] %>
+    </div>
+    
+    <div id="details">
+      <h2>Details</h2>
+      <table class="fullwidth">
+      	<% @detail = @item.detail || @item.build_detail %>
+        <%= label_value_pair('Errors', error_messages_for('detail')) unless @detail.errors.empty? %>
+      	<% for c in @detail.class.columns do %>
+      	  <% if ['id', 'created_at', 'updated_at'].include?(c.name) || 
+      	        c.name == Inflector.foreign_key(@item.class.name) ||
+      	        c.name =~ /^res_/ %>
+      	    <!-- do nothing -->
+      	  <% elsif c.name =~ /^code_id_/ %>
+      	    <%= label_value_pair($'.humanize, select('detail', c.name, select_for_code(@item.class, $'.humanize), 
+                  {}, :class => ( @detail.errors[c.name] ? 'field-error' : 'no_field_error')))%>
+          <% elsif c.name =~ /_detail_id$/ %>
+            <%= label_value_pair($`.humanize, select('detail', c.name, 
+                  select_detail_for_visibility_to_user(Object.const_get($`.camelize.singularize), true),
+                  {}, :class => ( @detail.errors[c.name] ? 'field-error' : 'no_field_error')))%>
+          <% elsif c.name =~ /_id$/ %>
+            <%= label_value_pair($`.humanize, select('detail', c.name, 
+                  select_for_visibility_to_user(Object.const_get($`.camelize.singularize)),
+                  {}, :class => ( @detail.errors[c.name] ? 'field-error' : 'no_field_error'))) %>
+          <% elsif c.name =~ /_detail_id_/ %>
+            <%= label_value_pair($'.humanize, select('detail', c.name, 
+                  select_detail_for_visibility_to_user(Object.const_get($`.camelize.singularize), true),
+                  {}, :class => ( @detail.errors[c.name] ? 'field-error' : 'no_field_error')))%>
+          <% elsif c.name =~ /_id_/ %>
+            <%= label_value_pair($'.humanize, select('detail', c.name, 
+                  select_for_visibility_to_user(Object.const_get($`.camelize.singularize)),
+                  {}, :class => ( @detail.errors[c.name] ? 'field-error' : 'no_field_error'))) %>
+          <% elsif c.klass == Object %>
+            <%= label_value_pair(c.human_name, 
+                  check_box('detail', c.name, :class => ( @detail.errors[c.name] ? 'field-error checkbox' : 'checkbox'))) %>
+          <% elsif c.klass == Time %>
+            <%= label_value_pair(c.human_name, datetime_select('detail', c.name, :use_short_month => true, 
+                  :class => ( @detail.errors[c.name] ? 'field-error' : 'no_field_error'))) %>
+          <% elsif c.klass == Date %>
+            <%= label_value_pair(c.human_name, text_field('detail', c.name, :size => 15, 
+                  :class => ( @detail.errors[c.name] ? 'field-error' : 'no_field_error'))+popup_calendar('detail', c.name)) %>
+          <% elsif c.klass == Fixnum %>
+            <%= label_value_pair(c.human_name, text_field('detail', c.name, 
+                  :class => ( @detail.errors[c.name] ? 'right field-error' : 'right no_field_error'))) %>                
+          <% elsif c.klass == Float %>
+            <%= label_value_pair(c.human_name, text_field('detail', c.name, 
+                  :class => ( @detail.errors[c.name] ? 'right field-error' : 'right no_field_error'))) %>                                            
+          <% elsif c.type == :text %>
+            <%= label_value_pair(c.human_name, text_area('detail', c.name, :rows => '10', 
+                  :class => ( @detail.errors[c.name] ? 'field-error' : 'no_field_error'))) %>
+          <% else %>
+            <%= label_value_pair(c.human_name, text_field('detail', c.name,
+                  :class => ( @detail.errors[c.name] ? 'field-error' : 'no_field_error'))) %>
+          <% end %>
+      	<% end %>
+        <tr class="submit">
+          <td colspan="2">
+            <%= image_submit_tag 'save_changes_bt.gif' %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+
+  <div id="children">
+      
+    <% unless @item.new_record? %>
+    	<% @all_child_collection_details.each do |c| %>
+    	  <% if c[:edit] %>
+    	    <% @child_class = c[:class]
+             @child_collection = c[:collection]
+             @table_name = c[:table] 
+             @table_title = c[:title]
+             @table_fields = c[:fields] || @child_class.columns.collect {|col| col.name }
+             @table_totals = c[:totals] || @table_fields
+             @table_titles = c[:titles] || {}
+             @table_selects = c[:selects] %>
+             <%= render :partial => 'item/child_table', :locals => { :section => :table } %>
+             <% @line = nil %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% unless @item.new_record? %>
+        <% # FIXME: C - why don't these tables display borders (when empty?) %>
+        <%= render :partial => 'item/attachment_line', :locals => { :section => :head } %>
+        <%= render :partial => 'item/attachment_line', :locals => { :section => :body },
+               :collection => @item.attachments %>
+        <%= render :partial => 'item/attachment_line', :locals => { :section => :foot } %>
+    <% end %>
+
+    <% unless @item.new_record? %>
+        <%= render :partial => 'item/signature_edit_line', :locals => { :section => :table } %>
+    <% end %>
+
+  </div>
+</div>

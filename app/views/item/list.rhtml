@@ -1,0 +1,24 @@
+<h2> <%= @page_title %> </h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  <% odd = true %>
+  <% for item in @items %>
+    <tr<%= odd ? ' class="odd"' : '' %>>
+  	  <td><%= link_to_item(item) %></td>
+  	</tr>
+  	<% odd = !odd %>
+  <% end %>
+
+  </tbody>
+  <tfoot>
+    <tr>
+      <td><%= @items.nitems %> items.</td>
+    </tr>
+</table>

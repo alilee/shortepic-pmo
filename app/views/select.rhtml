@@ -1,0 +1,70 @@
+<h1>Structured search</h1>
+
+<%= form_tag({:action => 'select'}, {:method => 'get'}) %>
+  <div id="manage">
+    <table class="fullwidth">
+      <tr>
+        <td class='field-label'>Status</td>
+        <td><%= select_tag 'status[]', options_from_collection_for_select(@statuses, 'to_s', 'to_s'), :multiple => true %></td>
+      </tr>
+      <tr>
+        <td class='field-label'>Assigned to</td>
+        <td><%= select_tag 'assigned_to[]', options_from_collection_for_select(@people, 'id', 'title'), :multiple => true %></td>
+      </tr>
+      <tr>
+        <td class='field-label'>Due on</td>
+        <td>
+          <% i = Person.new # FIXME: B - Remove dependency on object for calendar_field %>
+          <%= select_tag 'due_on_op', options_for_select([['before', -1], ['on', 0], ['after', 1]]) %>
+          <%= calendar_field('i','due_on') %>
+        </td>
+      </tr>
+      <tr>
+        <td class='field-label'>Project</td>
+        <td><%= select_tag 'project_id_op', options_for_select([['escalated to', 0], ['descendant of', 1]]) %> <br/>
+          <%= select_tag 'project_id[]', options_from_collection_for_select(@projects, 'id', 'title'), :multiple => true %>
+        </td>
+      </tr>
+      <tr>
+        <td class='field-label'>Responsible role</td>
+        <td><%= select_tag 'role_id_op', options_for_select([['direct responsibility of', 0], ['ultimate responsibility of', 1]]) %> <br/>
+          <%= select_tag 'role_id[]', options_from_collection_for_select(@roles, 'id', 'title'), :multiple => true %>
+        </td>
+      </tr>
+      <tr>
+        <td class='field-label'>Priority</td>
+        <td><%= select_tag 'priority[]', options_from_collection_for_select(@priorities, 'to_s', 'to_s'), :multiple => true %></td>
+      </tr>
+      <tr>
+        <td class='field-label'>Type</td>
+        <td><%= select_tag 'type[]', options_from_collection_for_select(Status::VALID_TYPE_NAMES, 'to_s', 'to_s'), :multiple => true %></td>
+      </tr>
+      <tr class="submit">
+        <td colspan="2"><%= submit_tag 'Go', :class => 'button' %></td>
+      </tr>
+    </table>
+  </div>
+</form>
+
+<% if @results -%>
+<h2>Results</h2>
+<p><%= h @conditions %></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Item</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+  		<% @results.each { |result| -%>
+      	<tr>
+      	  <td><%= icon(result.class.name.underscore.to_sym) %></td>
+    			<td><%= link_to_item result %></td>
+    			<td><%= tx result.description %></td>
+      	</tr>
+  		<% } -%>
+    </tbody>
+	</table>
+<% end -%>

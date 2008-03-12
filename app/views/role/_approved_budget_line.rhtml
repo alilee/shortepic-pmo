@@ -1,0 +1,39 @@
+<% if section == :head %>
+  <table>
+    <thead>
+      <tr>
+      	<th>Change request</th>
+      	<th>Milestone</th>
+      	<th>Budget</th>
+      	<th>Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+  	<% @odd = false %>
+  	  
+<% elsif section == :body %>
+
+      <tr id="approved_budget_line<%= approved_budget_line.id %>"<%= @odd ? ' class="odd"' : '' %>>
+      	<td> <%= link_to_item(approved_budget_line.change_request) %> </td>
+      	<td> <%= link_to_item(approved_budget_line.milestone) %> </td>
+      	<td class="right"> <%= approved_budget_line.effort_budget || 0 %> </td>
+      	<td class="right"> <%= approved_budget_line.hours || 0 %> </td>
+      </tr>
+      <% @odd = !@odd %>
+
+<% elsif section == :foot
+     total_effort_budget = totals_from.inject(0) { |sum, line| sum + line.effort_budget } 
+     total_hours_budget = totals_from.inject(0) { |sum, line| sum + line.hours } %>
+
+    </tbody>
+    <tfoot>
+     	<tr>
+    		<td>Total</td>
+    		<td>&nbsp;</td>
+    		<td class="right"><%= total_effort_budget %></td>
+    		<td class="right"><%= total_hours_budget %></td>
+    	</tr>
+    </tfoot>
+  </table>
+
+<% end %>

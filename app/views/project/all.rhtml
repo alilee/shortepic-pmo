@@ -1,0 +1,52 @@
+<div id="centrecol"> 
+
+  <h1>All</h1>
+  
+  <% unless @children.empty? %>
+    <h2>All items</h2>
+  
+    <table>
+
+      <thead>
+        <tr>
+          <th><%= icon(:escalated_up) %></th>
+          <th>Title</th>
+          <th><%= icon(:escalated_here) %></th>
+      		<th>Priority</th>
+      		<th>Responsibility</th>
+      		<th>Status</th>
+      		<th>Assigned to</th>
+      		<th>Due date</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% last_type = nil %>
+        <% @children.each do |item| %>
+
+      		<% if item.class.name != last_type %>
+      			<tr>
+              <th colspan="8"> <%= item.class.name.pluralize.titleize.humanize %> </th>
+      			</tr>
+      		  <% last_type = item.class.name %>
+      		<% end %>
+  		
+          <tr>
+            <td> <%= icon(:escalated_up) if item.escalated_up?(@project) %>
+    				<td> <%= link_to_item(item) %> </td>
+            <td> <%= icon(:escalated_here) if item.escalated_here?(@project) %>
+      			<td> <%= item.priority_code.value %> </td>
+            <td> <%= link_to_item item.role %> </td>
+            <td> <%= item.status.value %> </td>
+            <td> <%= link_to_item item.person %> </td>
+            <td <%= overdue_class(item) %>> <%= item.due_on.strftime(date_format) unless item.due_on.nil? %> </td>
+          </tr>
+
+        <% end %>
+      </tbody>
+    
+    </table>
+
+  <% end %>
+  
+</div>

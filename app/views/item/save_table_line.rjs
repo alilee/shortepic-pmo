@@ -1,0 +1,20 @@
+hidden_line_key = "#{@table_name}_hidden_line"
+errors_id = "#{@table_name}_errors"
+editor_id = "#{@table_name}_editor"
+totals_id = "#{@table_name}_totals"
+body_id = "#{@table_name}_body"
+new_placement_id = "#{@table_name}_#{@line.id}"
+
+if @line.errors.empty?
+  page.remove errors_id
+  page.remove session[hidden_line_key] if session[hidden_line_key]
+  session[hidden_line_key] = nil
+  page.replace editor_id, :partial => 'item/child_table', :locals => { :section => :body }, :object => @line
+  @line = @child_class.new
+  page.insert_html :bottom, body_id, :partial => 'item/child_table', :locals => { :section => :editor }
+  page.visual_effect :highlight, new_placement_id
+  page.replace totals_id, :partial => 'item/child_table', :locals => { :section => :totals, :collection => @child_collection }
+else
+  page.remove errors_id
+  page.replace editor_id, :partial => 'item/child_table', :locals => { :section => :editor }
+end

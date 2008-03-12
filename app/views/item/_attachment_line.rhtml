@@ -1,0 +1,68 @@
+<% if section == :head %>
+  <h2>Attachments</h2>
+  <!-- forms with file inputs can't use Ajax forms -->
+  <%= form_tag({:action => 'add_attachment', :id => @item.id}, { :multipart => true }) %>
+    <table>
+      <thead>
+        <tr class="heading">
+          <th>Filename</th>
+          <th>Version</th>
+          <th>Size</th>
+          <th>Date</th>
+          <th>Attached by</th>
+          <% if editing? %>
+            <th>Action</th>
+          <% end %>
+        </tr>
+      </thead>
+
+    	<tbody>
+    	<% @filename_text = '&nbsp;'%>
+
+<% elsif section == :body %>
+
+      <tr id="attachment_line<%= attachment_line.id %>">
+        <% if @filename_text == attachment_line.filename
+             @filename_text = '&nbsp;'
+           else
+             @filename_text = attachment_line.filename
+           end %>
+        <td><%= @filename_text %></td>
+        <td>
+          <%= link_to h(attachment_line.version),
+                :action => 'download_attachment',
+                :attachment_id => attachment_line.id %>
+        </td>
+				<td><%= attachment_line.file_size %></td>
+				<td><%= attachment_line.created_at.strftime(time_format) %></td>
+				<td><%= link_to_item(attachment_line.person) %></td>
+				<% if editing? %>
+				  <td>
+				    <%= link_to_remote icon(:delete), :url => { :action => 'delete_attachment', :attachment_id => attachment_line.id }%>
+				  </td>
+				<% end %>
+      </tr>
+
+<% elsif section == :foot %>
+
+      </tbody>
+      
+      <%= render :partial => 'item/attachment_line', :locals => { :section => :fields } if editing? %> 
+
+    </table>
+  </form>
+
+<% elsif section == :fields %>
+  <tfoot>
+    <tr id="edit-attachment">
+  		<td><%= file_field_tag 'file_uploaded' %></td>
+  		<td><%= text_field :attachment, :version, :size => 5 %></td>
+  		<td>&nbsp;</td>
+  		<td>&nbsp;</td>
+  		<td>&nbsp;</td>
+  		<!-- TODO: B - add confirmation of upload - abandons other changes on page -->
+  		<td class="buttons"><%= image_submit_tag 'upload_bt.gif' %></td>
+    </tr>
+  </tfoot>
+  
+<% end %>

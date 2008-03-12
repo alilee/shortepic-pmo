@@ -1,0 +1,19 @@
+<div id="centrecol">
+
+  <h1>Linked items</h1>
+  
+  <% unless @associated_items.empty? %>
+
+    <%
+      @display_rows = @associated_items
+      @child_class = Item
+      @table_name = 'Linked items'
+      @table_fields = [:code_id_priority, :title, :status_id, :person_id, :due_on]
+      @table_totals = []
+      @table_titles = {}
+    %>
+    <%= render :partial => 'item/display_table' unless @display_rows.empty? %>
+    
+  <% end %>
+
+</div>

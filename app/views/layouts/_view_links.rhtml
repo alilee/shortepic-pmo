@@ -1,0 +1,54 @@
+<% # TODO: C - nested menus in view links %>
+<div id="views">
+  
+  <h2><%= @item.class.name.titleize.humanize %></h2>
+  
+    <table>
+      <% if view_actions.include?('edit') %>
+        <tr>
+          <td>&nbsp;</td>
+          <td>
+            <%= form_tag( { :action => 'edit' }, {:method => :get} ) %>
+              <%= submit_tag 'edit', :class => 'button' %>
+            </form>
+          </td>
+        </tr>            
+      <% end %>
+
+      <% if @item.parent && authorised?(@item.class.name.underscore, 'show', @item.project_id) %>
+        <tr>
+          <td><%= icon(:escalated_up) %></td>
+          <td><%= link_to_item @item.parent, @item.parent.title, :class => 'sidelink' %> </td>
+        </tr>
+      <% end %>
+
+      <% unless @item.new_record? %>
+
+        <% view_actions.each do |a| %>
+          <% next if 'edit' == a %>
+          <% if authorised?(controller.controller_name, a) %>
+            <tr>
+              <td>
+                <%= icon(:bullet) %>
+              </td>
+              <td class="<%= a==params[:action] ? 'current' : 'no-current' %>">
+                <%= a == params[:action] ? a.titleize : link_to(a.titleize, {:action => a, :id => @item.id} ) %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+
+        <tr>
+          <td>
+            <%= form_remote_tag( :url => { :action => 'subscriber', :id => @item.id } ) unless @item.new_record? %>
+            <%= check_box_tag('subscribed', '1', @item.subscribed?(session[:person]), 
+                  { :class => 'checkbox', :onclick => 'this.form.submit(); return false;' }) %>
+            <%= '</form>' unless @item.new_record? %>
+          </td>
+          <td>Favourite</td>
+        </tr>
+
+      <% end %>
+    </table>
+      
+</div>

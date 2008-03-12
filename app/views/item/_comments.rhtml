@@ -1,0 +1,41 @@
+<!-- locals: item = item to display comments for -->
+
+<div id="comments">
+
+  <h2>Comments</h2>
+
+  <% remote_form_for('comment', Comment.new,
+        :url => {:action => 'add_comment', :id => @item.id},
+        :loading => "Element.show('comments_progress'); return false;",
+        :complete => "Element.hide('comments_progress'); return false;" 
+        ) do |comment_form| %>
+    <div class="do-nothing">
+      <table>
+        <thead>
+          <tr>
+            <td colspan="3"><%= comment_form.text_area(:body, :rows => '5')%></td>
+          </tr>
+          <tr id="comment-entry" class="submit">
+            <td colspan="3">
+              <div class="do-nothing">
+                <%= image_submit_tag 'add_comment.gif' %>
+                <%= image_tag 'progress.gif', :id => 'comments_progress', :style => 'display:none;' %>
+              </div>
+            </td>
+          </tr>
+        </thead>
+        
+        <tbody>
+
+          <% unless @item.comments.empty? %>
+            <%= render :partial => 'item/comment', :collection => @item.comments.reverse %>
+          <% end %>
+
+        </tbody>
+        
+      </table>
+    </div>
+
+  <% end %>
+
+</div>

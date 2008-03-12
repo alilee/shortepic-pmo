@@ -1,0 +1,103 @@
+<div id="rightcol">
+  <%= render :partial => '/item/associations' %>
+  <%= render :partial => '/item/comments' %>
+  <%= render :partial => '/item/signature_show_line', :locals => { :section => :table } %>
+</div>
+
+<div id="centrecol">
+
+  <div id="action">
+    <span id="hide-right">
+      <%= link_to icon(:toggle_hide), '#', { 
+            :onclick => "Element.toggle('rightcol'); return false;" } %>
+    </span>
+    <span class="action-label">Status</span> <span class="action-value"><%= @item.status.value %></span> <span>|</span> <span class="action-label">Assigned to</span> <span class="action-value"><%= link_to_item @item.person %></span> <span>|</span> <span class="action-label">Due date</span> <span class="action-value"><%= @item.due_on.strftime(date_format) unless @item.due_on.nil? %></span>
+    <% # TODO: C - put in better date formatting %>
+  </div>
+  
+  <div id="manage">
+    <table>
+      <%= label_value_pair('Parent project', @item.parent ? link_to_item(@item.parent) : 'No parent') %>
+      <%= label_value_pair('Responsible role', link_to_item(@item.role)) %>
+      <%= label_value_pair('Priority', @item.priority_code) %>
+      <%= label_value_pair('Project escalated to', 
+        ((@item.project_id == @item.project_id_escalation) ? 
+  			'Not escalated' : link_to_item(@item.escalation))) %>
+  			
+      <% unless @item.description.nil? %>
+        <tr>
+          <td colspan="2"><%= tx_no_p(@item.description) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  
+  <div id="details">
+    <h2>Details</h2>
+
+    <table>
+      <% detail = @item.detail || @item.build_detail %>
+      <% for c in detail.class.columns do %>
+        <% if ['id', 'created_at', 'updated_at'].include?(c.name) || 
+                c.name == Inflector.foreign_key(@item.class.name) ||
+                c.name =~ /^res_/ %>
+          <!-- do nothing -->
+        <% elsif c.name =~ /^code_id_/ %>
+          <%= label_value_pair($'.humanize, detail[c.name].nil? ? h('<na>') : Code.find(detail[c.name]).value) %>
+        <% elsif c.name =~ /_detail_id$/ %>
+          <% detail_record = Object.const_get(($`+'Detail').camelize.singularize).find_by_id(detail[c.name], :include => :item) %>
+          <%= label_value_pair($`.humanize, detail_record.nil? ? '' : link_to_item(detail_record.item) ) %>
+        <% elsif c.name =~ /_id$/ %>
+          <%= label_value_pair($`.humanize, link_to_item(Item.find(detail[c.name]))) %>
+        <% elsif c.name =~ /_detail_id_/ %>
+          <% detail_record = Object.const_get(($`+'Detail').camelize.singularize).find_by_id(detail[c.name], :include => :item) %>
+          <%= label_value_pair($'.humanize, detail_record.nil? ? '' : link_to_item(detail_record.item) ) %>
+        <% elsif c.name =~ /_id_/ %>
+          <%= label_value_pair($'.humanize, link_to_item(Item.find(detail[c.name]))) %>
+        <% elsif c.klass == Object %>
+          <%= label_value_pair(c.human_name, h(detail[c.name])) %>
+        <% elsif c.klass == Time %>
+          <%= label_value_pair(c.human_name, detail[c.name].strftime(time_format)) %>
+        <% elsif c.klass == Date %>
+          <%= label_value_pair(c.human_name, detail[c.name].nil? ? nil : detail[c.name].strftime(date_format)) %>
+        <% elsif c.klass == Fixnum %>
+          <%= label_value_pair(c.human_name, detail[c.name], :right => true) %>
+        <% elsif c.klass == Float %>
+          <%= label_value_pair(c.human_name, detail[c.name], :right => true) %>
+        <% elsif c.type == :text %>
+          <%= label_value_pair(c.human_name, tx(detail[c.name])) %>
+        <% else %>
+          <%= label_value_pair(c.human_name, h(detail[c.name])) %>
+        <% end %>
+      <% end %>      
+    </table>
+  </div>
+
+  <div id="children">
+    <% @all_child_collection_details.each do |c| %>
+
+      <%= if c[:show] && !c[:collection].empty?
+           @child_class = c[:class]
+           @child_collection = c[:collection]
+           @table_name = c[:table] 
+           @table_fields = c[:fields] || @child_class.columns.collect {|col| col.name }
+           @table_totals = c[:totals] || @table_fields
+           @table_titles = c[:titles] || {}
+           @table_cols = c[:cols] || 0
+           render :partial => 'item/child_table', :locals => { :section => :table }
+          end %>
+
+    <% end %>
+    
+    <%= render :partial => 'show' %>
+    
+    <% if !@item.attachments.empty? %>
+      <%= render :partial => '/item/attachment_line', :locals => { :section => :head } %>
+      <%= render :partial => '/item/attachment_line', :locals => { :section => :body },
+            :collection => @item.attachments %>
+      <%= render :partial => '/item/attachment_line', :locals => { :section => :foot } %>
+    <% end %>
+  </div>
+
+</div>
+

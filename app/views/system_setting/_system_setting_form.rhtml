@@ -1,0 +1,36 @@
+<%= start_form_tag(:action => 'create', :id => 0) %>
+<style type="text/css">
+    div.auto_complete {
+      position:absolute;
+      width:250px;
+      background-color:white;
+      border:1px solid #888;
+      margin:0px;
+      padding:0px;
+    }
+    li.selected { background-color: #ffb; }
+</style>
+<table>
+    <tr>
+        <td>Name</td>
+        <td><%= text_field('system_setting', 'name') %></td>
+    </tr>
+    <tr>
+        <td>Value</td>
+        <td><%= text_field('system_setting', 'value') %></td>
+    </tr>
+    <tr>
+        <td>Category</td>
+        <td><%= text_field_with_auto_complete('system_setting', 'category') %></td>
+    </tr>
+    <tr>
+        <td>Explanation</td>
+        <td><%= text_area('system_setting', 'explanation') %></td>
+    </tr>
+    <tr>
+	<td>Example</td>
+	<td><%= text_field('system_setting', 'example') %> </td> 
+    </tr>
+</table>
+<%= submit_tag "Create" %>
+<%= end_form_tag %>

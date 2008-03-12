@@ -1,0 +1,22 @@
+<% # TODO: B - amend this split between a financials view and leave show to just be time. %>
+
+<%
+  @display_rows = @role.approved_effort_lines
+  @child_class = CrEffortLine
+  @table_name = 'Approved budget'
+  @table_fields = [:change_request_id, :milestone_id, :effort_budget, :hours]
+  @table_totals = [:effort_budget, :hours]
+  @table_titles = {:effort_budget => 'Budget'}
+%>
+<%= render :partial => 'item/display_table' unless @display_rows.empty? %>
+
+
+<%
+  @display_rows = @role.actuals_to_date
+  @child_class = TimesheetLine
+  @table_name = 'Actual hours to date'
+  @table_fields = [:person_id, :milestone_id, :uncharged_hours, :overtime_hours, :normal_hours]
+  @table_totals = [:uncharged_hours, :overtime_hours, :normal_hours]
+  @table_titles = {}
+%>
+<%= render :partial => 'item/display_table' unless @display_rows.empty? %>

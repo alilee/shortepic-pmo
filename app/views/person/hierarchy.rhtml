@@ -1,0 +1,13 @@
+<div id="centrecol">
+  <h1>Hierarchy</h1>
+  <h2>Line management</h2>
+
+  <% if @person.person_id != @person.id %>
+    <ul>
+      <li><%= link_to_action(@person.person, 'hierarchy') %></li>
+    </ul>
+  <% end %>
+
+  <%= person_descendants_tree(@person) %>
+
+</div>

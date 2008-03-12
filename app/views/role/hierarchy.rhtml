@@ -1,0 +1,13 @@
+<div id="centrecol">
+  <h1>Hierarchy</h1>
+  <h2>Hierarchy</h2>
+
+  <% if @role.role_id != @role.id %>
+    <ul>
+      <li><%= link_to_action(@role.role, 'hierarchy') %></li>
+    </ul>
+  <% end %>
+
+  <%= role_descendants_tree(@role) %>
+
+</div>

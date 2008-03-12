@@ -1,0 +1,54 @@
+
+<% if section == :head %>
+
+  <table>
+    
+    <thead>
+      <tr>
+        <th>Priority</th>
+        <th>Change request</th>
+        <th>Effort</th>
+        <th>Status</th>
+        <th>Assigned to</th>
+        <th>Due</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      
+<% elsif section == :body %>
+
+      <tr>
+        <td><%= change_request_line.priority_code.value %></td>
+      	<td><%= link_to_item change_request_line %></td>
+      	<td class="right"><%= number_with_delimiter change_request_line.total_effort_hours || 0 %></td>
+      	<td><%= change_request_line.status.value %> </td>
+      	<td><%= link_to_item change_request_line.person %></td>
+      	<td <%= 'class="overdue"' if change_request_line.overdue? %>>
+          <%= change_request_line.due_on.strftime(date_format) unless change_request_line.due_on.nil? %>
+        </td>
+      </tr>
+
+<% elsif section == :totals %>
+
+    </tbody>
+    
+    <tfoot>
+
+      <tr>
+    		<td>Total</td>
+    		<td>&nbsp;</td>
+    		<td class="right"><%= number_with_delimiter totals_from.inject(0) { |total_effort,cr| 
+    		                        total_effort + (cr.total_effort_hours || 0) } %></td>
+    		<td>&nbsp;</td>
+    		<td>&nbsp;</td>
+    		<td>&nbsp;</td>
+    	</tr>
+
+    </tfoot>
+
+<% elsif section == :foot %>
+
+  </table>
+  
+<% end %>

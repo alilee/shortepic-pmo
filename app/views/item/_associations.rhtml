@@ -1,0 +1,45 @@
+<div id="links">
+
+	<h2>Links (<%= link_to 'Details', :action => 'associated' %>)</h2>
+
+  <table>
+    <tbody>
+    	<% unless @item.associations_from.nil? %>
+    		<% for a in @item.associations_from %>
+    		  <tr>
+    		    <td><%= icon(a.item_to.class.name.underscore.to_sym) %></td>
+    		    <td><%= link_to_item(a.item_to) %></td>
+    			  <td><%= icon(:ticked) if a.item_to.status.generic_stage == Status::COMPLETE %></td>
+    			  <td><%= link_to_remote icon(:delete), 
+    			            :url => {:action => 'disassociate', :association_id => a.id}, 
+    			            :method => :post %>
+    			  </td>
+    			</tr>
+        <%	end %>
+    	<% end %>		
+    </tbody>
+  </table>
+
+  <% # TODO: B - progress indicators for AJAX calls like comments %>
+
+  <%= form_remote_tag(:url => { :action => 'associate'}) %>
+    <table>
+      <tfoot>
+      	<tr>
+      	  <td>
+      	    <%= text_field_with_auto_complete :searchitem, :title, { :class => 'wide' }, :skip_style => true %>
+      	  </td>
+      	</tr>
+      	<tr class="submit">
+      	  <td>
+      	    <%= image_submit_tag 'add_link.gif' %>
+      	  </td>
+      	</tr>
+      </tfoot>
+
+    </table>
+
+  </form>
+
+</div>
+

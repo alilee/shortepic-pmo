@@ -1,0 +1,29 @@
+<h1>Interactive Ruby</h1>
+
+
+<%= form_tag(:action => 'ruby') %>
+  <div id="manage">
+    <table class="fullwidth">
+      <% if flash[:error] %>
+        <tr>
+          <td class="field-label">Exception raised</td>
+          <td><%= h flash[:error] %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td class="field-label">Ruby</td>
+        <td><%= text_area_tag('ruby', @ruby, :size => '80x10') %></td>
+      </tr>
+      <tr class="submit">
+        <td colspan="2"><%= submit_tag 'Go', :class => 'button' %></td>
+      </tr>
+    </table>
+  </div>  
+</form>
+
+<% unless @rubyresult.nil? then %>
+  <h2>Results</h2>
+  <pre>
+    <%= h(@rubyresult) %>
+  </pre>
+<% end %>

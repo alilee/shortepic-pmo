@@ -1,0 +1,19 @@
+<div id="centrecol">
+
+  <h1>Risks</h1>
+  
+  <% unless @risks.empty? %>
+
+    <%
+      @display_rows = @risks
+      @child_class = Risk
+      @table_name = 'Risks'
+      @table_fields = [:code_id_priority, :title, :status_id, :person_id, :due_on]
+      @table_totals = []
+      @table_titles = {}
+    %>
+    <%= render :partial => 'item/display_table' unless @display_rows.empty? %>
+    
+  <% end %>
+
+</div>

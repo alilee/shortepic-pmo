@@ -1,0 +1,35 @@
+<div id="centrecol">
+
+  <h1>Signatures </h1>
+  
+  <% unless @signoffs_signed_but_incomplete.empty? && @signoffs_ready.empty? && @signoffs_pending.empty? %>
+    <h2>Signatures </h2>
+
+    <%= render :partial => 'signature_line', :locals => { :section => :head } %>
+
+    <% if !@signoffs_signed_but_incomplete.empty? %>
+      <%= render :partial => 'signature_line', :locals => { :section => :subhead,
+            :heading => 'Signed, but not yet complete (or withdrawn)' } %>
+      <%= render :partial => 'signature_line', :locals => { :section => :body },
+            :collection => @signoffs_signed_but_incomplete %>
+    <% end %>
+
+    <% if !@signoffs_ready.empty? %>
+      <%= render :partial => 'signature_line', :locals => { :section => :subhead,
+            :heading => 'Requires my signature' } %>
+      <%= render :partial => 'signature_line', :locals => { :section => :body },
+            :collection => @signoffs_ready %>
+    <% end %>
+
+    <% if !@signoffs_pending.empty? %>
+      <%= render :partial => 'signature_line', :locals => { :section => :subhead,
+            :heading => 'Pending delivery' } %>
+      <%= render :partial => 'signature_line', :locals => { :section => :body },
+            :collection => @signoffs_pending %>
+    <% end %>
+
+    <%= render :partial => 'signature_line', :locals => { :section => :foot } %>
+    
+  <% end %>
+
+</div>

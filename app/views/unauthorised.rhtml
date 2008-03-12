@@ -1,0 +1,14 @@
+<h1> Request to access view for item unauthorised </h1>
+
+<p>You have clicked a hyperlink for which you do not have authorisation.</p>
+<p>This can happen if you follow a link to an item which has been added by someone who does have authorisation.</p>
+<p>To get access to the item you are seeking, request an Administrator in the project below place you in a Role in that project which has a suitable security profile.</p>
+
+<h2> Details</h2>
+
+<p>Requested controller: <%= @controller.controller_name %></p>
+<p>Requested view: <%= params[:action] %></p>
+<% unless params[:id].nil? %>
+  <p>Requested item id: <%= @item.id %></p>
+  <p>Containing project: <%= link_to_item @item.parent || @item %></p>
+<% end%>

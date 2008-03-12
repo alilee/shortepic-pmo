@@ -1,0 +1,57 @@
+<div id="rightcol">
+  <%= render :partial => '/item/associations' %>
+  <%= render :partial => '/item/comments' %>
+  <%= render :partial => '/item/signature_show_line', :locals => { :section => :table } %>
+</div>
+
+<div id="centrecol">
+  
+  <h1>Operations</h1>
+
+  <div id="children">
+    <% unless @last_complete_status_report.nil? && @child_projects.nil? %>
+      <%= render :partial => 'status_line', :locals => {:section => :head} %>
+      <%= render :partial => 'status_line', :locals => {:section => :main}, 
+            :object => @last_complete_status_report %>
+      <%= render :partial => 'status_line', :locals => {:section => :subs}, 
+            :collection => @child_projects %>
+      <%= render :partial => 'status_line', :locals => {:section => :foot} %>
+    <% end %>
+
+    <% unless @key_issues.nil? || @key_issues.empty? %>
+      <h2>Top 5 issues (<%= link_to_action @project, 'issues', 'All' %>)</h2>
+      <%= render :partial => 'issue_line', :locals => {:section => :head} %>
+      <%= render :partial => 'issue_line', :locals => {:section => :body},
+            :collection => @key_issues %>            
+      <%= render :partial => 'issue_line', :locals => {:section => :foot} %>
+    <% end %>
+
+    <% unless @pending_milestones.nil? || @pending_milestones.empty? %>
+      <h2>Top 5 milestones (<%= link_to_action @project, 'show', 'All' %>)</h2>
+      <%= render :partial => 'milestone_line', :locals => {:section => :head} %>
+      <%= render :partial => 'milestone_line', :locals => {:section => :body},
+            :collection => @pending_milestones %>
+      <%= render :partial => 'milestone_line', :locals => {:section => :foot} %>
+    <% end %>
+
+    <% unless @pending_change_requests.nil? || @pending_change_requests.empty? %>
+      <h2>Change requests</h2>
+      <%= render :partial => 'change_request_line', :locals => {:section => :head} %>
+      <%= render :partial => 'change_request_line', :locals => {:section => :body},
+            :collection => @pending_change_requests.first(5) %>
+      <%= render :partial => 'change_request_line', :locals => {:section => :totals,
+            :totals_from => @pending_change_requests } %>
+      <%= render :partial => 'change_request_line', :locals => {:section => :foot} %>
+    <% end %>
+    
+    <% unless @absences.nil? || @absences.empty? %>
+      <h2>Key absences</h2>
+      <%= render :partial => 'absence_line', :locals => {:section => :head} %>
+      <%= render :partial => 'absence_line', :locals => {:section => :body}, :collection => @absences %>
+      <%= render :partial => 'absence_line', :locals => {:section => :foot} %>
+    <% end %>
+    
+    <% # TODO: C - late status reports %>
+    <% # TODO: D - approved absences %>
+  </div>
+</div>

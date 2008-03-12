@@ -1,0 +1,12 @@
+--- 
+test_case_details_001: 
+  test_case_id: "48"
+  steps: ""
+  milestone_id_preparation: "25"
+  id: "1"
+  data_requirements: ""
+  environment_requirements: ""
+  milestone_id_execution: "22"
+  initialisation: ""
+  preconditions: ""
+  finalisation: ""

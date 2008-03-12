@@ -1,0 +1,41 @@
+<% if section == :head %>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th><%= icon :escalated_up %></th>
+        <th>Title</th>
+        <th><%= icon :escalated_here %></th>
+        <th>Assigned to</th>
+        <th>Due date</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      
+<% elsif section == :body %>
+
+      <% if @status_id != person_line.status_id %>
+        <% @status_id = person_line.status_id%>
+        <tr>
+          <th colspan="5"><%= person_line.status.value %></th>
+        </tr>
+      <% end %>
+
+      <tr>
+        <td><%= icon :escalated_up if person_line.escalated_up?(@project) %></td>
+        <td><%= link_to_item person_line %>&nbsp;</td>
+        <td><%= icon :escalated_here if person_line.escalated_here?(@project) %></td>
+        <td><%= link_to_item(person_line.person) %></td>
+        <td <%= 'class="overdue"' if person_line.overdue? %>>
+          <%= person_line.due_on.strftime(date_format) unless person_line.due_on.nil? %>
+        </td>
+      </tr>
+
+<% elsif section == :foot %>
+
+    </tbody>
+  </table>
+
+<% end %>

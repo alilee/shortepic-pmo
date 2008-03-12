@@ -1,0 +1,42 @@
+<div id="centrecol">
+  
+  <h1>Assignments</h1>
+  <% unless @assigned_items.empty? %>
+    <h2>Assignments</h2>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Title</th>
+      		<th>Priority</th>
+      		<th>Status</th>
+      		<th>Due date</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% last_type = nil %>
+        <% @assigned_items.each do |assigned_item| %>
+
+      		<% if assigned_item.class.name != last_type %>
+      			<tr>
+              <th colspan="4"> <%= assigned_item.class.name.pluralize.titleize.humanize %> </th>
+      			</tr>
+      		  <% last_type = assigned_item.class.name %>
+      		<% end %>
+  		
+          <tr>
+    				<td> <%= link_to_item(assigned_item) %> </td>
+      			<td> <%= assigned_item.priority_code.value %> </td>
+            <td> <%= assigned_item.status.value %> </td>
+            <td <%= overdue_class(assigned_item) %>> <%= assigned_item.due_on.strftime(date_format) unless assigned_item.due_on.nil? %> </td>
+          </tr>
+
+        <% end %>
+      </tbody>
+    
+    </table>
+  <% end %>
+
+</div>

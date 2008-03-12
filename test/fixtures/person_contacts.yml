@@ -1,0 +1,11 @@
+--- 
+person_contacts_001: 
+  id: "1"
+  code_id_contact: "21"
+  person_id: "16"
+  address: 444 444444
+person_contacts_002: 
+  id: "2"
+  code_id_contact: "22"
+  person_id: "16"
+  address: 123 123123

@@ -1,0 +1,26 @@
+<div id="centrecol">
+  
+  <h1>Library</h1>
+
+  <% if !(@project.completed_deliverables.empty? && @project.review_deliverables.empty?) %>
+    <h2>Library</h2>
+    <%= render :partial => 'library_line', :locals => {:section => :head} %>
+  <% end %>
+
+  <% if !@project.completed_deliverables.empty? %>
+    <%= render :partial => 'library_line', :locals => {:section => :subhead, 
+          :heading => 'Completed'} %>
+    <%= render :partial => 'library_line', :locals => {:section => :body},
+          :collection => @project.completed_deliverables %>
+  <% end %>
+
+  <% if !@project.review_deliverables.empty? %>
+    <%= render :partial => 'library_line', :locals => {:section => :subhead, 
+          :heading => 'Under Review'} %>
+    <%= render :partial => 'library_line', :locals => {:section => :body},
+          :collection => @project.review_deliverables %>
+  <% end %>
+
+  <%= render :partial => 'library_line', :locals => {:section => :foot} %>
+
+</div>

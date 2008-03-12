@@ -1,0 +1,66 @@
+<div id="centrecol">
+
+  <h1> Favourites </h1>
+  
+  <% unless @favourites.empty? %>
+    <h2> Favourites </h2>
+
+    <%= form_tag url_for(:action => 'update_favourites', :id => @person.id), :method => 'post' %>
+
+      <table>
+  
+        <thead>
+          <tr>
+            <th>Title</th>
+        		<th>Priority</th>
+        		<th>Status</th>
+        		<th>Assigned to</th>
+        		<th>Due on</th>
+        		<!--
+        		<th>Email</th>
+        		<th>SMS</th>
+      		  -->
+          </tr>
+        </thead>
+  
+        <tbody>
+          <% last_type = nil
+             @favourites.each do |subscription| %>
+
+        		<% if subscription.item.class.name != last_type %>
+        			<tr>
+                <th colspan="6"> <%= subscription.item.class.name.pluralize.titleize.humanize %> </th>
+        			</tr>
+        		  <% last_type = subscription.item.class.name %>
+        	  <% end %>
+
+            <tr>
+        			<td> <%= link_to_item subscription.item %> </td>
+        			<td> <%= subscription.item.priority_code.value %> </td>
+              <td> <%= subscription.item.status.value %> </td>
+              <td> <%= link_to_item subscription.item.person %>
+              <td <%= overdue_class(subscription.item)%>> 
+                <%= subscription.item.due_on.strftime(date_format) unless subscription.item.due_on.nil? %> 
+              </td>
+              <!-- 
+              <td> <%= check_box_tag "email_#{subscription.id}", 1, subscription.email_notification, {:class => 'checkbox'} %></td>
+              <td><%= check_box_tag "sms_#{subscription.id}", 1, subscription.sms_notification, {:class => 'checkbox'}  %> </td>
+              -->
+            </tr>
+          <% end %>
+     
+        </tbody>
+        <!--
+        <tfoot>
+          <tr class="submit">
+            <td colspan="6"><%= image_submit_tag 'save_changes_bt.gif', :alt => 'Update' %></td>
+          </tr>
+        </tfoot>
+        -->
+      </table>
+
+    </form>
+
+  <% end %>
+
+</div>

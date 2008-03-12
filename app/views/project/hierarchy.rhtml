@@ -1,0 +1,14 @@
+<div id="centrecol">
+  <h1>Hierarchy</h1>
+  <h2>Hierarchy</h2>
+
+  <% # TODO: B - unfolding hierarchy, including items %>
+  <% unless @project.parent.nil? %>
+    <ul>
+      <li><%= link_to_action(@project.parent, 'hierarchy') %></li>
+    </ul>
+  <% end %>
+
+  <%= project_descendants_tree(@project) %>
+
+</div>

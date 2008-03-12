@@ -1,0 +1,482 @@
+/* FIXME: B - away from px to ems */
+
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	font-size: 11px;
+}
+
+td {
+	padding: 0;
+}
+
+textarea, input, select {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border: 1px solid rgb(233, 231, 228);
+}
+
+td.buttons input {
+	border: none;
+}
+
+/* FIXME: C - the scroll bars on these get chopped off */
+textarea {
+	width: 100%;
+}
+
+/* header */
+div#header {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+div#header table {
+	border-collapse: collapse;
+	border: none;
+}
+
+table.fullwidth {
+	width: 90%;
+}
+
+div#header table.fullwidth {
+	width: 100%
+}
+
+div#header td#title {
+	width: 49%;
+}
+
+div#header td#links-block {
+	width: 50%;
+}
+
+div#header td.brown {
+	background: rgb(96, 83, 63);
+}
+
+div#header td.logo {
+	border: 1px solid rgb(233, 231, 228);
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+div#header span#user-label {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.95em;
+	text-transform: uppercase;
+	color: rgb(96, 83, 63);
+	padding-right: 1em;
+}
+
+div#header a#user-name {
+	color: rgb(96, 83, 63);
+	font-weight: bold;
+}
+
+div#header img {
+	border: none;
+}
+
+/* FIXME: B - overcome gap between imgs and row in title. */
+/* Perhaps move away from table layout in header? */
+tr#userline img {
+	margin-bottom: -2px;
+}
+
+div#header a#user-name:hover {
+	text-decoration: underline;
+}
+
+div#header td#title {
+	color: white;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	padding-left: 1em;
+}
+
+tr#mylinks a {
+  color: rgb(230, 210, 178); 
+	text-decoration: none;
+	font-size: 12px;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+tr#mylinks a:hover {
+	color: white;
+}
+
+td#bottom-tab select, td#bottom-tab input {
+	border: none;
+	vertical-align: middle;
+	margin-top: 2px;
+}
+
+td#bottom-tab img {
+	float: left;
+}
+
+td#bottom-tab div {
+	float: left;
+	background-image: url(/images/create_bg.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+	height: 21px;
+}
+
+div#main {
+	clear: both;
+}
+
+/* left column */
+div#leftcol {
+	float: left;
+	width: 15em;
+	border-left: 1px solid rgb(233, 231, 228);	
+  border-right: 1px solid rgb(233, 231, 228);	
+  border-bottom: 1px solid rgb(233, 231, 228);	
+  margin-bottom: 2em; 
+}
+
+div#leftcol td.current {
+	font-weight: bold;
+}
+
+/* right column */
+div#rightcol {
+	float: right;
+	width: 28%;
+	margin-top: 0;
+	padding-top: 0;
+	background: white;
+	margin-bottom: 2em;
+}
+
+div#rightcol div, div#leftcol div {
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+
+div#rightcol div {
+	border-left: 1px solid rgb(233, 231, 228);	
+  border-right: 1px solid rgb(233, 231, 228);	
+  border-bottom: 1px solid rgb(233, 231, 228);	 
+}
+
+div#rightcol h2, div#leftcol h2 {
+	background-color: rgb(201, 182, 155);
+  text-transform: uppercase;
+  color: rgb(96, 83, 63);
+  font-weight: normal;
+	font-size: 11px;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 1em;
+	margin-top: 0;
+}
+
+div#rightcol div table {
+	padding-left: 1em;
+	padding-right: 0.5em;
+	width: 100%;
+}
+
+div#leftcol td {
+	padding-left: 1em;
+	background-color: white;
+}
+
+tr.comment-details td {
+	padding-top: 1em;
+}
+
+tr.submit td {
+	text-align: right;
+}
+
+tr.submit input {
+	border: none;
+}
+
+div#links input.wide {
+	width: 100%;
+}
+
+/* centre column */
+div#centrecol {
+	margin-left: 15em;
+	margin-bottom: 2em;
+}
+
+div#centrecol h1 {
+	background-color: rgb(102, 88, 71);
+  color: rgb(237, 223, 203);
+	padding: 0.5em;	
+	padding-left: 1.0em;
+  text-transform: uppercase;		
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal; 
+  font-size: 11px;
+	margin-top: 0;
+}
+
+div#action {
+	background-color: rgb(102, 88, 71);
+  color: rgb(237, 223, 203);
+	padding: 0.5em;
+}
+
+div#action span {
+	padding-left: 1.0em;
+}
+
+div#action span.action-value {
+	padding-left: 0.5em;
+	color: white;
+}
+
+div#action span.action-label {
+  text-transform: uppercase;		
+}
+
+div#action a {
+	color: white;
+}
+
+div#manage {
+	background: rgb(237, 223, 203);
+}
+
+div#centrecol td {
+  padding-left: 1em;
+	padding-right: 0.5em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+div#centrecol h2 {
+	text-transform: uppercase;
+	color: rgb(98,83,62);
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	margin-top: 2em;
+	margin-bottom: 0.5em;
+	margin-left: 0.5em;
+}
+
+/* FIXME: B - Fix signature table ugliness */
+div#centrecol table, div#signatures table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	/* width: 90%; */
+}
+
+div#centrecol tr, div#signatures tr {
+  border-bottom: 1px solid rgb(233, 231, 228);	
+  border-left: 1px solid rgb(233, 231, 228);	
+  border-right: 1px solid rgb(233, 231, 228);	
+}
+
+div#centrecol th, div#signatures th {
+  background: rgb(239,227,205);	
+	color: rgb(61,50,32);
+	text-transform: uppercase;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	text-align: left;
+	margin: 0;
+}
+
+div#centrecol td, div#signatures td {
+	border: none;
+	padding: 0.5em;
+	margin: 0em;
+	border-left: 1px solid rgb(233, 231, 228);	
+  border-right: 1px solid rgb(233, 231, 228);	
+  border-bottom: 1px solid rgb(233, 231, 228);
+}
+
+div#centrecol img, div#rightcol img {
+	border: none;
+}
+
+div#manage tr, div#manage td, div#details tr, div#details td {
+	border: none;
+}
+
+div#manage table {
+	padding-left: 0;
+}
+
+div td.field-label {
+	text-align: right;
+	text-transform: uppercase;
+	font-family: Arial, Helvetica, sans-serif;
+	color: rgb(96, 83, 63);
+	font-size: 0.95em;
+	vertical-align: middle;
+	width: 20em;
+}
+
+div#manage td.field-label {
+	background: rgb(201, 182, 155);	
+}
+
+div#details {
+  background: rgb(248, 244, 235);
+}
+
+div#details td.field-label {
+	background: rgb(253, 249, 238);	
+}
+
+div#details h2 {
+	background-color: rgb(102, 88, 71);
+  color: rgb(237, 223, 203);
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 1.5em;
+	margin: 0;
+}
+
+/* footer */
+div#footer {
+	clear: both;
+	background-color: rgb(96, 83, 63);
+	padding: 1em;
+}
+
+div#footer p, div#footer a {
+	font-size: 10px;
+  color: rgb(230, 210, 178);
+  text-decoration: none;
+  text-align: center;
+	margin: 0em;
+}
+
+div#footer a:hover {
+	text-decoration: underline;
+}
+
+div#rightcol div.do-nothing, div#leftcol div.do-nothing {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* autocomplete dropdown */
+div.auto_complete {
+  width: 350px;
+  background: #fff;
+}
+
+div.auto_complete ul {
+	border: 1px solid #888;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+}
+
+div.auto_complete ul li {
+  margin: 0;
+  padding: 3px;
+}
+            
+div.auto_complete ul li.selected {               
+	background-color: #ffb; 
+}
+            
+div.auto_complete ul strong.highlight {             
+	color: #800; 
+  margin: 0;
+  padding: 0;
+}
+
+/* hierarchy icons */
+
+ul.role {
+	list-style-image: url("/images/role.gif");
+}
+
+ul.person {
+	list-style-image: url("/images/person.gif");
+}
+
+
+/* Utilities */
+
+div#main input.checkbox {
+	border: none;
+}
+
+.overdue {
+	color: red;
+	font-weight: bold;
+}
+
+.field-error {
+	border-color: red;
+}
+
+span#hide-right {
+	float: right;
+	background-color: transparent;
+}
+
+div#centrecol input.button, input.button {
+	border: none;
+	color: white;
+	background-color: transparent;
+	background-image: url(/images/blank_bt.png);
+	background-repeat: no-repeat;
+	background-position: 0px 4px;
+	width: 83px;
+	height: 20px;
+	text-transform: lowercase;
+	font-size: 10px;
+}
+
+.right {
+	text-align: right;
+}
+
+@media print {
+
+div#leftcol, div#header, div#footer {
+	display: none;
+}
+
+div#centrecol {
+	margin-left: 0em;
+	margin-bottom: 0em;
+}
+
+span#hide-right {
+	display: none;
+}
+
+div#comments thead {
+	display: none;
+}
+
+div#links tfoot {
+	display: none;
+}
+}
+
+}

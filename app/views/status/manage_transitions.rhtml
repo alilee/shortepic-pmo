@@ -1,0 +1,57 @@
+<h1>Valid status transitions</h1>
+
+<% form_for :new_transition, :url => { :action => 'manage_transitions' }, :method => :post do |f| %>
+
+  <% # First we put in the filters %>
+  <h2>Filters</h2>
+  <p>Display just this type: <%= select_tag('type_limit', select_types_for_tag(:selected => params[:type_limit])) %> </p>
+  <p>Display just this profile: <%= select_tag('profile_limit', options_for_select(@profiles, params[:profile_limit].to_i)) %></p>
+  <p><%= submit_tag('refresh', :class => 'button') %></p>
+  
+  <% # then the display tables - one per type %>
+  <% @transitions.keys.sort.each do |type_name| %>
+    <% transitions = @transitions[type_name] %>
+    <h2><%= type_name %></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Role \ From</th>
+          <% @statuses_from[type_name].each do |s| %>
+            <th><%= h s.value %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @profiles.each do |k, v| %>
+          <tr>
+            <td><%= h k %></td>
+            <% @statuses_from[type_name].each do |s_from| %>
+              <td>
+                <% profile_from_transitions = transitions.select do |t|
+                     t.code_id_security_profile == v && t.status_id_from == s_from.id
+                   end
+                   profile_from_transitions.each do |t| %>
+                     <%= h(@statuses_from[type_name].find {|s| s.id == t.status_id_to }.value) %>
+                <% end %>
+              </td>
+            <% end %>  
+          </tr>
+        <% end %>        
+      </tbody>
+    </table>
+  
+  <% end %>
+
+  <% # finally the form to add new %>
+  <h2>Add new valid status transition</h2>
+  <div>
+    <%= flash[:notice] %>
+    <%= error_messages_for('new_transition') %>
+  </div>
+  <p>Type: <%= f.select(:type_name, Status::VALID_TYPE_NAMES) %> </p>
+  <p>From: <%= select_tag('status_from', options_for_select(select_values_for_status(:blank => true), params[:status_from])) %></p>
+  <p>To: <%= select_tag('status_to', options_for_select(select_values_for_status(:blank => true), params[:status_to])) %></p>
+  <p>Profile: <%= f.select('code_id_security_profile', @profiles) %></p>
+  <p><%= submit_tag('add', :class => 'button') %> </p>
+
+<% end %>

@@ -1,0 +1,45 @@
+<% if section == :head %>
+  <table>
+    <thead>
+      <tr>
+    		<th>Person</th>
+    		<th>Milestone</th>
+    		<th>Cost</th>
+    		<th>Uncharged</th>
+    		<th>Overtime</th>
+    		<th>Normal</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @odd = false %>
+  
+<% elsif section == :body %>
+      <tr id="actual_hours_line<%= actual_hours_line.id %>"<%= @odd ? ' class="odd"' : '' %>>
+        <td> <%= link_to(actual_hours_line.person_title, {:controller => 'person', :id => actual_hours_line.person_id } ) %> </td>  
+    		<td> <%= link_to(actual_hours_line.milestone_title, {:controller => 'milestone', :id => actual_hours_line.milestone_id } )%> </td>
+    		<td class="right"> 0 </td>
+    		<td class="right"> <%= actual_hours_line.uncharged_hours || 0 %> </td>
+    		<td class="right"> <%= actual_hours_line.overtime_hours || 0 %> </td>
+    		<td class="right"> <%= actual_hours_line.normal_hours || 0 %> </td>
+      </tr>
+      <% @odd = !@odd %>
+
+<% elsif section == :foot
+    total_normal_hours = totals_from.inject(0) { |sum, line| sum + line.normal_hours.to_i }
+    total_overtime_hours = totals_from.inject(0) { |sum, line| sum + line.overtime_hours.to_i }
+    total_uncharged_hours = totals_from.inject(0) { |sum, line| sum + line.uncharged_hours.to_i }%>
+
+    </tbody>
+    <tfoot>
+     	<tr>
+    		<td>Total</td>
+    		<td>&nbsp;</td>
+    		<td class="right">0</td>
+    		<td class="right"><%= total_uncharged_hours %></td>
+    		<td class="right"><%= total_overtime_hours %></td>
+    		<td class="right"><%= total_normal_hours %></td>
+    	</tr>
+    </tfoot>
+  </table>
+
+<% end %>

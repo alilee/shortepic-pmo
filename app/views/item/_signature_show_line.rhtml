@@ -1,0 +1,59 @@
+<% if section == :table %>
+
+  <% @signatures = @item.signatures
+    unless @signatures.empty? %>
+    <div id="signatures">
+      <h2>Signatures</h2>
+      <%= render :partial => '/item/signature_show_line', :locals => { :section => :head } %>
+      <%= render :partial => '/item/signature_show_line', :locals => { :section => :body },
+            :collection => @signatures %>
+      <%= render :partial => '/item/signature_show_line', :locals => { :section => :foot } %>
+    </div>
+  <% end %>
+
+<% elsif section == :head %>
+
+  <table>
+  	
+    <thead>
+      <tr>
+        <th>Person</th>
+        <th>Signature</th>
+      </tr>
+    </thead>
+    
+  	<tbody>
+
+<% elsif section == :body %>
+
+      <% if @status_id != signature_show_line.status_id %>
+        <% @status_id = signature_show_line.status_id%>
+        <tr>
+          <th colspan="2"><%= signature_show_line.status.value %></th>
+        </tr>
+      <% end %>
+
+      <tr id="signature_show_line<%= signature_show_line.id %>">
+
+        <td><%= link_to_item(signature_show_line.person)%></td>        
+        <% if !signature_show_line.signed_at.nil? %>
+          <td>Signed at <%= signature_show_line.signed_at.strftime(time_format) %></td>
+        <% elsif session[:person].id == signature_show_line.person_id %>
+          <td> <%= link_to_remote('Sign', 
+                    :url => { :action => 'sign_signature',
+                              :id => signature_show_line.item.id, 
+                              :signature_id => signature_show_line.id } ) %></td>
+        <% else %>
+          <td>Unsigned</td>
+        <% end %>
+
+      </tr>
+      
+<% elsif section == :foot %>
+
+    </tbody>
+
+  </table>
+  
+<% end %>
+

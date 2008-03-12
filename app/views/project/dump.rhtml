@@ -1,0 +1,48 @@
+<div id="centrecol"> 
+
+  <h1>Dump</h1>
+  
+  <% unless @descendants.empty? %>
+    <h2>Ultimate delivery</h2>
+  
+    <table>
+
+      <thead>
+        <tr>
+          <th>Title</th>
+      		<th>Priority</th>
+      		<th>Responsibility</th>
+      		<th>Status</th>
+      		<th>Assigned to</th>
+      		<th>Due date</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% last_type = nil %>
+        <% @descendants.each do |item| %>
+
+      		<% if item.class.name != last_type %>
+      			<tr>
+              <th colspan="6"> <%= item.class.name.pluralize.titleize.humanize %> </th>
+      			</tr>
+      		  <% last_type = item.class.name %>
+      		<% end %>
+  		
+          <tr>
+    				<td> <%= link_to_item(item) %> </td>
+      			<td> <%= item.priority_code.value %> </td>
+            <td> <%= link_to_item item.role %> </td>
+            <td> <%= item.status.value %> </td>
+            <td> <%= link_to_item item.person %> </td>
+            <td <%= overdue_class(item) %>> <%= item.due_on.strftime(date_format) unless item.due_on.nil? %> </td>
+          </tr>
+
+        <% end %>
+      </tbody>
+    
+    </table>
+
+  <% end %>
+  
+</div>

@@ -1,0 +1,15 @@
+--- 
+timesheet_lines_001: 
+  timesheet_id: "34"
+  normal_hours: "8"
+  role_id: "3"
+  id: "2"
+  worked_on: <%= 18.7.days.ago.to_formatted_s(:db) %>
+  milestone_id: "24"
+timesheet_lines_002: 
+  timesheet_id: "34"
+  normal_hours: "8"
+  role_id: "3"
+  id: "1"
+  worked_on: <%= 19.7.days.ago.to_formatted_s(:db) %>
+  milestone_id: "23"

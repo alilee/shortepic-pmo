@@ -1,0 +1,9 @@
+Hello,
+
+You have subscribed to email notifications for this item and it has been updated.
+
+<%= $app_root -%><%= rs = ActionController::Routing::Routes
+    rs.generate :controller => @item.class.name.underscore, :action => 'history', :id => @item.id %>
+
+Regards,
+<%= $email_signoff %>

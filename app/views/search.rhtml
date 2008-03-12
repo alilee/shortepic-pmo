@@ -1,0 +1,32 @@
+<h2>Results</h2>
+
+<% if @query.to_i.to_s == @query %>
+  <p>Your search for item with id <%= @query %> found the following result.</p>
+<% else %>
+  <p>Your search for "<%= h @query %>" returned <%= @results.nil? ? 0 : @results.size %> results.</p>
+<% end %>
+
+<% unless flash[:error].nil? %>
+  <p><%= h(flash[:error]) %></p>
+<% end %>
+
+<% if @results -%>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Item</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+  		<% @results.each { |result| -%>
+      	<tr>
+      	  <td><%= icon(result.class.name.underscore.to_sym) %></td>
+    			<td><%= link_to_item result %></td>
+    			<td><%= tx result.description %></td>
+      	</tr>
+  		<% } -%>
+    </tbody>
+	</table>
+<% end -%>

@@ -1,0 +1,32 @@
+<% # TODO: B - show relevant change requests and dates %>
+
+<%
+  baseline_date = @milestone.baseline_date_line
+  @display_rows = baseline_date.nil? ? [] : [@milestone.baseline_date_line]
+  @child_class = CrDateLine
+  @table_name = 'Baseline schedule'
+  @table_fields = [:change_request_id, :start_on, :end_on]
+  @table_totals = []
+  @table_titles = {}
+%>
+<%= render :partial => 'item/display_table' unless @display_rows.empty? %>
+
+<%
+  @display_rows = @milestone.approved_effort_lines
+  @child_class = CrEffortLine
+  @table_name = 'Approved effort'
+  @table_fields = [:change_request_id, :role_id, :hours]
+  @table_totals = [:hours]
+  @table_titles = {}
+%>
+<%= render :partial => 'item/display_table' unless @display_rows.empty? %>
+
+<%
+  @display_rows = @milestone.approved_expense_lines
+  @child_class = CrExpenseLine
+  @table_name = 'Approved expenses'
+  @table_fields = [:change_request_id, :role_id, :code_id_purpose, :expense_budget]
+  @table_totals = [:expense_budget]
+  @table_titles = {}
+%>
+<%= render :partial => 'item/display_table' unless @display_rows.empty? %>

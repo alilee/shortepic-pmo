@@ -1,0 +1,62 @@
+<!-- TODO: C - add edit model like child_table allowing edit and remove (unless already signed) -->
+<% if section == :table %>
+
+  <div id="signatures">
+    <%= render :partial => 'item/signature_edit_line', :locals => { :section => :head } %>
+    <%= render :partial => 'item/signature_edit_line', :locals => { :section => :body },
+           :collection => @signatures %>
+    <%= render :partial => 'item/signature_edit_line', :locals => { :section => :foot } %>
+  </div>
+
+<% elsif section == :head %>
+  <h2>Signatures</h2>
+  <%= form_remote_tag :url => { :action => 'add_signature', :id => @item.id } %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Signatory</th>
+          <th>Sign-off</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+    	<tbody>
+
+<% elsif section == :body %>
+
+      <tr id="signature_edit_line<%= signature_edit_line.id %>">
+        <td><%= link_to_item signature_edit_line.person %></td>
+        <td><%= signature_edit_line.status.value %></td>
+        <td>
+          <% if signature_edit_line.person_id == session[:person].id && signature_edit_line.signed_at.nil? %>
+            <%= link_to_remote 'remove', 
+                  :url => { :action => 'withdraw_signature', 
+                            :id => signature_edit_line.item_id,
+                            :line_id => signature_edit_line.id} %>
+          <% else %>
+            Signed
+          <% end %>
+        </td>
+      </tr>
+
+<% elsif section == :foot %>
+
+      </tbody>
+
+      <%= render :partial => 'item/signature_edit_line', :locals => { :section => :fields } if editing? %> 
+
+    </table>
+  </form>
+  
+<% elsif section == :fields %>
+
+  <tfoot>
+    <tr id="edit-signature-line">
+      <td><%= select :signature, :person_id, select_for_signatories(@item) %></td>
+      <td><%= select :signature, :status_id, select_for_status(@item.class) %></td>
+      <td><%= submit_tag 'Add', :class => 'button' %></td>
+    </tr>
+  </tfoot>
+
+<% end %>

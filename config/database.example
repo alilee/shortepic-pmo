@@ -1,0 +1,11 @@
+development:
+  adapter:  postgresql
+  database: pmosti_dev
+  username: alilee
+  password: a
+
+test:
+  adapter:  postgresql
+  database: pmosti_tst
+  username: tester
+  password: t

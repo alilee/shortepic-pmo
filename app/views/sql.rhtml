@@ -1,0 +1,71 @@
+<h1>Interactive SQL</h1>
+
+<%= form_tag(:action => 'sql') %>
+  <div id="manage">
+    <table class="fullwidth">
+      <% if flash[:error] %>
+        <tr>
+          <td class="field-label">Error</td>
+          <td><%= h flash[:error] %></td>
+        </tr>  
+      <% end %>
+      <tr>
+        <td class="field-label">Query</td>
+        <td><%= text_area_tag('sql', @sql, :size => "80x10") %></td>
+      </tr>
+      <tr>
+        <td class="field-label">Format</td>
+        <td><%= check_box_tag('result_format', 'csv', false, :class => 'checkbox') %>As CSV</td>
+      </tr>
+      <tr class="submit">
+        <td colspan="2"><%= submit_tag 'Go', :class => 'button' %></td>
+      </tr>
+    </table>
+  </div>
+</form>
+
+
+<% if @sqlresult %>
+	<h2>Results</h2>
+
+	<% if @sqlresult.empty? %>
+
+	  <p>Empty set.</p>
+
+	<% else %>
+
+  	<table>
+  	  <thead>
+      	<tr>
+        	<% for th in @sqlresult.first.keys do %>
+        			<th> <%= h(th) %> </th>
+        	<% end %>
+      	</tr>	
+      </thead>
+
+      <tbody>
+  	    <% odd = true
+  	      total = Hash.new
+  	      for tr in @sqlresult do %>
+  		    <tr <%= odd ? 'class="odd"' : '' %>>
+  			    <% for td in tr.keys do %>
+  				    <td> <%= h(tr[td]) %> </td>
+  				    <% total[td] = tr[td].to_i + (total[td] || 0) %>
+  			    <% end %>
+  		    </tr>
+  		    <% odd = !odd %>
+  	    <% end %>
+  	  </tbody>
+  	  
+  	  <tfoot>
+  	    <tr>
+    		  <% for th in @sqlresult.first.keys do %>
+    				<th> <%= total[th] %> </th>
+    		  <% end %>
+  	    </tr>
+  	  </tfoot>
+
+  	</table>
+  <% end %>
+  
+<% end %>

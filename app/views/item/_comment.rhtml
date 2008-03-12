@@ -1,0 +1,8 @@
+<tr class="comment-details">
+  <td><%= link_to_item(comment.person) %></td>
+  <td><%= comment.created_at.strftime(time_format) %></td>
+  <td><%= link_to(icon(:delete), { :action => 'delete_comment', :comment_id => comment.id }) if comment.person.id == session[:person].id && 0 == comment_counter %></td>
+</tr>
+<tr id="<%= "comment_#{comment.id}"%>">
+  <td colspan="3"><%= tx_no_p(comment.body) %></td>
+</tr>

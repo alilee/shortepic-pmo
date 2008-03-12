@@ -1,0 +1,39 @@
+<% if section == :head %>
+  <table>
+  	
+    <thead>
+      <tr>
+        <th>Priority</th>
+        <th><%= icon(:escalated_up) %></th>
+        <th>Person</th>
+        <th><%= icon(:escalated_here) %></th>
+        <th>Status</th>
+        <th>Due</th>
+        <th>Commencing</th>
+      </tr>
+    </thead>
+    
+  	<tbody>
+
+<% elsif section == :body %>
+
+      <tr>
+        <td><%= absence_line.priority_code.value %></td>
+        <td><%= icon :escalated_up if absence_line.escalated_up?(@project) %></td>
+        <td><%= link_to_item absence_line.person %></td>
+        <td><%= icon :escalated_here if absence_line.escalated_here?(@project) %></td>
+        <td><%= absence_line.status.value %></td>
+        <td <%= 'class="overdue"' if absence_line.overdue? %>>
+          <%= absence_line.due_on.strftime(date_format) %>
+        </td>
+        <td><%= link_to_item absence_line, absence_line.detail.away_on.strftime(date_format) %></td>
+      </tr>
+      
+<% elsif section == :foot %>
+
+    </tbody>
+
+  </table>
+  
+<% end %>
+

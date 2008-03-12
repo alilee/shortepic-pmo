@@ -1,0 +1,17 @@
+--- 
+signatures_001: 
+  item_id: "25"
+  id: "1"
+  status_id: "24"
+  person_id: "2"
+signatures_002: 
+  item_id: "22"
+  id: "2"
+  status_id: "24"
+  person_id: "2"
+signatures_003: 
+  item_id: "19"
+  signed_at: <%= 0.3.days.ago.to_formatted_s(:db) %>
+  id: "3"
+  status_id: "11"
+  person_id: "2"

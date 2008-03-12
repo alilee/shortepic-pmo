@@ -1,0 +1,24 @@
+<h3> <%= h system_setting.name %> </h3>
+<div id= <%= "system_setting_#{system_setting.id}"%> >
+<table>
+    <tr>
+        <td><strong>Value</strong></td>
+        <td><div id=<%="value_#{system_setting.id}"%>> <%= h system_setting.value %></div>
+            <%= in_place_editor("value_#{system_setting.id}", { :loading_text => "Updating...", :url => "/system_setting/#{system_setting.id}/edit", :size => system_setting.value.length+5}) %>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Explanation</strong></td>
+        <td><%= h system_setting.explanation %></td>
+    </tr>
+    <tr>
+        <td><strong>Example</strong></td>
+        <td><%= h system_setting.example %></td>
+    </tr>
+</table>
+</div>
+<div>
+    <%= start_form_tag :action => 'delete', :id => system_setting.id %>
+    <%= submit_tag "Delete" %>
+    <%= end_form_tag %>
+</div>

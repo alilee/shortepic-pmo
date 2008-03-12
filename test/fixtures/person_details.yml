@@ -1,0 +1,17 @@
+--- 
+person_details_002: 
+  code_id_timezone: "5"
+  reset_next_login: f
+  id: "1"
+  res_password_salt: 21cbe3d3
+  res_password_hash: 09cd67eb6c314513cc89bba6e973f8a4a34c6cf7967da05996357704ba4bc957
+  person_id: "2"
+  email: new_root_user@shortepic.com
+person_details_001: 
+  code_id_timezone: "5"
+  reset_next_login: f
+  id: "2"
+  res_password_salt: 6375b1d8
+  res_password_hash: eeac6501158fafd54209f307965280f1585a0bc38aefbc35d2599964bbccf5c2
+  person_id: "16"
+  email: uncle@test.shortepic.com

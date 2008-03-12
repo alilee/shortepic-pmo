@@ -1,0 +1,85 @@
+<div id="header">
+  <table class="fullwidth">
+    <tr>
+      <td>&nbsp;</td>
+
+      <td rowspan="3" class="logo"><img src="<%= url_for :controller => 'project', :action => 'logo', 
+                    :id => (@project_id || session[:person].project_id) %>" alt="Logo" height="48" /></td>
+
+      <td colspan="2" align="right">
+        <table>
+          <tr id="userline">
+            <td><span id="user-label">User</span><%= link_to_show(session[:person]) %></td>
+
+            <td><%= link_to image_tag('log_out.gif', :alt => 'Log out'), {:controller => 'login', :action => 'logout'}%></td>
+
+            <td><%= link_to image_tag('help.gif', :alt => 'Help', :width => '56x21'), help_link %></td>
+
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="brown"><img src="/images/1pix.gif" alt="" width="34" height="54" /></td>
+
+      <td id="title" class="brown"><%= @page_title || @item.title %></td>
+
+      <td id="links-block" align="right" class="brown">
+        <table>
+          <tr id="mylinks">
+            <td><img src="/images/my.gif" alt="my" /></td>
+
+            <td><%= link_to('Assignments', assignments_url(:id => session[:person].id)) %></td>
+
+            <td><img src="/images/menu_div.gif" alt="" /></td>
+
+            <td><%= link_to('Responsibilities', responsibilities_url(:id => session[:person].id))%></td>
+
+            <td><img src="/images/menu_div.gif" alt="" /></td>
+
+            <td><%= link_to('Favourites', favourites_url(:id => session[:person].id))%></td>
+
+            <td><img src="/images/menu_div.gif" alt="" /></td>
+
+            <td><%= link_to('Signatures', signatures_url(:id => session[:person].id)) %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+
+      <td id="bottom-tab" colspan="2">
+        <img src="/images/create_new.gif" alt="Create new" />
+
+        <%= form_tag(
+              url_for(:controller => 'item', 
+                      :action => 'edit', 
+                      :project_id => (@project_id || session[:person].project_id)),
+                :method => 'get') %>
+          <div>
+            <%= hidden_field_tag('item_id_created_from', @item.id) unless @item.nil? %>
+            <%= select_tag('new_object', select_types_for_tag, 
+                  :id => 'createnew', :onchange => 'this.form.submit()') %>
+          </div>
+        </form>
+
+        <img src="/images/create_div.gif" alt="" width="27" height="21" />
+
+        <%= form_tag( search_url, :method => 'post' ) %>
+          <div id="search-form">
+            <%= text_field_tag 'search_text', nil, :size => 10 %>
+            &nbsp; 
+            <%= image_submit_tag 'search_bt.gif' %> 
+            &nbsp;
+          </div>
+        </form>
+
+        <img src="/images/curve.gif" alt="" />
+      </td>
+    </tr>
+  </table>
+</div>

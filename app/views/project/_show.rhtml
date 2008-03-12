@@ -1,0 +1,39 @@
+<!-- show milestones -->
+
+<% @milestones = Milestone.find_all_by_project_id_and_project_id_escalation(
+      @project.descendant_project_ids << @project.id, @project.self_and_ancestor_ids,
+      :include => [:status, :detail], 
+      :conditions => ['generic_stage in (?)', Status::incomplete],
+      :order => 'deadline_on'
+)
+   unless @milestones.empty? %>
+  <h2>Milestones</h2>
+  <table>
+    <thead>
+      <tr>
+        <th><%= icon(:escalated_up) %></th>
+        <th>Milestone</th>
+        <th><%= icon(:escalated_here) %></th>
+        <th>Status</th>
+        <th>Due on</th>
+        <th>Baseline ends on</th>
+        <th>Deadline on</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @milestones.each do |milestone| %>
+        <tr>
+          <td><%= icon(:escalated_up) if milestone.escalated_up?(@project) %></td>
+          <td><%= link_to_item milestone %></td>
+          <td><%= icon(:escalated_here) if milestone.escalated_here?(@project) %></td>
+          <td><%= milestone.status %></td>
+          <td <%= overdue_class(milestone) %>><%= milestone.due_on.strftime(date_format) unless milestone.due_on.nil? %></td>
+          <td <%= overdue_class(milestone.baseline_ends_on) %>><%= milestone.baseline_ends_on.strftime(date_format) unless milestone.baseline_ends_on.nil? %></td>
+          <td <%= overdue_class(milestone.detail.deadline_on) %>><%= milestone.detail.deadline_on.strftime(date_format) unless milestone.detail.deadline_on.nil? %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<!-- TODO: B - show child projects, responsible role and assignee -->

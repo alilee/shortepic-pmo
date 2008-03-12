@@ -1,0 +1,91 @@
+<h2>Item types</h2>
+
+<p><%= flash[:notice] %></p>
+<p><%= flash[:error] %></p>
+<%= error_messages_for 'new_code' %>
+
+<%= anchor_link('ref_toc') -%>
+<% @codes.collect {|c| c.type_name}.uniq.each do |type_name| -%>
+  <p> <%= link_to_anchor(type_name, "ref_#{type_name}") %> </p>
+<% end -%>
+  <p> &nbsp; </p>
+  <p> <%= link_to_anchor('New code...', 'ref_new') %> </p>
+  <p> &nbsp; </p>
+
+<%= form_tag(:action => 'manage') %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Item type</th>
+      <th>Code</th>
+      <th>Value</th>
+      <th>Sequence</th>
+      <th>Enabled</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+
+<%  odd = true
+    type_name = name = ''
+    @codes.each do |code|
+      if code.type_name != type_name
+        type_name = code.type_name
+        type_name_text = h type_name
+        name = nil
+        anchor = true
+      end
+      if code.name != name
+        name = h code.name
+        name_text = name
+      end %>
+      <tr <%= odd ? 'class="odd"' : ''%>>
+        <td><%= code.id %></td>
+        <td>
+          <% if anchor %>
+            <%= anchor_link("ref_#{type_name}") %> 
+          <% end %>
+          <%= type_name_text %> &nbsp;
+        </td>
+        <td><%= name_text %> &nbsp;</td>
+        <td>
+          <% div_id = "value_#{code.id}" %>
+          <div id="<%= div_id %>"><%= h code.value %></div>
+          <%= in_place_editor(div_id, { :loading_text => 'Updating...', 
+                :url => "/code/#{code.id}/edit", :size => code.value.length+5 } ) %>
+        </td>
+        <td>
+          <% div_id = "sequence_#{code.id}" %>
+          <div id="<%= div_id %>"><%= code.sequence %></div>
+          <%= in_place_editor(div_id, { :loading_text => 'Updating...', 
+                :url => "/code/#{code.id}/edit_sequence", :size => 5 } ) %>  
+        </td>
+        <td><%= code.enabled? ? '' : 'False' %></td>
+        <td>&nbsp;</td>
+      </tr>      
+      <%  odd = !odd
+          type_name_text = name_text = ''
+          anchor = false
+    end %>
+    
+  </tbody>
+
+  <tfoot>
+    <tr id="ref_new">
+      <td>&nbsp;</td>
+      <td><%= select('new_code', 'type_name', Status::VALID_TYPE_NAMES) %></td>
+      <td><%= text_field('new_code', 'name') %></td>
+      <!-- # TODO: use Rails Recipe: Lightning fast local autocompletion -->
+      <td><%= text_field('new_code', 'value') %></td>
+      <td><%= text_field('new_code', 'sequence' )%></td>
+      <td><%= check_box('new_code', 'enabled')%></td>
+      <td><%= submit_tag 'Add' %></td>  
+    </tr>
+  </tfoot>
+
+</table>
+
+</form>        

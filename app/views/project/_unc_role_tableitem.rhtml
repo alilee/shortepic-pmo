@@ -1,0 +1,12 @@
+<!-- Called from ProjectSummary
+  -->
+<tr>
+  <td><%= link_to(unc_role_tableitem['role_title'], 
+            :controller => 'role', :id => unc_role_tableitem['role_id']) %>
+  </td>
+  <td class="rightalign"><%= unc_role_tableitem['sbudgeted'] %></td>
+  <td class="rightalign"><%= unc_role_tableitem['scommitted'] %></td>
+	<td><%= link_to(unc_role_tableitem['person_title'], 
+	          :controller => 'person', :id => unc_role_tableitem['person_id']) %>
+	</td>
+</tr>

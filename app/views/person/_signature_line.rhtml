@@ -1,0 +1,41 @@
+
+<% if section == :head %>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Sign-off</th>
+        <th>When</th>
+        <th>Currently</th>
+        <th>Assigned To</th>
+        <th>Due</th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    
+<% elsif section == :subhead %>
+
+      <tr>
+        <th colspan="5"><%= heading %></th>
+      </tr>
+
+<% elsif section == :body %>
+
+      <tr>
+        <td><%= link_to_item signature_line.item %></td>
+        <td><%= signature_line.status.value %>
+        <td><%= signature_line.item.status.value %></td>
+        <td><%= link_to_item signature_line.item.person %></td>
+        <td <%= overdue_class(signature_line.item) %>>
+          <%= signature_line.item.due_on.strftime(date_format) %>
+        </td>
+      </tr>
+    
+<% elsif section == :foot %>
+
+    </tbody>
+  </table>
+
+<% end %>

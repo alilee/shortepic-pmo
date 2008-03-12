@@ -1,0 +1,53 @@
+--- 
+role_details_008: 
+  role_id: "13"
+  id: "3"
+  code_id_security_profile: "4"
+role_details_001: 
+  role_id: "14"
+  id: "4"
+  accountabilities: ""
+  responsibilities: ""
+  skills: ""
+  experience: ""
+  code_id_security_profile: "4"
+role_details_002: 
+  role_id: "31"
+  id: "6"
+  accountabilities: ""
+  responsibilities: ""
+  skills: ""
+  experience: ""
+  code_id_security_profile: "4"
+role_details_003: 
+  role_id: "15"
+  id: "5"
+  accountabilities: ""
+  responsibilities: ""
+  skills: ""
+  experience: ""
+  code_id_security_profile: "28"
+role_details_004: 
+  role_id: "39"
+  id: "7"
+  accountabilities: ""
+  responsibilities: ""
+  skills: ""
+  experience: ""
+  code_id_security_profile: "28"
+role_details_005: 
+  role_id: "40"
+  id: "8"
+  accountabilities: ""
+  responsibilities: ""
+  skills: ""
+  experience: ""
+  code_id_security_profile: "28"
+role_details_006: 
+  role_id: "3"
+  id: "1"
+  code_id_security_profile: "4"
+role_details_007: 
+  role_id: "10"
+  id: "2"
+  code_id_security_profile: "4"

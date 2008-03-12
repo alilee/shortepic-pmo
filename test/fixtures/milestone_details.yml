@@ -1,0 +1,25 @@
+--- 
+milestone_details_001: 
+  id: "1"
+  milestone_id: "21"
+  deadline_on: <%= 113.3.days.from_now.to_formatted_s(:db) %>
+milestone_details_002: 
+  id: "2"
+  milestone_id: "22"
+  deadline_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
+milestone_details_003: 
+  id: "3"
+  milestone_id: "23"
+  deadline_on: <%= 205.3.days.from_now.to_formatted_s(:db) %>
+milestone_details_004: 
+  id: "4"
+  milestone_id: "24"
+  deadline_on: <%= 20.7.days.ago.to_formatted_s(:db) %>
+milestone_details_005: 
+  id: "5"
+  milestone_id: "25"
+  deadline_on: <%= 24.3.days.from_now.to_formatted_s(:db) %>
+milestone_details_006: 
+  id: "6"
+  milestone_id: "27"
+  deadline_on: <%= 7.7.days.ago.to_formatted_s(:db) %>

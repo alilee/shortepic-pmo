@@ -1,0 +1,39 @@
+<div id="centrecol"> 
+
+  <h1>Bookings</h1>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Person</th>
+        <th>Role</th>
+        <th>Project</th>
+        <th>Start on</th>
+        <th>End on</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% @people.each do |person| %>
+        
+        <tr>
+          <td colspan="5"><%= link_to_item person %></td>
+          
+          <% person.role_placements.each do |p| %>
+            <tr>
+              <td>&nbsp;</td>
+              <td><%= link_to_item p.role %></td>  
+              <td><%= link_to_item p.role.parent %></td>  
+              <td><%= p.start_on %></td>  
+              <td><%= p.end_on %></td>  
+            </tr>
+          <% end %>
+
+        </tr>
+        
+      <% end %>
+      
+    </tbody>
+  </table>
+  
+</div>

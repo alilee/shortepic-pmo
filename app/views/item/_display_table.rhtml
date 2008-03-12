@@ -1,0 +1,111 @@
+<% # TODO: - C This should be probably be re-written with child_table %>
+
+<% section = table if !defined?(section) %>
+
+<% if section == :head %>
+
+  <table>
+    <thead>
+      <tr>
+        <% for col_name_s in @table_fields do 
+            if @table_titles[col_name_s] %>
+            <th><%= @table_titles[col_name_s] %></th>
+        <%  else
+              col_name = col_name_s.to_s
+              case col_name
+                when 'id', 'created_at', 'updated_at', 'created_on', 'updated_on' %>
+                  <!-- ignore system columns -->
+            <%  when Inflector.foreign_key(@item.class.name) %>
+                  <!-- ignore foreign key column -->
+            <%  when /^res_/ %>
+                  <!-- ignore reserved column -->
+            <%  when /^code_id_/ %>
+                  <th><%= $'.humanize %></th>
+            <%  when /_id$/ %>
+                  <th><%= $`.humanize %></th>
+            <%  when /_id_/ %>
+                  <th><%= $'.humanize %></th>
+            <%  else %>
+                  <th><%= col_name.humanize %></th>
+            <% end
+             end
+           end %>
+      </tr>
+    </thead>
+    <tbody>
+  
+<% elsif section == :body %>
+
+<tr>
+  <% for col_name in @table_fields do %>
+    <%  case col_name.to_s 
+        when 'id', 'created_at', 'updated_at', 'created_on', 'updated_on' %>
+          <!-- ignore system columns -->
+    <%  when Inflector.foreign_key(@item.class.name) %>
+          <!-- ignore foreign key column -->
+    <%  when 'title' %>
+          <td><%= link_to_class @child_class, display_table[col_name], display_table[:id] %></td>
+    <%  when /^res_/ %>
+          <!-- ignore reserved column -->
+    <%  when /^code_id_/ %>
+          <% # FIXME: C - make these lookups use prefetches if possible %>
+          <td><%= Code.find(display_table[col_name]).value %></td>
+    <%  when /^status_id/%>
+          <td><%= Status.find(display_table[col_name]).value %></td>
+    <%  when /_id$/ %>
+          <td><%= link_to_item Item.find(display_table[col_name].to_i) %></td>
+    <%  when /_id_/ %>
+          <td><%= link_to_item Item.find(display_table[col_name].to_i) %></td>
+    <%  when /_at$/ %>        
+          <td><%= display_table[col_name].strftime(time_format) %></td>
+    <%  when /_on$/ %>
+          <td><%= display_table.send(col_name).strftime(date_format) unless display_table.send(col_name).nil? %></td>
+    <%  else
+          if display_table[col_name].is_a? Precision %> 
+            <td class="right"><%= number_with_delimiter display_table[col_name] %></td>
+      <%  else %>
+            <td><%= h display_table[col_name] %></td>
+      <%  end %>
+    <%  end %>
+  <% end %>
+</tr>
+
+<% elsif section == :foot %>
+
+    </tbody>
+  
+    <tfoot>
+      <%= render :partial => 'item/display_table', :locals => { :section => :totals } %>
+    </tfoot>
+  
+  </table>
+
+<% elsif section == :totals %>
+
+  <% if !@table_totals.empty? %>
+
+      <tr>
+        <% for col_name in @table_fields do
+             if @table_totals.include?(col_name.to_sym)
+               total = @display_rows.inject(0) {|sum, line| sum + line.send(col_name).to_i } %>
+               <td class="right"><%= number_with_delimiter total %></td>
+          <% else %>
+               <td></td>
+          <% end 
+           end %>
+      </tr>
+    
+  <% end %>
+
+<% else %>
+
+  <% if !@display_rows.nil? || !@display_rows.empty? %> 
+
+    <h2><%= @table_name %></h2>
+    <%= render :partial => 'item/display_table', :locals => { :section => :head } %>
+    <%= render :partial => 'item/display_table', :locals => { :section => :body }, :collection => @display_rows %>
+    <%= render :partial => 'item/display_table', :locals => { :section => :foot } %>
+
+  <% end %>  
+
+<% end %>

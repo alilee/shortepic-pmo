@@ -1,0 +1,29 @@
+<div id="centrecol">
+  
+  <h1>Team</h1>
+
+  <% if !@formative_roles.empty? %>
+    <h2>Role Management</h2>
+    <%= render :partial => 'role_line', :locals => {:section => :head} %>
+    <%= render :partial => 'role_line', :locals => {:section => :body},
+          :collection => @formative_roles %>            
+    <%= render :partial => 'role_line', :locals => {:section => :foot} %>
+  <% end %>
+
+  <% if !@incomplete_role_placements.empty? %>
+    <h2>Placements</h2>
+    <%= render :partial => 'placement_line', :locals => { :section => :head } %>
+    <%= render :partial => 'placement_line', :locals => { :section => :body },
+          :collection => @incomplete_role_placements %>
+    <%= render :partial => 'placement_line', :locals => {:section => :foot} %>
+  <% end %>
+
+  <% if !@project.incomplete_resources.empty? %>
+    <h2>Resources</h2>
+    <%= render :partial => 'person_line', :locals => {:section => :head} %>
+    <%= render :partial => 'person_line', :locals => {:section => :body},
+          :collection => @project.incomplete_resources %>            
+    <%= render :partial => 'person_line', :locals => {:section => :foot} %>
+  <% end %>
+
+</div>

@@ -1,0 +1,64 @@
+<div id="centrecol">
+  
+  <h1>History</h1>
+
+  <h2>History of changes</h2>
+
+  <table>
+  
+    <thead>
+      <tr>
+        <th>Updated at</th>
+        <th>By</th>
+        <th>Attribute</th>
+        <th>New value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @diffs.reverse_each do |version| %>
+
+        <tr>
+
+          <td><%= version['updated_at'].nil? ? 'Epoch' : version['updated_at'].strftime(time_format) %></td>
+          <td><%= if version['person_id_updated_by'].nil? || version['person_id_updated_by'] == 0 
+                    'Installer'
+                  else
+                    link_to_item Item.find(version['person_id_updated_by']) 
+                  end %>
+          </td>
+        
+        <% first = true
+          version.each do |field_name, new_value| %>
+          <% next if field_name == 'updated_at' || field_name == 'person_id_updated_by' %>
+          <% if !first %>
+            <tr>
+              <td></td>
+              <td></td>
+          <% end %>
+          <% if field_name =~ /^code_id_/ %>
+            <td><%= $'.humanize %></td>
+            <td><%= Code.find(new_value).value %></td>
+          <% elsif field_name == 'status_id' %>
+            <td>Status</td>
+            <td><%= Status.find(new_value).value %></td>
+          <% elsif field_name =~ /_id$/ %>
+            <td><%= $`.humanize %></td>
+            <td><%= link_to_item(Item.find(new_value)) unless new_value == 0 %></td>
+          <% elsif field_name =~ /_id_/ %>
+            <td><%= $'.humanize %></td>
+            <td><%= link_to_item(Item.find(new_value)) unless new_value == 0 %></td>
+          <% else %>
+            <td><%= field_name.humanize %> </td>
+            <td><%= h new_value %></td>
+          <% end %>
+        
+          </tr>
+          <% first = false %>
+
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

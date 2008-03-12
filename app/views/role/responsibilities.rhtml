@@ -1,0 +1,52 @@
+<div id="rightcol">
+  <%= render :partial => '/item/associations' %>
+  <%= render :partial => '/item/comments' %>
+  <%= render :partial => '/item/signature_show_line', :locals => { :section => :table } %>
+</div>
+
+<div id="centrecol">
+  
+  <h1>Responsibilities</h1>
+
+  <% if !@responsibilities.empty? %>
+    <h2>Responsibilities</h2>
+
+    <table>
+  
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Priority</th>
+      		<th>Status</th>
+      		<th>Assigned to</th>
+      		<th>Due on</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% 	last_type = nil
+      		@responsibilities.each do |responsibility| %>
+    			  <% if responsibility.class.name != last_type %>
+    					<tr>
+    						<th colspan="5"> <%= responsibility.class.name.pluralize.titleize.humanize %> </th>
+    					</tr>
+    			    <% last_type = responsibility.class.name %>
+    		 		<% end %>
+
+        <tr>
+    			<td> <%= link_to_item(responsibility) %> </td> 
+    			<td> <%= responsibility.priority_code.value %> </td>
+          <td> <%= responsibility.status.value %> </td>
+          <td> <%= link_to_item(responsibility.person) %> </td>
+          <td <%= overdue_class(responsibility) %>>
+            <%= responsibility.due_on.strftime(date_format) unless responsibility.due_on.nil? %>
+          </td>
+        </tr>
+       <% end %>
+
+       </tbody>
+
+    </table>
+  <% end %>
+
+</div>

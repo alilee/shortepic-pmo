@@ -1,0 +1,84 @@
+<h2>Categories</h2>
+
+<p><%= flash[:notice] %></p>
+<p><%= flash[:error] %></p>
+<%= error_messages_for 'new_setting' %>
+
+<%= anchor_link('ref_toc') -%>
+<% @settings.collect {|s| s.category}.uniq.each do |category| -%>
+  <p> <%= link_to_anchor(category, "ref_#{category}") %> </p>
+<% end -%>
+  <p> &nbsp; </p>
+  <p> <%= link_to_anchor('New setting...', 'ref_new') %> </p>
+  <p> &nbsp; </p>
+
+<%= form_tag(:action => 'manage') %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Example</th>
+      <th>Value</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+
+<%  odd = true
+    category = ''
+    @settings.each do |setting|
+      if setting.category != category
+        category = setting.category
+        category_text = h category
+        anchor = true
+      end %>
+      <tr <%= odd ? 'class="odd"' : '' %>>
+        <td>
+          <% if anchor %>
+            <%= anchor_link("ref_#{category}") %> 
+          <% end %>
+          <%= category_text %> &nbsp;
+        </td>
+        <td><%= h setting.name %></td>
+        <td><%= h setting.example %></td>
+        <td>
+          <% div_id = "value_#{setting.id}" %>
+          <div id="<%= div_id %>"><%= h setting.value %></div>
+          <%= in_place_editor(div_id, { :loading_text => 'Updating...', 
+                :url => "/system_setting/#{setting.id}/edit_value", 
+                :size => (setting.value.nil? ? 10 : setting.value.length+5) } ) %>
+        </td>
+        <td>&nbsp;</td>
+      </tr>      
+      <%  odd = !odd
+          category_text = ''
+          anchor = false
+    end %>
+  
+  </tbody>
+  
+  <tfoot>
+    
+    <tr>
+      <%= anchor_link('ref_new') %>
+      <td><%= select('new_setting', 'category', SystemSetting::VALID_CATEGORIES) %></td>
+      <td><%= text_field('new_setting', 'name') %></td>
+      <td><%= text_field('new_setting', 'example') %></td>
+      <td><%= text_field('new_setting', 'value') %></td>
+      <td><%= submit_tag 'Add' %></td>  
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="3"><%= text_area('new_setting', 'explanation', :rows => 5, :cols => 80) %></td>
+      <td>&nbsp;</td>
+    </tr>
+    
+  </tfoot>
+  
+</table>
+
+</form>
+        

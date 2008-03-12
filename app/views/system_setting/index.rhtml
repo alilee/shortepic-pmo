@@ -1,0 +1,27 @@
+<p style="color: green"><%= flash[:notice] %></p>
+<p style="color: red"><%= flash[:error] %></p>
+<%= error_messages_for 'system_setting' %>
+<%= anchor_link("ref_top") -%>
+<h1>System Settings</h1>
+<hr/>
+<h2> Table of Contents </h2>
+<ul>
+    <% @system_settings.keys.each do |category| %>
+        <li> <%= link_to_anchor(category, "ref_#{category}") %> </li>
+    <% end %>
+    <li> <%= link_to_anchor("New System Settings", "ref_new") %> </li>
+</ul>
+<hr/>
+<% @system_settings.each_pair do |category, category_system_settings| -%>
+    <%= anchor_link("ref_#{category}") -%>
+    <h2><%= h category %>&nbsp;<small><%= link_to_anchor("[top]", "ref_top")%></small></h2>
+    <ul>
+    <% category_system_settings.each do |system_setting| -%>
+        <li style="list-style:square outside;"><%= render :partial => 'system_setting', :locals => {:system_setting => system_setting} %></li>
+    <% end -%>
+    </ul>
+<% end -%>
+<hr/>
+<%= anchor_link("ref_new") %>
+<h2> New System Setting &nbsp;<small><%= link_to_anchor("[top]", "ref_top")%></small></h2>
+<%= render :partial => 'system_setting_form' %>
