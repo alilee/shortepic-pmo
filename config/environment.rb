@@ -24,6 +24,15 @@ Rails::Initializer.run do |config|
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
 
+  # Your secret key for verifying cookie session data integrity.
+  # If you change this key, all old sessions will become invalid!
+  # Make sure the secret is at least 30 characters and all random, 
+  # no regular words or you'll be exposed to dictionary attacks.
+  config.action_controller.session = {
+    :session_key => '_pmo_session',
+    :secret      => '9702bcdcffd0764cf790b72ae5b59f1be1e7fefb3833a89c03eede578c3ff5abf90185787b2f299c86a95d6a2dd35d1959bd1cff4ebd0b827823e49d3b38ab35'
+  }
+
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake create_sessions_table')
   # TODO: C - set up periodic session clean-up
@@ -72,15 +81,15 @@ ActiveRecord::SchemaDumper.ignore_tables << /^pg_ts_.*/
 #end
 
 # environment and instance information
-if RUBY_PLATFORM =~ /win32/
-    svninfo = `svn info "#{File.dirname(__FILE__)}"`
-else
-    svninfo = `/usr/bin/env svn info #{File.dirname(__FILE__)}`
-end
-svninfo =~ /Last Changed Rev: (\d+)\n/
-$app_rev = $1
-svninfo =~ /URL: (.+)\n/
-$app_branch = $1 
+#if RUBY_PLATFORM =~ /win32/
+#    svninfo = `svn info "#{File.dirname(__FILE__)}"`
+#else
+#    svninfo = `/usr/bin/env svn info #{File.dirname(__FILE__)}`
+#end
+#svninfo =~ /Last Changed Rev: (\d+)\n/
+$app_rev = 'app_rev'
+#svninfo =~ /URL: (.+)\n/
+$app_branch = 'app_branch' 
 $hostname = Socket.gethostname
 $app_root = "http://#{$hostname}:8000"
 
