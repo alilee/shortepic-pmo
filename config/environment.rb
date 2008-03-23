@@ -81,15 +81,10 @@ ActiveRecord::SchemaDumper.ignore_tables << /^pg_ts_.*/
 #end
 
 # environment and instance information
-#if RUBY_PLATFORM =~ /win32/
-#    svninfo = `svn info "#{File.dirname(__FILE__)}"`
-#else
-#    svninfo = `/usr/bin/env svn info #{File.dirname(__FILE__)}`
-#end
-#svninfo =~ /Last Changed Rev: (\d+)\n/
-$app_rev = 'app_rev'
-#svninfo =~ /URL: (.+)\n/
-$app_branch = 'app_branch' 
+gitinfo = `cd #{File.dirname(__FILE__)+'/..'} && git branch -v`
+gitinfo =~ /\*\ ([a-z0-9\-]*)\ ([a-e0-9]*)\ .*/
+$app_branch = $1
+$app_rev = $2
 $hostname = Socket.gethostname
 $app_root = "http://#{$hostname}:8000"
 
