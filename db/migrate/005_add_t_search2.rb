@@ -1,6 +1,6 @@
 class AddTSearch2 < ActiveRecord::Migration
   def self.up
-    ts_filename = `locate contrib/tsearch2.sql | head -n 1`.strip
+    ts_filename = 'db/tsearch2.sql'
     contents = File.read(ts_filename)
     execute(contents)
     
@@ -17,7 +17,7 @@ class AddTSearch2 < ActiveRecord::Migration
     execute('DROP TRIGGER tsvectorupdate')
     execute('ALTER TABLE items DROP COLUMN res_idx_fti')
 
-    ts_filename = `locate contrib/untsearch2.sql | head -n 1`.strip
+    ts_filename = 'db/uninstall_tsearch2.sql'
     contents = File.read(ts_filename)
     execute(contents)
   end
