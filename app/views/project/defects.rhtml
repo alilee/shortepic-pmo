@@ -1,0 +1,41 @@
+<div id="centrecol">
+
+	<h1>Defects</h1>
+
+  <table>
+    <tr>
+      <th>Phase</th>
+      <% to_statuses = Status.find_all_by_type_name_and_enabled('TestObservation', true, :order => 'sequence') 
+        to_statuses.each do |s| %>
+          <th><%= s.value %></th>
+      <% end %>
+      <th>Total</th>
+    </tr>
+    
+    <% column_total = Hash.new
+       row_total = 0
+       table_total = 0 
+       @defect_counts.each_pair do |milestone, h| %>
+      <tr>
+        <td><%= link_to_item milestone unless milestone.nil? %></td>
+        <% to_statuses.each do |s| %>
+          <td class="right"> <%= h[s.id] %></td> 
+          <% column_total[s.id] = (column_total[s.id] || 0) + (h[s.id] || 0) %>
+          <% row_total = row_total + (h[s.id] || 0) %>
+        <% end %>
+        <td><%= row_total %></td>
+        <% table_total = table_total + row_total %>
+        <% row_total = 0 %>
+      </tr>
+    <% end %>
+    
+    <tr>
+      <td>Total</td>
+      <% to_statuses.each do |s| %>
+        <td class="right"> <%= column_total[s.id] %></td>
+      <% end %>
+      <td><%= table_total %></td>
+    </tr>
+  </table>
+  
+</div>
