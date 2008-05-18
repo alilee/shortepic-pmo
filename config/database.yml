@@ -1,0 +1,7 @@
+development:
+  adapter:  postgresql
+  database: pmo_dev
+
+test:
+  adapter:  postgresql
+  database: pmo_tst
