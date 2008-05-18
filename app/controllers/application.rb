@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
       unless params[:assigned_to].nil?
         conditions << "(person_id in (#{params[:assigned_to].join(',')}))"
       end
-      unless params[:i][:due_on].nil?
+      unless params[:i][:due_on].empty?
         due_on_ops = {'-1' => '<', '0' => '=', '1' => '>'}
         due_on = Date.parse(params[:i][:due_on])
         conditions << "(due_on #{due_on_ops[params[:due_on_op]]} #{due_on.to_formatted_s(:db)})"
