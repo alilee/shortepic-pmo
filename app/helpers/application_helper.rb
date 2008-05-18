@@ -109,7 +109,8 @@ module ApplicationHelper
   def select_types_for_tag(options = {})
     values = Hash.new
     Status::DOMAIN_TYPES.each_pair do |group_name, klasses|
-      values[group_name] = klasses.collect {|k| [k.name, k.name.titleize.humanize] }
+      accessible_klasses = klasses.find_all {|k| session[:person].authorised?(k.name.underscore, 'edit') }
+      values[group_name] = accessible_klasses.collect {|k| [k.name, k.name.titleize.humanize] } unless accessible_klasses.empty?    
     end
     
     result = option_groups_from_collection_for_select(values, 'last', 'first', 'first', 'last')

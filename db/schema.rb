@@ -166,24 +166,26 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "items", :force => true do |t|
-    t.string   "type",                  :null => false
-    t.string   "title",                 :null => false
+    t.string   "type",                                 :null => false
+    t.string   "title",                                :null => false
     t.integer  "project_id"
-    t.integer  "role_id",               :null => false
-    t.integer  "person_id",             :null => false
-    t.integer  "status_id",             :null => false
-    t.integer  "code_id_priority",      :null => false
+    t.integer  "role_id",                              :null => false
+    t.integer  "person_id",                            :null => false
+    t.integer  "status_id",                            :null => false
+    t.integer  "code_id_priority",                     :null => false
     t.integer  "project_id_escalation"
     t.text     "description"
     t.date     "due_on"
     t.integer  "lft"
     t.integer  "rgt"
-    t.datetime "updated_at",            :null => false
-    t.integer  "person_id_updated_by",  :null => false
+    t.datetime "updated_at",                           :null => false
+    t.integer  "person_id_updated_by",                 :null => false
     t.integer  "version"
+    t.string   "res_idx_fti",           :limit => nil
   end
 
   add_index "items", ["title", "project_id"], :name => "ak_item_project_id_title", :unique => true
+  add_index "items", ["res_idx_fti"], :name => "index_fti"
   add_index "items", ["type", "project_id"], :name => "index_type_project_id"
 
   create_table "meeting_attendees", :force => true do |t|

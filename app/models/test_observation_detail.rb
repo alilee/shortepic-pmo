@@ -19,6 +19,9 @@ class TestObservationDetail < ActiveRecord::Base
   include ItemDetail
 
   belongs_to :test_observation
+  belongs_to :phase_detected_milestone, :class_name => 'Milestone', :foreign_key => 'milestone_id_phase_detected'
+  belongs_to :phase_resolved_milestone, :class_name => 'Milestone', :foreign_key => 'milestone_id_phase_resolved'
+  belongs_to :phase_introduced_milestone, :class_name => 'Milestone', :foreign_key => 'milestone_id_phase_introduced'
   
   # validates_presence_of :issue_id
 end

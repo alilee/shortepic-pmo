@@ -220,6 +220,18 @@ class ProjectController < ItemController
     send_file pngoutpath, :disposition => 'inline'
   end
   
+  def defects
+    @defects = @project.descendants_by_class(TestObservation)
+       
+    @defect_counts = Hash.new
+    @defects.each do |d|
+      milestone = d.detail.phase_detected_milestone
+      @defect_counts[milestone] ||= Hash.new
+      current = @defect_counts[milestone][d.status_id] || 0
+      @defect_counts[milestone][d.status_id] = current + 1
+    end
+  end
+  
   protected
   
   # Loads the required item (initially for security checking) using params[:id] and caches it for other methods.

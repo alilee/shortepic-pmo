@@ -16,6 +16,7 @@ module ProjectHelper
       #'throughput',
       'hierarchy', 
       'roadmap',
+      'defects',
       'all',
       'dump',
       'late',
