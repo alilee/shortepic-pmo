@@ -23,9 +23,13 @@ class MilestoneController < ItemController
   def closed_defects
     defects = @milestone.detected_test_observation_details
     closed_defects_details = defects.find_all {|d| d.test_observation.status.generic_stage == Status::COMPLETE }
-    @closed_defects = Hash.new
+    @closed_defects_root_cause = Hash.new
+    @closed_defects_priority = Hash.new
+    @closed_defects_severity = Hash.new
     closed_defects_details.each do |d|
-      @closed_defects[d.root_cause_code] = (@closed_defects[d.root_cause_code] || 0) + 1
+      @closed_defects_root_cause[d.root_cause_code] = (@closed_defects_root_cause[d.root_cause_code] || 0) + 1
+      @closed_defects_priority[d.test_observation.priority_code] = (@closed_defects_priority[d.test_observation.priority_code] || 0) + 1
+      @closed_defects_severity[d.severity_code] = (@closed_defects_severity[d.severity_code] || 0) + 1
     end   
   end
   

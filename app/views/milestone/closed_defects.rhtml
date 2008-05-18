@@ -8,12 +8,43 @@
       <th>Count</th>
     </tr>
     
-    <% @closed_defects.each_pair do |code, count| %>
+    <% total_count = 0 %>
+    <% Code.find_all_by_type_name_and_name('TestObservation', 'Root cause', :order => 'sequence').each do |code| %>
       <tr>
         <td><%= code %></td>
-        <td><%= count %></td>
+        <td class="right"><%= @closed_defects_root_cause[code] || '&nbsp;' %></td>
       </tr>
+      <% total_count = total_count + (@closed_defects_root_cause[code] || 0) %>
     <% end %>
+  
+    <tr>
+      <td>Total</td>
+      <td class="right"><%= total_count %></td>
+    </tr>
+
+  </table>
+  
+  <p>&nbsp;</p>
+
+  <table>
+    <tr>
+      <th>Severity</th>
+      <th>Count</th>
+    </tr>
+    
+    <% total_count = 0 %>
+    <% Code.find_all_by_type_name_and_name('TestObservation', 'Severity', :order => 'sequence').each do |code| %>
+      <tr>
+        <td><%= code %></td>
+        <td class="right"><%= @closed_defects_severity[code] || '&nbsp;' %></td>
+      </tr>
+      <% total_count = total_count + (@closed_defects_severity[code] || 0) %>
+    <% end %>
+  
+    <tr>
+      <td>Total</td>
+      <td class="right"><%= total_count %></td>
+    </tr>
 
   </table>
 </div>

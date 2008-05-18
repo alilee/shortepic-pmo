@@ -17,7 +17,7 @@
        table_total = 0 
        @defect_counts.each_pair do |milestone, h| %>
       <tr>
-        <td><%= link_to_item milestone unless milestone.nil? %></td>
+        <td><%= link_to_action(milestone, 'open_defects') unless milestone.nil? %></td>
         <% to_statuses.each do |s| %>
           <td class="right"> <%= h[s.id] %></td> 
           <% column_total[s.id] = (column_total[s.id] || 0) + (h[s.id] || 0) %>
