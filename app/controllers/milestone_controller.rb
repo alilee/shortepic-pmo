@@ -15,6 +15,20 @@ class MilestoneController < ItemController
     @roles = @baseline_effort_lines.collect {|el| el.role }
   end
   
+  def open_defects
+    defects = @milestone.detected_test_observation_details
+    @open_defects = defects.find_all {|d| d.test_observation.status.incomplete? }   
+  end
+  
+  def closed_defects
+    defects = @milestone.detected_test_observation_details
+    closed_defects_details = defects.find_all {|d| d.test_observation.status.generic_stage == Status::COMPLETE }
+    @closed_defects = Hash.new
+    closed_defects_details.each do |d|
+      @closed_defects[d.root_cause_code] = (@closed_defects[d.root_cause_code] || 0) + 1
+    end   
+  end
+  
   protected
   
   # Loads the required item (initially for security checking) using params[:id] and caches it for other methods.

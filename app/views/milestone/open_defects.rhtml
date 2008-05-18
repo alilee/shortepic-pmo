@@ -1,0 +1,27 @@
+<div id="centrecol">
+
+	<h1>Open defects</h1>
+
+  <table>
+    <tr>
+      <th>Status</th>
+      <th>Title</th>
+      <th>Priority</th>
+      <th>Assigned to</th>
+      <th>Due</th>
+    </tr>
+    
+    <% @open_defects.each do |d| %>
+      <tr>
+        <td><%= d.test_observation.status %></td>
+        <td><%= link_to_item d.test_observation %></td>
+        <td><%= d.test_observation.priority_code %></td>
+        <td><%= link_to_item d.test_observation.person %></td>
+        <td <%= overdue_class(d.test_observation) %>> 
+          <%= d.test_observation.due_on.strftime(date_format) unless d.test_observation.due_on.nil? %> 
+        </td>
+      </tr>
+    <% end %>
+
+  </table>
+</div>

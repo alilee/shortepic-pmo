@@ -1,0 +1,19 @@
+<div id="centrecol">
+
+	<h1>Closed defects</h1>
+
+  <table>
+    <tr>
+      <th>Root cause</th>
+      <th>Count</th>
+    </tr>
+    
+    <% @closed_defects.each_pair do |code, count| %>
+      <tr>
+        <td><%= code %></td>
+        <td><%= count %></td>
+      </tr>
+    <% end %>
+
+  </table>
+</div>

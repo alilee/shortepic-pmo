@@ -37,6 +37,7 @@ class Milestone < Item
   has_many :cr_date_lines, :dependent => :destroy
   has_many :timesheet_lines, :dependent => :destroy
   has_many :status_report_lines, :dependent => :destroy
+  has_many :detected_test_observation_details, :class_name => 'TestObservationDetail', :foreign_key => 'milestone_id_phase_detected', :include => {:test_observation => :status}, :order => 'statuses.sequence, items.code_id_priority', :dependent => :destroy
   
   has_one :last_status_report_line, 
     :class_name => 'StatusReportLine', 

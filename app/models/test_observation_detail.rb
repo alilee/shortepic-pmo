@@ -22,6 +22,7 @@ class TestObservationDetail < ActiveRecord::Base
   belongs_to :phase_detected_milestone, :class_name => 'Milestone', :foreign_key => 'milestone_id_phase_detected'
   belongs_to :phase_resolved_milestone, :class_name => 'Milestone', :foreign_key => 'milestone_id_phase_resolved'
   belongs_to :phase_introduced_milestone, :class_name => 'Milestone', :foreign_key => 'milestone_id_phase_introduced'
+  belongs_to :root_cause_code, :class_name => 'Code', :foreign_key => 'code_id_root_cause'
   
   # validates_presence_of :issue_id
 end
