@@ -75,6 +75,11 @@ ActiveRecord::SchemaDumper.ignore_tables << /^pg_ts_.*/
 
 # Include your application configuration below
 
+# Deployment_specific environment settings, if any
+if File.exist?(File.join(File.dirname(__FILE__), 'deployment_environment.rb'))
+  require File.join(File.dirname(__FILE__), 'deployment_environment')
+end
+
 # Environment setup for JSCalendar
 #ActiveRecord::Base.class_eval do
 #  include BoilerPlate::Model::I18n
