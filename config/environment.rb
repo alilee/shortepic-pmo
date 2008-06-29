@@ -74,6 +74,10 @@ ActiveRecord::SchemaDumper.ignore_tables << /^pg_ts_.*/
 # end
 
 # Include your application configuration below
+# default environment and instance information
+# correct in deployment_environment.rb
+$hostname = 'localhost'
+$app_root = "http://#{$hostname}:3000"
 
 # Deployment_specific environment settings, if any
 if File.exist?(File.join(File.dirname(__FILE__), 'deployment_environment.rb'))
@@ -86,17 +90,10 @@ end
 #end
 
 # environment and instance information
-gitinfo = `cd #{File.dirname(__FILE__)+'/..'} && git branch -v`
-gitinfo =~ /\*\ ([a-z0-9\-]*)\ ([a-e0-9]*)\ .*/
-$app_branch = $1
-$app_rev = $2
-$hostname = Socket.gethostname
-$app_root = "http://#{$hostname}:8000"
-
 $app_title = 'PMO'
 $email_subject_prefix = "\[#{$app_title.upcase}\]"
 $email_from_address = "#{$app_title.downcase}-notifier@#{$hostname}"
-$email_signoff = "Consultant Manager Beta"
+$email_signoff = "PMO beta"
 
 # Exception Notifier
 ExceptionNotifier.exception_recipients = "support@#{$hostname}"
