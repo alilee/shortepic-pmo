@@ -191,12 +191,12 @@ class Item < ActiveRecord::Base
   
   # Return a string in CSV format containing the details of the object
   def to_csv
-    a = [ id, type, parent.title, role.title, person.title, status, priority_code, escalation.title, description, due_on, version, updated_at, updated_by.title ]
+    a = [ id, type, title, parent.title, role.title, person.title, status, priority_code, escalation.title, description, due_on, version, updated_at, updated_by.title ]
     CSV.generate_line(a)
   end
   
   def self.to_csv_header
-    a = [ 'id', 'type', 'parent', 'role', 'person', 'status', 'priority_code', 'escalation', 'description', 'due_on', 'version', 'updated_at', 'updated_by' ]
+    a = [ 'id', 'type', 'title', 'parent', 'role', 'person', 'status', 'priority_code', 'escalation', 'description', 'due_on', 'version', 'updated_at', 'updated_by' ]
     CSV.generate_line(a)
   end
   
