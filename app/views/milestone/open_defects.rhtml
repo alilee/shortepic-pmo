@@ -7,6 +7,7 @@
       <th>Status</th>
       <th>Title</th>
       <th>Priority</th>
+      <th>Severity</th>
       <th>Assigned to</th>
       <th>Due</th>
     </tr>
@@ -16,6 +17,7 @@
         <td><%= d.test_observation.status %></td>
         <td><%= link_to_item d.test_observation %></td>
         <td><%= d.test_observation.priority_code %></td>
+        <td><%= d.test_observation.detail.severity_code %></td>
         <td><%= link_to_item d.test_observation.person %></td>
         <td <%= overdue_class(d.test_observation) %>> 
           <%= d.test_observation.due_on.strftime(date_format) unless d.test_observation.due_on.nil? %> 

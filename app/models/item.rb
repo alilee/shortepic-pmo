@@ -189,6 +189,17 @@ class Item < ActiveRecord::Base
 		)
   end
   
+  # Return a string in CSV format containing the details of the object
+  def to_csv
+    a = [ id, type, parent.title, role.title, person.title, status, priority_code, escalation.title, description, due_on, version, updated_at, updated_by.title ]
+    CSV.generate_line(a)
+  end
+  
+  def self.to_csv_header
+    a = [ 'id', 'type', 'parent', 'role', 'person', 'status', 'priority_code', 'escalation', 'description', 'due_on', 'version', 'updated_at', 'updated_by' ]
+    CSV.generate_line(a)
+  end
+  
   protected
   
   # If the object is attempted to be saved with an escalation of 0 then correct it be the same as
