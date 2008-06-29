@@ -41,7 +41,7 @@ class MilestoneController < ItemController
     defect_details.each do |d|
       detail_line = d.to_csv
       item_line = d.test_observation.to_csv
-      buffer << (item_line + "," + detail_line)
+      buffer << (item_line + "," + detail_line + "\n")
     end
     send_data buffer, :type => 'text/csv', :filename => "defect_listing-#{Time.now.strftime('%Y%m%d%H%M')}.csv"
   end
