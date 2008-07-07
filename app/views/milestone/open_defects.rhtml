@@ -12,7 +12,7 @@
       <th>Assigned to</th>
       <th>Due</th>
       <th>Raised by</th>
-      <th>Age</th>
+      <th>Days</th>
     </tr>
     
     <% @open_defects.each do |d| %>
@@ -27,7 +27,7 @@
           <%= d.test_observation.due_on.strftime(date_format) unless d.test_observation.due_on.nil? %> 
         </td>
         <td><%= link_to_item d.test_observation.first_version_updated_by %></td>
-        <td><%= d.test_observation.first_version_updated_at.strftime(date_format) %></td>
+        <td><%= (Date.today - d.test_observation.first_version_updated_at) %></td>
       </tr>
     <% end %>
 
