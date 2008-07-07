@@ -27,7 +27,7 @@
           <%= d.test_observation.due_on.strftime(date_format) unless d.test_observation.due_on.nil? %> 
         </td>
         <td><%= link_to_item d.test_observation.first_version_updated_by %></td>
-        <td><%= (Date.today - d.test_observation.first_version_updated_at) %></td>
+        <td><%= (Date.today.jd - d.test_observation.first_version_updated_at.jd) %></td>
       </tr>
     <% end %>
 
