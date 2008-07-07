@@ -200,6 +200,16 @@ class Item < ActiveRecord::Base
     CSV.generate_line(a)
   end
   
+  def first_version_updated_by
+    old_version = find_version(1)
+    Person.find(old_version.person_id_updated_by)
+  end
+
+  def first_version_updated_at
+    old_version = find_version(1)
+    old_version.updated_at
+  end
+  
   protected
   
   # If the object is attempted to be saved with an escalation of 0 then correct it be the same as

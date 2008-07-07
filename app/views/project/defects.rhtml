@@ -10,10 +10,12 @@
           <th><%= s.value %></th>
       <% end %>
       <th>Total</th>
+      <th>Total open</th>  
     </tr>
     
     <% column_total = Hash.new
        row_total = 0
+       row_total_open = 0
        table_total = 0 
        @defect_counts.each_pair do |milestone, h| %>
       <tr>
@@ -22,10 +24,13 @@
           <td class="right"> <%= h[s.id] %></td> 
           <% column_total[s.id] = (column_total[s.id] || 0) + (h[s.id] || 0) %>
           <% row_total = row_total + (h[s.id] || 0) %>
+          <% row_total_open = row_total_open + 1 if s.incomplete? %>
         <% end %>
         <td><%= row_total %></td>
+        <td><%= row_total_open %></td>
         <% table_total = table_total + row_total %>
         <% row_total = 0 %>
+        <% row_total_open = 0 %>
       </tr>
     <% end %>
     

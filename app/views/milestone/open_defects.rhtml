@@ -5,16 +5,20 @@
   <table>
     <tr>
       <th>Status</th>
+      <th>Id</th>
       <th>Title</th>
       <th>Priority</th>
       <th>Severity</th>
       <th>Assigned to</th>
       <th>Due</th>
+      <th>Raised by</th>
+      <th>Age</th>
     </tr>
     
     <% @open_defects.each do |d| %>
       <tr>
         <td><%= d.test_observation.status %></td>
+        <td><%= d.test_observation_id %> </td>
         <td><%= link_to_item d.test_observation %></td>
         <td><%= d.test_observation.priority_code %></td>
         <td><%= d.test_observation.detail.severity_code %></td>
@@ -22,6 +26,8 @@
         <td <%= overdue_class(d.test_observation) %>> 
           <%= d.test_observation.due_on.strftime(date_format) unless d.test_observation.due_on.nil? %> 
         </td>
+        <td><%= link_to_item d.test_observation.first_version_created_by %></td>
+        <td><%= d.test_observation.first_version_created_at.strftime(date_format) %></td>
       </tr>
     <% end %>
 

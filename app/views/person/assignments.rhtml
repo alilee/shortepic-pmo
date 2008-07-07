@@ -8,6 +8,7 @@
 
       <thead>
         <tr>
+          <th>Id</th>
           <th>Title</th>
       		<th>Priority</th>
       		<th>Status</th>
@@ -21,12 +22,13 @@
 
       		<% if assigned_item.class.name != last_type %>
       			<tr>
-              <th colspan="4"> <%= assigned_item.class.name.pluralize.titleize.humanize %> </th>
+              <th colspan="5"> <%= assigned_item.class.name.pluralize.titleize.humanize %> </th>
       			</tr>
       		  <% last_type = assigned_item.class.name %>
       		<% end %>
   		
           <tr>
+            <td> <%= assigned_item.id %> </td>
     				<td> <%= link_to_item(assigned_item) %> </td>
       			<td> <%= assigned_item.priority_code.value %> </td>
             <td> <%= assigned_item.status.value %> </td>
