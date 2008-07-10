@@ -25,7 +25,7 @@
          counts[dd.code_id_severity][dd.test_observation.status_id] = (counts[dd.code_id_severity][dd.test_observation.status_id] || 0) + 1
        end
        
-       severity_codes = Code.find_all_by_type_name_and_name('TestObservation', 'Severity')
+       severity_codes = Code.find_all_by_type_name_and_name('TestObservation', 'Severity', :order => 'sequence')
        severity_codes.each do |sev| %>
       <tr>
         <td><%= sev.to_s %></td>
