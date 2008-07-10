@@ -150,5 +150,19 @@ class MilestoneControllerTest < Test::Unit::TestCase
   
   def test_withdraw_signature_xhr
   end
+  
+  def test_phase_completion
+    milestone = Milestone.find_by_title('Father milestone on track')
+    get :phase_completion, { :id => milestone.id }
+    assert_response :success
+    
+    # check count for highs in 3-in progress
+    # check count for meds in 3-in progress
+    # check total for highs
+    # check total for 3-in progress
+    assert_select 'div#centrecol td.right', '1', :count => 6
+    # check total for all defects
+    # assert_select 'div#centrecol td.right', '2', :count => 2
+  end
 
 end

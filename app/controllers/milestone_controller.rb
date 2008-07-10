@@ -46,6 +46,10 @@ class MilestoneController < ItemController
     send_data buffer, :type => 'text/csv', :filename => "defect_listing-#{Time.now.strftime('%Y%m%d%H%M')}.csv"
   end
   
+  def phase_completion
+    @defect_details = @milestone.detected_test_observation_details
+  end
+  
   protected
   
   # Loads the required item (initially for security checking) using params[:id] and caches it for other methods.

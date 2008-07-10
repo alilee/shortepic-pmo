@@ -1,0 +1,57 @@
+<div id="centrecol">
+
+	<h1>Phase completion</h1>
+
+  <table>
+    <tr>
+      <th>Severity</th>
+      <% to_statuses = Status.find_all_by_type_name_and_enabled('TestObservation', true, :order => 'sequence') 
+        to_statuses.each do |s| %>
+          <th><%= s.value %></th>
+      <% end %>
+      <th>Total</th>
+      <th>Total open</th>  
+    </tr>
+
+    <% column_total = Hash.new
+       row_total = 0
+       row_total_open = 0
+       table_total = 0 
+       table_total_open = 0
+       
+       counts = Hash.new
+       @defect_details.each do |dd|
+         counts[dd.code_id_severity] = Hash.new if counts[dd.code_id_severity].nil?
+         counts[dd.code_id_severity][dd.test_observation.status_id] = (counts[dd.code_id_severity][dd.test_observation.status_id] || 0) + 1
+       end
+       
+       severity_codes = Code.find_all_by_type_name_and_name('TestObservation', 'Severity')
+       severity_codes.each do |sev| %>
+      <tr>
+        <td><%= sev.to_s %></td>
+        <% to_statuses.each do |s| %>
+          <% this_cell = counts[sev.id][s.id] || 0 %>
+          <td class="right"> <%= this_cell unless this_cell == 0 %> </td> 
+          <% column_total[s.id] = (column_total[s.id] || 0) + this_cell %>
+          <% row_total = row_total + this_cell %>
+          <% row_total_open = row_total_open + this_cell if s.incomplete? %>
+        <% end %>
+        <td class="right"><%= row_total %></td>
+        <td class="right"><%= row_total_open %></td>
+        <% table_total = table_total + row_total %>
+        <% row_total = 0 %>
+        <% table_total_open = table_total_open + row_total_open %>
+        <% row_total_open = 0 %>
+      </tr>
+    <% end %>
+    
+    <tr>
+      <td>Total</td>
+      <% to_statuses.each do |s| %>
+        <td class="right"> <%= column_total[s.id] unless column_total[s.id] == 0 %></td>
+      <% end %>
+      <td class="right"><%= table_total unless table_total == 0 %></td>
+      <td class="right"><%= table_total_open unless table_total_open == 0 %></td>
+    </tr>
+  </table>
+</div>

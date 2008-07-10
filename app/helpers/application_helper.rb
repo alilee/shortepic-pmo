@@ -26,7 +26,7 @@ module ApplicationHelper
     case name
     when :escalated_here : image_tag 'escalated_here.gif', :size => "16x16"
     when :escalated_up : image_tag 'escalated_up.gif', :size => "16x16"
-    when :delete : image_tag 'row_dump.gif', :size => "20x20"
+    when :delete : image_tag 'row_dump.gif', :size => "20x20", :alt => 'Delete row'
     when :edit_row : image_tag 'row_edit.gif', :size => "20x20"
     when :commit : image_tag 'row_commit.gif', :size => "20x20"
     when :cancel : image_tag 'row_cancel.gif', :size => "20x20"
