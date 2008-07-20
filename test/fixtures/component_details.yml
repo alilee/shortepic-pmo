@@ -1,0 +1,29 @@
+--- 
+component_details_001: 
+  res_rgt: "4"
+  component_detail_id_parent: "0"
+  id: "1"
+  res_lft: "1"
+  code_id_type: "56"
+  component_id: "52"
+component_details_002: 
+  res_rgt: "3"
+  component_detail_id_parent: "1"
+  id: "2"
+  res_lft: "2"
+  code_id_type: "55"
+  component_id: "53"
+component_details_003: 
+  res_rgt: "8"
+  component_detail_id_parent: "0"
+  id: "3"
+  res_lft: "5"
+  code_id_type: "56"
+  component_id: "50"
+component_details_004: 
+  res_rgt: "7"
+  component_detail_id_parent: "3"
+  id: "4"
+  res_lft: "6"
+  code_id_type: "56"
+  component_id: "51"

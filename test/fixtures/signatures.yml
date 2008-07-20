@@ -11,7 +11,7 @@ signatures_002:
   person_id: "2"
 signatures_003: 
   item_id: "19"
-  signed_at: <%= 0.3.days.ago.to_formatted_s(:db) %>
+  signed_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
   id: "3"
   status_id: "11"
   person_id: "2"

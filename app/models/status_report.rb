@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 16
 #
 # Table name: items
 #
@@ -19,7 +19,7 @@
 #  updated_at            :datetime      not null
 #  person_id_updated_by  :integer       not null
 #  version               :integer       
-#  res_idx_fti           :tsvector      
+#  res_idx_fti           :string        
 #
 
 # A status report is an item that details how

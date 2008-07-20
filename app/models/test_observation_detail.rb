@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 16
 #
 # Table name: test_observation_details
 #
@@ -13,6 +13,9 @@
 #  milestone_id_phase_resolved   :integer       
 #  code_id_root_cause            :integer       
 #  milestone_id_phase_introduced :integer       
+#  estimated_hours_to_fix        :float         
+#  actual_hours_to_fix           :float         
+#  code_id_functional_area       :integer       
 #
 
 class TestObservationDetail < ActiveRecord::Base

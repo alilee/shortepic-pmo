@@ -5,7 +5,7 @@ require 'milestone_controller'
 class MilestoneController; def rescue_action(e) raise e end; end
 
 class MilestoneControllerTest < Test::Unit::TestCase
-  fixtures :codes, :statuses, :items, :milestone_details, :role_security_profiles, :role_details
+  fixtures :codes, :statuses, :items, :milestone_details, :role_security_profiles, :role_details, :test_observation_details
   
   def setup
     @controller = MilestoneController.new

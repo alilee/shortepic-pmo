@@ -4,5 +4,5 @@ test_case_runs_001:
   code_id_environment: "50"
   id: "1"
   person_id_run_by: "2"
-  run_on: <%= 0.7.days.ago.to_formatted_s(:db) %>
+  run_on: <%= 1.6.days.ago.to_formatted_s(:db) %>
   milestone_id: "22"

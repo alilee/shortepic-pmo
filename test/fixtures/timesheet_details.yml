@@ -1,6 +1,6 @@
 --- 
 timesheet_details_001: 
   timesheet_id: "34"
-  period_ending_on: <%= 17.7.days.ago.to_formatted_s(:db) %>
+  period_ending_on: <%= 18.6.days.ago.to_formatted_s(:db) %>
   id: "1"
   person_id_worker: "2"

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 15) do
+ActiveRecord::Schema.define(:version => 16) do
 
   create_table "absence_details", :force => true do |t|
     t.integer "absence_id",           :null => false
@@ -87,6 +87,14 @@ ActiveRecord::Schema.define(:version => 15) do
   end
 
   add_index "comments", ["item_id"], :name => "index_comment_item_ids"
+
+  create_table "component_details", :force => true do |t|
+    t.integer "component_id",               :null => false
+    t.integer "component_detail_id_parent"
+    t.integer "res_lft"
+    t.integer "res_rgt"
+    t.integer "code_id_type",               :null => false
+  end
 
   create_table "cr_date_lines", :force => true do |t|
     t.integer "change_request_id", :null => false
@@ -254,6 +262,12 @@ ActiveRecord::Schema.define(:version => 15) do
   end
 
   add_index "project_details", ["project_id"], :name => "ak_project_details", :unique => true
+
+  create_table "release_details", :force => true do |t|
+    t.integer "release_id",              :null => false
+    t.text    "deployment_instructions"
+    t.text    "rollback_instructions"
+  end
 
   create_table "requirement_details", :force => true do |t|
     t.integer "requirement_id",               :null => false

@@ -1,539 +1,23 @@
 --- 
+items_049: 
+  project_id: "1"
+  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
+  title: Module component
+  type: Component
+  role_id: "3"
+  code_id_priority: "51"
+  id: "51"
+  description: ""
+  version: "1"
+  status_id: "119"
+  project_id_escalation: "1"
+  res_idx_fti: "'modul':1 'compon':2"
+  person_id: "2"
+  due_on: <%= 0.4.days.from_now.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
 items_038: 
-  project_id: "4"
-  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
-  title: Father test case
-  type: TestCase
-  role_id: "3"
-  code_id_priority: "41"
-  id: "48"
-  description: ""
-  version: "1"
-  status_id: "107"
-  project_id_escalation: "4"
-  res_idx_fti: "'case':3 'test':2 'father':1"
-  person_id: "2"
-  due_on: <%= 0.3.days.from_now.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_027: 
-  project_id: "4"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Father change request
-  type: ChangeRequest
-  role_id: "15"
-  code_id_priority: "13"
-  id: "29"
-  description: ""
-  version: "4"
-  status_id: "31"
-  project_id_escalation: "4"
-  res_idx_fti: "'chang':2 'father':1 'request':3"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_016: 
   project_id: "7"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Child issue
-  type: Issue
-  role_id: "3"
-  code_id_priority: "8"
-  id: "17"
-  description: ""
-  version: "1"
-  status_id: "11"
-  project_id_escalation: "7"
-  res_idx_fti: "'issu':2 'child':1"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_005: 
-  project_id: "4"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Child project
-  type: Project
-  role_id: "3"
-  code_id_priority: "1"
-  lft: "9"
-  id: "7"
-  description: ""
-  version: "1"
-  status_id: "1"
-  project_id_escalation: "4"
-  res_idx_fti: "'child':1 'project':2"
-  person_id: "2"
-  rgt: "12"
-  due_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_039: 
-  project_id: "11"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Milestone for root 2 leaf
-  type: Milestone
-  role_id: "10"
-  code_id_priority: "11"
-  id: "27"
-  description: ""
-  version: "1"
-  status_id: "21"
-  project_id_escalation: "11"
-  res_idx_fti: "'2':4 'leaf':5 'root':3 'mileston':1"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_028: 
-  project_id: "4"
-  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
-  title: Father test condition
-  type: TestCondition
-  role_id: "3"
-  code_id_priority: "40"
-  id: "47"
-  description: ""
-  version: "1"
-  status_id: "100"
-  project_id_escalation: "4"
-  res_idx_fti: "'test':2 'condit':3 'father':1"
-  person_id: "2"
-  due_on: <%= 0.3.days.from_now.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_017: 
-  project_id: "1"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Grandfather complete milestone
-  type: Milestone
-  role_id: "3"
-  code_id_priority: "11"
-  id: "24"
-  description: ""
-  version: "1"
-  status_id: "25"
-  project_id_escalation: "1"
-  res_idx_fti: "'complet':2 'mileston':3 'grandfath':1"
-  person_id: "2"
-  due_on: <%= 20.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_006: 
-  project_id: "4"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Father milestone on track
-  type: Milestone
-  role_id: "3"
-  code_id_priority: "12"
-  id: "25"
-  description: ""
-  version: "2"
-  status_id: "24"
-  project_id_escalation: "4"
-  res_idx_fti: "'track':4 'father':1 'mileston':2"
-  person_id: "2"
-  due_on: <%= 25.3.days.from_now.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_040: 
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Root orphan project
-  type: Project
-  role_id: "13"
-  code_id_priority: "1"
-  lft: "19"
-  id: "12"
-  description: ""
-  version: "2"
-  status_id: "1"
-  res_idx_fti: "'root':1 'orphan':2 'project':3"
-  person_id: "2"
-  rgt: "20"
-  due_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_029: 
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Grandfather project
-  type: Project
-  role_id: "3"
-  code_id_priority: "1"
-  lft: "1"
-  id: "1"
-  description: ""
-  version: "3"
-  status_id: "1"
-  res_idx_fti: "'project':2 'grandfath':1"
-  person_id: "2"
-  rgt: "14"
-  due_on: <%= 8.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_018: 
-  project_id: "5"
-  updated_at: <%= 0.3.days.ago.to_formatted_s(:db) %>
-  title: Another status report
-  type: StatusReport
-  role_id: "3"
-  code_id_priority: "19"
-  id: "37"
-  description: Problems here.
-  version: "1"
-  status_id: "51"
-  project_id_escalation: "5"
-  res_idx_fti: "'anoth':1 'report':3 'status':2 'problem':4"
-  person_id: "2"
-  due_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_007: 
-  project_id: "4"
-  updated_at: <%= 0.3.days.ago.to_formatted_s(:db) %>
-  title: Pending role
-  type: Role
-  role_id: "3"
-  code_id_priority: "3"
-  id: "15"
-  description: ""
-  version: "2"
-  status_id: "33"
-  project_id_escalation: "4"
-  res_idx_fti: "'pend':1 'role':2"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_041: 
-  project_id: "4"
-  updated_at: <%= 0.3.days.ago.to_formatted_s(:db) %>
-  title: Status report
-  type: StatusReport
-  role_id: "3"
-  code_id_priority: "19"
-  id: "38"
-  description: Problems here too.
-  version: "1"
-  status_id: "53"
-  project_id_escalation: "4"
-  res_idx_fti: "'report':2 'status':1 'problem':3"
-  person_id: "2"
-  due_on: <%= 14.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_030: 
-  project_id: "1"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Uncle project
-  type: Project
-  role_id: "3"
-  code_id_priority: "1"
-  lft: "2"
-  id: "5"
-  description: ""
-  version: "1"
-  status_id: "1"
-  project_id_escalation: "1"
-  res_idx_fti: "'uncl':1 'project':2"
-  person_id: "2"
-  rgt: "5"
-  due_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_019: 
-  project_id: "7"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Child milestone
-  type: Milestone
-  role_id: "15"
-  code_id_priority: "11"
-  id: "21"
-  description: ""
-  version: "1"
-  status_id: "23"
-  project_id_escalation: "7"
-  res_idx_fti: "'child':1 'mileston':2"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_008: 
-  project_id: "9"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Root 2 project administrator
-  type: Role
-  role_id: "10"
-  code_id_priority: "3"
-  id: "10"
-  version: "2"
-  status_id: "3"
-  project_id_escalation: "9"
-  res_idx_fti: "'2':2 'root':1 'project':3 'administr':4"
-  person_id: "2"
-  person_id_updated_by: "2"
-items_042: 
-  project_id: "5"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Developing Role - uncle
-  type: Role
-  role_id: "3"
-  code_id_priority: "3"
-  id: "14"
-  description: ""
-  version: "1"
-  status_id: "3"
-  project_id_escalation: "5"
-  res_idx_fti: "'role':2 'uncl':3 'develop':1"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_031: 
-  project_id: "4"
-  updated_at: <%= 0.1.days.ago.to_formatted_s(:db) %>
-  title: New role
-  type: Role
-  role_id: "3"
-  code_id_priority: "3"
-  id: "39"
-  description: ""
-  version: "1"
-  status_id: "66"
-  project_id_escalation: "4"
-  res_idx_fti: "'new':1 'role':2"
-  person_id: "2"
-  due_on: <%= 2.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "16"
-items_020: 
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Root 2 project
-  type: Project
-  role_id: "10"
-  code_id_priority: "1"
-  lft: "15"
-  id: "9"
-  description: ""
-  version: "2"
-  status_id: "1"
-  res_idx_fti: "'2':2 'root':1 'project':3"
-  person_id: "2"
-  rgt: "18"
-  due_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_009: 
-  project_id: "7"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Child issue 3 escalated Grandfather
-  type: Issue
-  role_id: "3"
-  code_id_priority: "7"
-  id: "19"
-  description: ""
-  version: "2"
-  status_id: "11"
-  project_id_escalation: "1"
-  res_idx_fti: "'3':3 'issu':2 'child':1 'escal':4 'grandfath':5"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_043: 
-  project_id: "4"
-  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
-  title: A new test observation
-  type: TestObservation
-  role_id: "3"
-  code_id_priority: "42"
-  id: "49"
-  description: ""
-  version: "2"
-  status_id: "114"
-  project_id_escalation: "4"
-  res_idx_fti: "'new':2 'test':3 'observ':4"
-  person_id: "2"
-  due_on: <%= 0.3.days.from_now.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_032: 
-  project_id: "4"
-  updated_at: <%= 0.4.days.ago.to_formatted_s(:db) %>
-  title: New change request
-  type: ChangeRequest
-  role_id: "3"
-  code_id_priority: "13"
-  id: "30"
-  description: ""
-  version: "1"
-  status_id: "27"
-  project_id_escalation: "4"
-  res_idx_fti: "'new':1 'chang':2 'request':3"
-  person_id: "2"
-  due_on: <%= 3.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_021: 
-  project_id: "1"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Grandfather milestone
-  type: Milestone
-  role_id: "3"
-  code_id_priority: "11"
-  id: "23"
-  description: ""
-  version: "1"
-  status_id: "23"
-  project_id_escalation: "1"
-  res_idx_fti: "'mileston':2 'grandfath':1"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_010: 
-  project_id: "4"
-  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
-  title: Father meeting
-  type: Meeting
-  role_id: "3"
-  code_id_priority: "36"
-  id: "42"
-  description: ""
-  version: "1"
-  status_id: "84"
-  project_id_escalation: "4"
-  res_idx_fti: "'meet':2 'father':1"
-  person_id: "2"
-  due_on: <%= 2.3.days.from_now.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_044: 
-  project_id: "1"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Root role
-  type: Role
-  role_id: "3"
-  code_id_priority: "3"
-  id: "3"
-  version: "2"
-  status_id: "3"
-  project_id_escalation: "1"
-  res_idx_fti: "'role':2 'root':1"
-  person_id: "2"
-  person_id_updated_by: "2"
-items_033: 
-  project_id: "4"
-  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
-  title: Father requirement
-  type: Requirement
-  role_id: "3"
-  code_id_priority: "39"
-  id: "44"
-  description: ""
-  version: "2"
-  status_id: "93"
-  project_id_escalation: "4"
-  res_idx_fti: "'father':1 'requir':2"
-  person_id: "2"
-  due_on: <%= 3.3.days.from_now.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_022: 
-  project_id: "12"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Issue for orphan project
-  type: Issue
-  role_id: "13"
-  code_id_priority: "7"
-  id: "28"
-  description: ""
-  version: "2"
-  status_id: "12"
-  project_id_escalation: "12"
-  res_idx_fti: "'issu':1 'orphan':3 'project':4"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_011: 
-  project_id: "1"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Father project
-  type: Project
-  role_id: "3"
-  code_id_priority: "1"
-  lft: "6"
-  id: "4"
-  description: ""
-  version: "1"
-  status_id: "1"
-  project_id_escalation: "1"
-  res_idx_fti: "'father':1 'project':2"
-  person_id: "2"
-  rgt: "13"
-  due_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_045: 
-  project_id: "1"
-  updated_at: <%= 0.3.days.ago.to_formatted_s(:db) %>
-  title: Timesheet
-  type: Timesheet
-  role_id: "3"
-  code_id_priority: "17"
-  id: "34"
-  description: ""
-  version: "1"
-  status_id: "47"
-  project_id_escalation: "1"
-  res_idx_fti: "'timesheet':1"
-  person_id: "2"
-  due_on: <%= 5.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_034: 
-  project_id: "4"
-  updated_at: <%= 0.1.days.ago.to_formatted_s(:db) %>
-  title: Father risk
-  type: Risk
-  role_id: "3"
-  code_id_priority: "29"
-  id: "41"
-  description: ""
-  version: "2"
-  status_id: "79"
-  project_id_escalation: "4"
-  res_idx_fti: "'risk':2 'father':1"
-  person_id: "2"
-  due_on: <%= 9.3.days.from_now.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_023: 
-  project_id: "5"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Cousin project
-  type: Project
-  role_id: "3"
-  code_id_priority: "1"
-  lft: "3"
-  id: "6"
-  description: ""
-  version: "1"
-  status_id: "1"
-  project_id_escalation: "5"
-  res_idx_fti: "'cousin':1 'project':2"
-  person_id: "2"
-  rgt: "4"
-  due_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_012: 
-  project_id: "5"
-  updated_at: <%= 0.4.days.ago.to_formatted_s(:db) %>
-  title: Uncle action item
-  type: ActionItem
-  role_id: "3"
-  code_id_priority: "9"
-  id: "32"
-  description: ""
-  version: "1"
-  status_id: "17"
-  project_id_escalation: "5"
-  res_idx_fti: "'item':3 'uncl':1 'action':2"
-  person_id: "2"
-  due_on: <%= 2.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_001: 
-  project_id: "9"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Issue for root 2 project
-  type: Issue
-  role_id: "10"
-  code_id_priority: "7"
-  id: "26"
-  description: ""
-  version: "1"
-  status_id: "11"
-  project_id_escalation: "9"
-  res_idx_fti: "'2':4 'issu':1 'root':3 'project':5"
-  person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_046: 
-  project_id: "7"
-  updated_at: <%= 0.4.days.ago.to_formatted_s(:db) %>
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
   title: Great grand child project
   type: Project
   role_id: "3"
@@ -547,123 +31,137 @@ items_046:
   res_idx_fti: "'child':3 'grand':2 'great':1 'project':4"
   person_id: "2"
   rgt: "11"
-  due_on: <%= 236.3.days.from_now.to_formatted_s(:db) %>
+  due_on: <%= 235.3.days.from_now.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_035: 
-  project_id: "12"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Root orphan project administrator
-  type: Role
-  role_id: "13"
-  code_id_priority: "3"
-  id: "13"
-  version: "2"
-  status_id: "3"
-  project_id_escalation: "12"
-  res_idx_fti: "'root':1 'orphan':2 'project':3 'administr':4"
-  person_id: "2"
-  person_id_updated_by: "2"
-items_024: 
+items_027: 
   project_id: "4"
   updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
-  title: Father sub-requirement
+  title: Father requirement
   type: Requirement
   role_id: "3"
   code_id_priority: "39"
-  id: "45"
+  id: "44"
   description: ""
-  version: "1"
+  version: "2"
   status_id: "93"
   project_id_escalation: "4"
-  res_idx_fti: "'sub':3 'father':1 'requir':4 'sub-requir':2"
+  res_idx_fti: "'father':1 'requir':2"
   person_id: "2"
-  due_on: <%= 0.3.days.from_now.to_formatted_s(:db) %>
+  due_on: <%= 2.4.days.from_now.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_013: 
+items_016: 
   project_id: "4"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Action item
-  type: ActionItem
-  role_id: "15"
-  code_id_priority: "9"
-  id: "20"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Status report
+  type: StatusReport
+  role_id: "3"
+  code_id_priority: "19"
+  id: "38"
+  description: Problems here too.
+  version: "1"
+  status_id: "53"
+  project_id_escalation: "4"
+  res_idx_fti: "'report':2 'status':1 'problem':3"
+  person_id: "2"
+  due_on: <%= 15.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_005: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Father milestone on track
+  type: Milestone
+  role_id: "3"
+  code_id_priority: "12"
+  id: "25"
+  description: ""
+  version: "2"
+  status_id: "24"
+  project_id_escalation: "4"
+  res_idx_fti: "'track':4 'father':1 'mileston':2"
+  person_id: "2"
+  due_on: <%= 24.4.days.from_now.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_050: 
+  project_id: "1"
+  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
+  title: Release 1
+  type: Release
+  role_id: "3"
+  code_id_priority: "53"
+  id: "52"
   description: ""
   version: "1"
-  status_id: "17"
-  project_id_escalation: "4"
-  res_idx_fti: "'item':2 'action':1"
+  status_id: "127"
+  project_id_escalation: "1"
+  res_idx_fti: "'1':2 'releas':1"
   person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
+  due_on: <%= 0.4.days.from_now.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_002: 
+items_039: 
   project_id: "4"
-  updated_at: <%= 0.1.days.ago.to_formatted_s(:db) %>
-  title: Withdrawn role
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Test change request
+  type: ChangeRequest
+  role_id: "3"
+  code_id_priority: "13"
+  id: "35"
+  description: ""
+  version: "1"
+  status_id: "29"
+  project_id_escalation: "4"
+  res_idx_fti: "'test':1 'chang':2 'request':3"
+  person_id: "2"
+  due_on: <%= 6.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_028: 
+  project_id: "1"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Root role
   type: Role
   role_id: "3"
   code_id_priority: "3"
-  id: "40"
-  description: ""
-  version: "1"
-  status_id: "37"
-  project_id_escalation: "4"
-  res_idx_fti: "'role':2 'withdrawn':1"
+  id: "3"
+  version: "2"
+  status_id: "3"
+  project_id_escalation: "1"
+  res_idx_fti: "'role':2 'root':1"
   person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_047: 
-  project_id: "9"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Root leaf project
-  type: Project
-  role_id: "10"
-  code_id_priority: "1"
-  lft: "16"
-  id: "11"
-  description: ""
-  version: "1"
-  status_id: "1"
-  project_id_escalation: "9"
-  res_idx_fti: "'leaf':2 'root':1 'project':3"
-  person_id: "2"
-  rgt: "17"
-  due_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_036: 
-  project_id: "4"
-  updated_at: <%= 0.4.days.ago.to_formatted_s(:db) %>
-  title: Father role
-  type: Role
+items_017: 
+  project_id: "7"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Child issue 3 escalated Grandfather
+  type: Issue
   role_id: "3"
-  code_id_priority: "3"
-  id: "31"
+  code_id_priority: "7"
+  id: "19"
   description: ""
-  version: "1"
-  status_id: "34"
-  project_id_escalation: "4"
-  res_idx_fti: "'role':2 'father':1"
+  version: "2"
+  status_id: "11"
+  project_id_escalation: "1"
+  res_idx_fti: "'3':3 'issu':2 'child':1 'escal':4 'grandfath':5"
   person_id: "2"
-  due_on: <%= 1.7.days.ago.to_formatted_s(:db) %>
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_025: 
-  project_id: "5"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Uncle person
-  type: Person
+items_006: 
+  project_id: "1"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Grandfather complete milestone
+  type: Milestone
   role_id: "3"
-  code_id_priority: "2"
-  id: "16"
+  code_id_priority: "11"
+  id: "24"
   description: ""
   version: "1"
-  status_id: "2"
-  project_id_escalation: "5"
-  res_idx_fti: "'uncl':1 'person':2"
+  status_id: "25"
+  project_id_escalation: "1"
+  res_idx_fti: "'complet':2 'mileston':3 'grandfath':1"
   person_id: "2"
-  due_on: <%= 114.3.days.from_now.to_formatted_s(:db) %>
+  due_on: <%= 21.6.days.ago.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_014: 
+items_040: 
   project_id: "4"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
   title: Sibling project
   type: Project
   role_id: "3"
@@ -677,73 +175,255 @@ items_014:
   res_idx_fti: "'sibl':1 'project':2"
   person_id: "2"
   rgt: "8"
-  due_on: <%= 7.7.days.ago.to_formatted_s(:db) %>
+  due_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_003: 
-  project_id: "4"
-  updated_at: <%= 0.3.days.ago.to_formatted_s(:db) %>
-  title: Test change request
-  type: ChangeRequest
-  role_id: "3"
-  code_id_priority: "13"
-  id: "35"
+items_029: 
+  project_id: "9"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Issue for root 2 project
+  type: Issue
+  role_id: "10"
+  code_id_priority: "7"
+  id: "26"
   description: ""
   version: "1"
-  status_id: "29"
-  project_id_escalation: "4"
-  res_idx_fti: "'test':1 'chang':2 'request':3"
+  status_id: "11"
+  project_id_escalation: "9"
+  res_idx_fti: "'2':4 'issu':1 'root':3 'project':5"
   person_id: "2"
-  due_on: <%= 5.7.days.ago.to_formatted_s(:db) %>
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_037: 
-  project_id: "1"
-  updated_at: <%= 0.3.days.ago.to_formatted_s(:db) %>
-  title: Status report 1
-  type: StatusReport
-  role_id: "3"
-  code_id_priority: "19"
-  id: "36"
-  description: Something not kosher in the state of Denmark.
-  version: "1"
-  status_id: "53"
-  project_id_escalation: "1"
-  res_idx_fti: "'1':3 'state':9 'kosher':6 'report':2 'someth':4 'status':1 'denmark':11"
-  person_id: "2"
-  due_on: <%= 12.7.days.ago.to_formatted_s(:db) %>
-  person_id_updated_by: "2"
-items_026: 
-  project_id: "7"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
-  title: Child issue 2 escalated Father
-  type: Issue
-  role_id: "3"
-  code_id_priority: "7"
-  id: "18"
+items_018: 
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Root 2 project
+  type: Project
+  role_id: "10"
+  code_id_priority: "1"
+  lft: "15"
+  id: "9"
   description: ""
   version: "2"
-  status_id: "11"
-  project_id_escalation: "4"
-  res_idx_fti: "'2':3 'issu':2 'child':1 'escal':4 'father':5"
+  status_id: "1"
+  res_idx_fti: "'2':2 'root':1 'project':3"
   person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
+  rgt: "18"
+  due_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_015: 
-  project_id: "1"
-  updated_at: <%= 0.6.days.ago.to_formatted_s(:db) %>
-  title: Root person
+items_007: 
+  project_id: "4"
+  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
+  title: Father test condition
+  type: TestCondition
+  role_id: "3"
+  code_id_priority: "40"
+  id: "47"
+  description: ""
+  version: "1"
+  status_id: "100"
+  project_id_escalation: "4"
+  res_idx_fti: "'test':2 'condit':3 'father':1"
+  person_id: "2"
+  due_on: <%= 0.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_041: 
+  project_id: "5"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Uncle person
   type: Person
   role_id: "3"
   code_id_priority: "2"
-  id: "2"
-  version: "2"
+  id: "16"
+  description: ""
+  version: "1"
   status_id: "2"
-  project_id_escalation: "1"
-  res_idx_fti: "'root':1 'person':2"
+  project_id_escalation: "5"
+  res_idx_fti: "'uncl':1 'person':2"
   person_id: "2"
+  due_on: <%= 113.3.days.from_now.to_formatted_s(:db) %>
   person_id_updated_by: "2"
-items_004: 
+items_030: 
+  project_id: "5"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Uncle action item
+  type: ActionItem
+  role_id: "3"
+  code_id_priority: "9"
+  id: "32"
+  description: ""
+  version: "1"
+  status_id: "17"
+  project_id_escalation: "5"
+  res_idx_fti: "'item':3 'uncl':1 'action':2"
+  person_id: "2"
+  due_on: <%= 3.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_019: 
   project_id: "4"
-  updated_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: New role
+  type: Role
+  role_id: "3"
+  code_id_priority: "3"
+  id: "39"
+  description: ""
+  version: "1"
+  status_id: "66"
+  project_id_escalation: "4"
+  res_idx_fti: "'new':1 'role':2"
+  person_id: "2"
+  due_on: <%= 3.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "16"
+items_008: 
+  project_id: "11"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Milestone for root 2 leaf
+  type: Milestone
+  role_id: "10"
+  code_id_priority: "11"
+  id: "27"
+  description: ""
+  version: "1"
+  status_id: "21"
+  project_id_escalation: "11"
+  res_idx_fti: "'2':4 'leaf':5 'root':3 'mileston':1"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_042: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Father role
+  type: Role
+  role_id: "3"
+  code_id_priority: "3"
+  id: "31"
+  description: ""
+  version: "1"
+  status_id: "34"
+  project_id_escalation: "4"
+  res_idx_fti: "'role':2 'father':1"
+  person_id: "2"
+  due_on: <%= 2.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_031: 
+  project_id: "5"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Cousin project
+  type: Project
+  role_id: "3"
+  code_id_priority: "1"
+  lft: "3"
+  id: "6"
+  description: ""
+  version: "1"
+  status_id: "1"
+  project_id_escalation: "5"
+  res_idx_fti: "'cousin':1 'project':2"
+  person_id: "2"
+  rgt: "4"
+  due_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_020: 
+  project_id: "5"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Developing Role - uncle
+  type: Role
+  role_id: "3"
+  code_id_priority: "3"
+  id: "14"
+  description: ""
+  version: "1"
+  status_id: "3"
+  project_id_escalation: "5"
+  res_idx_fti: "'role':2 'uncl':3 'develop':1"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_009: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Pending role
+  type: Role
+  role_id: "3"
+  code_id_priority: "3"
+  id: "15"
+  description: ""
+  version: "2"
+  status_id: "33"
+  project_id_escalation: "4"
+  res_idx_fti: "'pend':1 'role':2"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_043: 
+  project_id: "9"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Root leaf project
+  type: Project
+  role_id: "10"
+  code_id_priority: "1"
+  lft: "16"
+  id: "11"
+  description: ""
+  version: "1"
+  status_id: "1"
+  project_id_escalation: "9"
+  res_idx_fti: "'leaf':2 'root':1 'project':3"
+  person_id: "2"
+  rgt: "17"
+  due_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_032: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Father risk
+  type: Risk
+  role_id: "3"
+  code_id_priority: "29"
+  id: "41"
+  description: ""
+  version: "2"
+  status_id: "79"
+  project_id_escalation: "4"
+  res_idx_fti: "'risk':2 'father':1"
+  person_id: "2"
+  due_on: <%= 8.4.days.from_now.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_021: 
+  project_id: "4"
+  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
+  title: Father meeting
+  type: Meeting
+  role_id: "3"
+  code_id_priority: "36"
+  id: "42"
+  description: ""
+  version: "1"
+  status_id: "84"
+  project_id_escalation: "4"
+  res_idx_fti: "'meet':2 'father':1"
+  person_id: "2"
+  due_on: <%= 1.4.days.from_now.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_010: 
+  project_id: "5"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Another status report
+  type: StatusReport
+  role_id: "3"
+  code_id_priority: "19"
+  id: "37"
+  description: Problems here.
+  version: "1"
+  status_id: "51"
+  project_id_escalation: "5"
+  res_idx_fti: "'anoth':1 'report':3 'status':2 'problem':4"
+  person_id: "2"
+  due_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_044: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
   title: Father milestone
   type: Milestone
   role_id: "3"
@@ -755,5 +435,373 @@ items_004:
   project_id_escalation: "1"
   res_idx_fti: "'father':1 'mileston':2"
   person_id: "2"
-  due_on: <%= 6.7.days.ago.to_formatted_s(:db) %>
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_033: 
+  project_id: "1"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Timesheet
+  type: Timesheet
+  role_id: "3"
+  code_id_priority: "17"
+  id: "34"
+  description: ""
+  version: "1"
+  status_id: "47"
+  project_id_escalation: "1"
+  res_idx_fti: "'timesheet':1"
+  person_id: "2"
+  due_on: <%= 6.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_022: 
+  project_id: "1"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Grandfather milestone
+  type: Milestone
+  role_id: "3"
+  code_id_priority: "11"
+  id: "23"
+  description: ""
+  version: "1"
+  status_id: "23"
+  project_id_escalation: "1"
+  res_idx_fti: "'mileston':2 'grandfath':1"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_011: 
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Grandfather project
+  type: Project
+  role_id: "3"
+  code_id_priority: "1"
+  lft: "1"
+  id: "1"
+  description: ""
+  version: "3"
+  status_id: "1"
+  res_idx_fti: "'project':2 'grandfath':1"
+  person_id: "2"
+  rgt: "14"
+  due_on: <%= 9.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_045: 
+  project_id: "1"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Root person
+  type: Person
+  role_id: "3"
+  code_id_priority: "2"
+  id: "2"
+  version: "2"
+  status_id: "2"
+  project_id_escalation: "1"
+  res_idx_fti: "'root':1 'person':2"
+  person_id: "2"
+  person_id_updated_by: "2"
+items_034: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Withdrawn role
+  type: Role
+  role_id: "3"
+  code_id_priority: "3"
+  id: "40"
+  description: ""
+  version: "1"
+  status_id: "37"
+  project_id_escalation: "4"
+  res_idx_fti: "'role':2 'withdrawn':1"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_023: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: New change request
+  type: ChangeRequest
+  role_id: "3"
+  code_id_priority: "13"
+  id: "30"
+  description: ""
+  version: "1"
+  status_id: "27"
+  project_id_escalation: "4"
+  res_idx_fti: "'new':1 'chang':2 'request':3"
+  person_id: "2"
+  due_on: <%= 4.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_012: 
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Root orphan project
+  type: Project
+  role_id: "13"
+  code_id_priority: "1"
+  lft: "19"
+  id: "12"
+  description: ""
+  version: "2"
+  status_id: "1"
+  res_idx_fti: "'root':1 'orphan':2 'project':3"
+  person_id: "2"
+  rgt: "20"
+  due_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_001: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Child project
+  type: Project
+  role_id: "3"
+  code_id_priority: "1"
+  lft: "9"
+  id: "7"
+  description: ""
+  version: "1"
+  status_id: "1"
+  project_id_escalation: "4"
+  res_idx_fti: "'child':1 'project':2"
+  person_id: "2"
+  rgt: "12"
+  due_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_046: 
+  project_id: "7"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Child issue 2 escalated Father
+  type: Issue
+  role_id: "3"
+  code_id_priority: "7"
+  id: "18"
+  description: ""
+  version: "2"
+  status_id: "11"
+  project_id_escalation: "4"
+  res_idx_fti: "'2':3 'issu':2 'child':1 'escal':4 'father':5"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_035: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Action item
+  type: ActionItem
+  role_id: "15"
+  code_id_priority: "9"
+  id: "20"
+  description: ""
+  version: "1"
+  status_id: "17"
+  project_id_escalation: "4"
+  res_idx_fti: "'item':2 'action':1"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_024: 
+  project_id: "4"
+  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
+  title: A new test observation
+  type: TestObservation
+  role_id: "3"
+  code_id_priority: "42"
+  id: "49"
+  description: ""
+  version: "2"
+  status_id: "114"
+  project_id_escalation: "4"
+  res_idx_fti: "'new':2 'test':3 'observ':4"
+  person_id: "2"
+  due_on: <%= 0.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_013: 
+  project_id: "9"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Root 2 project administrator
+  type: Role
+  role_id: "10"
+  code_id_priority: "3"
+  id: "10"
+  version: "2"
+  status_id: "3"
+  project_id_escalation: "9"
+  res_idx_fti: "'2':2 'root':1 'project':3 'administr':4"
+  person_id: "2"
+  person_id_updated_by: "2"
+items_002: 
+  project_id: "7"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Child issue
+  type: Issue
+  role_id: "3"
+  code_id_priority: "8"
+  id: "17"
+  description: ""
+  version: "1"
+  status_id: "11"
+  project_id_escalation: "7"
+  res_idx_fti: "'issu':2 'child':1"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_047: 
+  project_id: "1"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Status report 1
+  type: StatusReport
+  role_id: "3"
+  code_id_priority: "19"
+  id: "36"
+  description: Something not kosher in the state of Denmark.
+  version: "1"
+  status_id: "53"
+  project_id_escalation: "1"
+  res_idx_fti: "'1':3 'state':9 'kosher':6 'report':2 'someth':4 'status':1 'denmark':11"
+  person_id: "2"
+  due_on: <%= 13.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_036: 
+  project_id: "4"
+  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
+  title: Father sub-requirement
+  type: Requirement
+  role_id: "3"
+  code_id_priority: "39"
+  id: "45"
+  description: ""
+  version: "1"
+  status_id: "93"
+  project_id_escalation: "4"
+  res_idx_fti: "'sub':3 'father':1 'requir':4 'sub-requir':2"
+  person_id: "2"
+  due_on: <%= 0.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_025: 
+  project_id: "1"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Father project
+  type: Project
+  role_id: "3"
+  code_id_priority: "1"
+  lft: "6"
+  id: "4"
+  description: ""
+  version: "1"
+  status_id: "1"
+  project_id_escalation: "1"
+  res_idx_fti: "'father':1 'project':2"
+  person_id: "2"
+  rgt: "13"
+  due_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_014: 
+  project_id: "7"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Child milestone
+  type: Milestone
+  role_id: "15"
+  code_id_priority: "11"
+  id: "21"
+  description: ""
+  version: "1"
+  status_id: "23"
+  project_id_escalation: "7"
+  res_idx_fti: "'child':1 'mileston':2"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_003: 
+  project_id: "4"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Father change request
+  type: ChangeRequest
+  role_id: "15"
+  code_id_priority: "13"
+  id: "29"
+  description: ""
+  version: "4"
+  status_id: "31"
+  project_id_escalation: "4"
+  res_idx_fti: "'chang':2 'father':1 'request':3"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_048: 
+  project_id: "1"
+  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
+  title: Sub-assembly component
+  type: Component
+  role_id: "3"
+  code_id_priority: "51"
+  id: "50"
+  description: ""
+  version: "1"
+  status_id: "121"
+  project_id_escalation: "1"
+  res_idx_fti: "'sub':2 'compon':4 'assembl':3 'sub-assembl':1"
+  person_id: "2"
+  due_on: <%= 0.4.days.from_now.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_037: 
+  project_id: "12"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Root orphan project administrator
+  type: Role
+  role_id: "13"
+  code_id_priority: "3"
+  id: "13"
+  version: "2"
+  status_id: "3"
+  project_id_escalation: "12"
+  res_idx_fti: "'root':1 'orphan':2 'project':3 'administr':4"
+  person_id: "2"
+  person_id_updated_by: "2"
+items_026: 
+  project_id: "12"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Issue for orphan project
+  type: Issue
+  role_id: "13"
+  code_id_priority: "7"
+  id: "28"
+  description: ""
+  version: "2"
+  status_id: "12"
+  project_id_escalation: "12"
+  res_idx_fti: "'issu':1 'orphan':3 'project':4"
+  person_id: "2"
+  due_on: <%= 7.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_015: 
+  project_id: "1"
+  updated_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+  title: Uncle project
+  type: Project
+  role_id: "3"
+  code_id_priority: "1"
+  lft: "2"
+  id: "5"
+  description: ""
+  version: "1"
+  status_id: "1"
+  project_id_escalation: "1"
+  res_idx_fti: "'uncl':1 'project':2"
+  person_id: "2"
+  rgt: "5"
+  due_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
+  person_id_updated_by: "2"
+items_004: 
+  project_id: "4"
+  updated_at: <%= 0.0.days.ago.to_formatted_s(:db) %>
+  title: Father test case
+  type: TestCase
+  role_id: "3"
+  code_id_priority: "41"
+  id: "48"
+  description: ""
+  version: "1"
+  status_id: "107"
+  project_id_escalation: "4"
+  res_idx_fti: "'case':3 'test':2 'father':1"
+  person_id: "2"
+  due_on: <%= 0.6.days.ago.to_formatted_s(:db) %>
   person_id_updated_by: "2"

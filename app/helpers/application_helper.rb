@@ -48,6 +48,8 @@ module ApplicationHelper
     when :test_condition : image_tag 'bullet.gif', :size => '20x20'
     when :test_case : image_tag 'bullet.gif', :size => '20x20'
     when :test_observation : image_tag 'bullet.gif', :size => '20x20'
+    when :release : image_tag 'bullet.gif', :size => '20x20'
+    when :component : image_tag 'bullet.gif', :size => '20x20'
     else
       #image_tag 'ico-1.gif', :size => "20x20"
       raise NotImplementedError.new(name.to_s)

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 16
 #
 # Table name: statuses
 #
@@ -39,7 +39,7 @@ class Status < ActiveRecord::Base
     'Operations' => [ Issue, ActionItem, Milestone, StatusReport, Absence, Risk, Meeting ],
     'Financial' => [ ChangeRequest, Timesheet ],
     'Quality' => [ Requirement, TestCondition, TestCase, TestObservation ],
-    'Configuration' => []
+    'Configuration' => [ Component, Release ]
   }
 
   VALID_TYPES = DOMAIN_TYPES.values.flatten

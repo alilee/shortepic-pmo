@@ -4,10 +4,10 @@ comments_001:
   body: This milestone is going well
   id: "1"
   person_id: "2"
-  created_at: <%= 0.5.days.ago.to_formatted_s(:db) %>
+  created_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
 comments_002: 
   item_id: "1"
   body: Test comment
   id: "2"
   person_id: "2"
-  created_at: <%= 0.3.days.ago.to_formatted_s(:db) %>
+  created_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
