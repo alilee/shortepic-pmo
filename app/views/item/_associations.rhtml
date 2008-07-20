@@ -12,7 +12,8 @@
     			  <td><%= icon(:ticked) if a.item_to.status.generic_stage == Status::COMPLETE %></td>
     			  <td><%= link_to_remote icon(:delete), 
     			            :url => {:action => 'disassociate', :association_id => a.id}, 
-    			            :method => :post %>
+    			            :method => :post,
+    			            :confirm => 'Are you sure you wish to un-link?' %>
     			  </td>
     			</tr>
         <%	end %>
