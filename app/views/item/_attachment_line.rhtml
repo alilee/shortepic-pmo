@@ -54,9 +54,12 @@
 
 <% elsif section == :fields %>
   <tfoot>
+    <% unless flash[:attachment_error].nil? %>
+      <tr><td><%= flash[:attachment_error]%></td></tr>
+    <% end %> 
     <tr id="edit-attachment">
   		<td><%= file_field_tag 'file_uploaded' %></td>
-  		<td><%= text_field :attachment, :version, :size => 5 %></td>
+  		<td <%= 'class="field-error"' unless flash[:attachment_error].nil? %> ><%= text_field :attachment, :version, :size => 5 %></td>
   		<td>&nbsp;</td>
   		<td>&nbsp;</td>
   		<td>&nbsp;</td>
