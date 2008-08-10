@@ -102,7 +102,10 @@ class ItemController < ApplicationController
     				@item.update_nested_sets(@old_item, item_was_new_record)
     							  
     			  # link to referrer if requested  			   
-    			  Association.new(:item_id_from => @item.id, :item_id_to => params[:item_id_created_from]).save! if params[:link_to_referrer]
+    			  if params[:link_to_referrer]
+    			    Association.create!(:item_id_from => @item.id, :item_id_to => params[:item_id_created_from]) 
+    			    Association.create!(:item_id_to => @item.id, :item_id_from => params[:item_id_created_from]) 
+    			  end
 			  
     			  if Project == @item.class && @item.project_id.nil? && item_was_new_record 			  	
       				# If new root project then place current user in an administrator role.
@@ -131,7 +134,7 @@ class ItemController < ApplicationController
     				  RolePlacement.new(
                 :person_id => session[:person].id,
                 :role_id => admin_role.id,
-                :start_on => Date.today,
+                :start_on => Date.today-1,
                 :end_on => 10.years.from_now.to_date,
                 :committed_hours => 0,
                 :normal_hourly_rate => 0
