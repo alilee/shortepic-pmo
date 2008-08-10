@@ -29,13 +29,17 @@
         <td><%= link_to_item signature_edit_line.person %></td>
         <td><%= signature_edit_line.status.value %></td>
         <td>
-          <% if signature_edit_line.person_id == session[:person].id && signature_edit_line.signed_at.nil? %>
+          <% unless signature_edit_line.signed_at.nil? %>
+            Signed
+          <% else %>
+            <% if signature_edit_line.person_id == session[:person].id %>
             <%= link_to_remote 'remove', 
                   :url => { :action => 'withdraw_signature', 
                             :id => signature_edit_line.item_id,
-                            :line_id => signature_edit_line.id} %>
-          <% else %>
-            Signed
+                            :line_id => signature_edit_line.id } %>
+            <% else %>
+              &nbsp;
+            <% end %>
           <% end %>
         </td>
       </tr>
