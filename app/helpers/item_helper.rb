@@ -138,4 +138,16 @@ module ItemHelper
     ['<Root project>', 0]
   end
   
+  def table_headings(headings)
+    result = String.new
+    headings.each do |heading|
+      result << '<th>' << h(heading) << '</th>'
+    end
+    result
+  end
+  
+  def table_data(html)
+    "<td>#{html}</td>"
+  end
+  
 end

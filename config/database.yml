@@ -5,3 +5,4 @@ development:
 test:
   adapter:  postgresql
   database: pmo_tst
+  min_messages: warning
