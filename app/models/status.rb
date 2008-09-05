@@ -68,6 +68,10 @@ class Status < ActiveRecord::Base
     VALID_GENERIC - [NIL, WITHDRAWN]    
   end
   
+  def alive?
+    Status.alive.include? generic_stage
+  end
+    
   def self.incomplete
     self.alive - [COMPLETE]
   end
