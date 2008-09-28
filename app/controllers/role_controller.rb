@@ -9,7 +9,7 @@ class RoleController < ItemController
     @responsibilities = Item.find_all_by_role_id(@role.id, 
       :include => [:status, :priority_code], 
       :conditions => ['generic_stage in (?)', Status.incomplete], 
-      :order => 'type, codes.value')
+      :order => 'type, codes.sequence, due_on, items.id')
   end
   
   def hierarchy
@@ -21,7 +21,7 @@ class RoleController < ItemController
     @descendants = Item.find_all_by_role_id(role_ids,
       :include => [:status, :priority_code],
       :conditions => ['generic_stage in (?)', Status.incomplete],
-      :order => 'type, codes.value, due_on' 
+      :order => 'type, codes.sequence, due_on, items.id' 
     )
   end
   

@@ -42,7 +42,7 @@ class Item < ActiveRecord::Base
 
   has_many :comments, :order => 'created_at', :dependent => :destroy
   has_many :associations_to, :class_name => 'Association', :foreign_key => 'item_id_to', :include => 'item_from', :dependent => :destroy
-  has_many :associations_from, :class_name => 'Association', :foreign_key => 'item_id_from', :include => { :item_to => [:status, :priority_code] }, :dependent => :destroy
+  has_many :associations_from, :class_name => 'Association', :foreign_key => 'item_id_from', :include => { :item_to => [:status, :priority_code] }, :order => 'codes.sequence', :dependent => :destroy
   has_many :attachments, :dependent => :destroy, :order => 'lower(filename) ASC, version DESC'
   has_many :subscriptions, :include => {:person => :detail}, :dependent => :destroy
   has_many :signatures, :include => [:status, :person], :order => 'generic_stage ASC, signed_at', :dependent => :destroy

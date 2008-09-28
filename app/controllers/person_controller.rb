@@ -39,7 +39,7 @@ class PersonController < ItemController
       @responsibilities = Item.find_all_by_role_id(role_ids, 
         :include => [:status, :priority_code, :person],
         :conditions => ['generic_stage in (?)', Status.incomplete], 
-        :order => 'items.type, codes.value, generic_stage, statuses.value, items.due_on'
+        :order => 'items.type, codes.sequence, statuses.value, items.due_on, items.id'
       )
     else
       @responsibilities = []
