@@ -95,7 +95,7 @@ class Person < Item
   def current_items
     Item.find_all_by_person_id(id, :include => [:status, :priority_code], 
       :conditions => ['generic_stage in (?)', Status.incomplete], 
-      :order => 'type, codes.value')
+      :order => 'type, codes.sequence')
   end
   
   # Return the person's current roles.
