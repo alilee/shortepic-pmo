@@ -96,5 +96,5 @@ $email_from_address = "#{$app_title.downcase}-notifier@#{$hostname}"
 $email_signoff = "PMO beta"
 
 # Exception Notifier
-ExceptionNotifier.exception_recipients = "support@#{$hostname}"
+ExceptionNotifier.exception_recipients = "exceptions@shortepic.com"
 ExceptionNotifier.sender_address = "exception-notifier@#{$hostname}"
