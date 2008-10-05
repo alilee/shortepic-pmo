@@ -232,6 +232,19 @@ class ProjectController < ItemController
     end
   end
   
+  def defect_listing
+    defects = @project.descendants_by_class(TestObservation)
+
+    buffer = String.new
+    buffer << (Item.to_csv_header + ',' + TestObservationDetail.to_csv_header + "\n")
+    defects.each do |d|
+      item_line = d.to_csv
+      detail_line = d.detail.to_csv
+      buffer << (item_line + "," + detail_line + "\n")
+    end
+    send_data buffer, :type => 'text/csv', :filename => "defect_listing-#{Time.now.strftime('%Y%m%d%H%M')}.csv"
+  end
+  
   protected
   
   # Loads the required item (initially for security checking) using params[:id] and caches it for other methods.

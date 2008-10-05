@@ -17,6 +17,7 @@ module ProjectHelper
       'hierarchy', 
       'roadmap',
       'defects',
+      'defect_listing',
       'all',
       'dump',
       'late',
