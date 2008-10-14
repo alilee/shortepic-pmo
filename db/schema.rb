@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "absence_details", :force => true do |t|
     t.integer "absence_id",           :null => false
@@ -444,6 +444,7 @@ ActiveRecord::Schema.define(:version => 16) do
     t.float   "estimated_hours_to_fix"
     t.float   "actual_hours_to_fix"
     t.integer "code_id_functional_area"
+    t.string  "external_reference"
   end
 
   create_table "timesheet_details", :force => true do |t|

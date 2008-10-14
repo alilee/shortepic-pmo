@@ -6,6 +6,7 @@
     <tr>
       <th>Status</th>
       <th>Id</th>
+      <th>Ext. Ref</th>        
       <th>Title</th>
       <th>Priority</th>
       <th>Severity</th>
@@ -19,6 +20,7 @@
       <tr>
         <td><%= d.test_observation.status %></td>
         <td><%= d.test_observation_id %> </td>
+        <td><%= h d.external_reference %> </td>
         <td><%= link_to_item d.test_observation %></td>
         <td><%= d.test_observation.priority_code %></td>
         <td><%= d.test_observation.detail.severity_code %></td>
