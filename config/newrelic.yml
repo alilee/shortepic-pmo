@@ -60,7 +60,7 @@ common: &default_settings
   
     # Transaction tracer is enabled by default. Set this to false to turn it off. This feature
     # is available at the Advanced and Pro RPM product levels only.
-    enabled: true
+    enabled: false
   
  
     # When transaction tracer is on, SQL statements can optionally be recorded. The recorder
