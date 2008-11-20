@@ -93,7 +93,7 @@ class ProjectController < ItemController
     @descendants = Item.find_all_by_project_id(project_ids,
       :include => [:status, :priority_code, :role, :person],
       :conditions => ['generic_stage in (?)', Status.incomplete],
-      :order => 'items.type, codes.sequence, items.due_on, items.id' 
+      :order => 'items.type, codes.sequence, items.due_on, items.title, items.id' 
     )
   end
   
@@ -102,7 +102,7 @@ class ProjectController < ItemController
     @late_descendants = Item.find_all_by_project_id(project_ids,
       :include => [:status, :priority_code, :role, :person],
       :conditions => ['items.due_on < ? and generic_stage in (?)', Date.today, Status.incomplete],
-      :order => 'items.type, codes.value, items.due_on' 
+      :order => 'items.type, codes.value, items.due_on, items.title, items.id' 
     )
   end
   
@@ -120,7 +120,7 @@ class ProjectController < ItemController
       project_up_ids, 
       :include => [:status, :priority_code],
       :conditions => ['generic_stage in (?)', Status.incomplete],
-      :order => 'type, codes.sequence, due_on, items.id'
+      :order => 'type, codes.sequence, due_on, items.title, items.id'
     )
   end
   
