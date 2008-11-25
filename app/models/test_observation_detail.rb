@@ -31,13 +31,22 @@ class TestObservationDetail < ActiveRecord::Base
   
   # Return a string in CSV format containing the details of the object
   def to_csv
-    a = [ steps_to_reproduce, expected_results, actual_results, severity_code, phase_detected_milestone.title, phase_resolved_milestone.title, root_cause_code, phase_resolved_milestone.title, estimated_hours_to_fix, actual_hours_to_fix, functional_area_code, external_reference ]
+    r = latest_release; 
+    latest_release_title = r.nil? ? '' : r.title
+    a = [ steps_to_reproduce, expected_results, actual_results, severity_code, phase_detected_milestone.title, phase_resolved_milestone.title, root_cause_code, phase_resolved_milestone.title, estimated_hours_to_fix, actual_hours_to_fix, functional_area_code, external_reference, latest_release_title ]
     CSV.generate_line(a)
   end
   
   def self.to_csv_header
-    a = [ 'steps_to_reproduce', 'expected_results', 'actual_results', 'severity_code', 'phase_detected_milestone', 'phase_resolved_milestone', 'root_cause_code', 'phase_resolved_milestone', 'estimated_hours_to_fix', 'actual_hours_to_fix', 'functional_area_code', 'external reference' ]
+    a = [ 'steps_to_reproduce', 'expected_results', 'actual_results', 'severity_code', 'phase_detected_milestone', 'phase_resolved_milestone', 'root_cause_code', 'phase_resolved_milestone', 'estimated_hours_to_fix', 'actual_hours_to_fix', 'functional_area_code', 'external reference', 'latest release' ]
     CSV.generate_line(a)
+  end
+  
+  def latest_release
+    ra = test_observation.associations_to.sort {|a,b| b.item_id_from <=> a.item_id_from }.detect do |a|
+      a.item_from.class.name == 'Release'
+    end
+    ra.item_from unless ra.nil?
   end
   
 end
