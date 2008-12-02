@@ -2,21 +2,21 @@
 status_report_details_001: 
   code_id_traffic: "25"
   status_report_id: "36"
-  period_ending_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
+  period_ending_on: <%= 9.9.days.ago.to_formatted_s(:db) %>
   support_required: ""
   id: "1"
   achievements: ""
 status_report_details_002: 
   code_id_traffic: "25"
   status_report_id: "37"
-  period_ending_on: <%= 8.6.days.ago.to_formatted_s(:db) %>
+  period_ending_on: <%= 9.9.days.ago.to_formatted_s(:db) %>
   support_required: ""
   id: "2"
   achievements: ""
 status_report_details_003: 
   code_id_traffic: "25"
   status_report_id: "38"
-  period_ending_on: <%= 15.6.days.ago.to_formatted_s(:db) %>
+  period_ending_on: <%= 16.9.days.ago.to_formatted_s(:db) %>
   support_required: ""
   id: "3"
   achievements: ""

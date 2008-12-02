@@ -11,3 +11,11 @@ comments_002:
   id: "2"
   person_id: "2"
   created_at: <%= 1.0.days.ago.to_formatted_s(:db) %>
+comments_003: 
+  item_id: "54"
+  body: |
+    A comment on this lead.
+
+  id: "3"
+  person_id: "2"
+  created_at: <%= 0.0.days.ago.to_formatted_s(:db) %>

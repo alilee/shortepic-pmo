@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 17) do
+ActiveRecord::Schema.define(:version => 18) do
 
   create_table "absence_details", :force => true do |t|
     t.integer "absence_id",           :null => false
@@ -323,6 +323,17 @@ ActiveRecord::Schema.define(:version => 17) do
   end
 
   add_index "role_security_profiles", ["code_id_security_profile", "controller_name", "action"], :name => "ak_role_security_profiles", :unique => true
+
+  create_table "sales_lead_details", :force => true do |t|
+    t.integer "sales_lead_id",                        :null => false
+    t.string  "client",                               :null => false
+    t.text    "notes"
+    t.integer "likelihood",           :default => 50
+    t.integer "value"
+    t.integer "code_id_service_line"
+  end
+
+  add_index "sales_lead_details", ["sales_lead_id"], :name => "ak_sales_lead_details", :unique => true
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id"

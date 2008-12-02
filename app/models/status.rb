@@ -39,7 +39,8 @@ class Status < ActiveRecord::Base
     'Operations' => [ Issue, ActionItem, Milestone, StatusReport, Absence, Risk, Meeting ],
     'Financial' => [ ChangeRequest, Timesheet ],
     'Quality' => [ Requirement, TestCondition, TestCase, TestObservation ],
-    'Configuration' => [ Component, Release ]
+    'Configuration' => [ Component, Release ],
+    'Sales' => [SalesLead]
   }
 
   VALID_TYPES = DOMAIN_TYPES.values.flatten

@@ -1,0 +1,16 @@
+--- 
+sales_lead_details_001: 
+  sales_lead_id: "53"
+  client: Prospective client
+  id: "1"
+  notes: some notes
+  likelihood: "51"
+  value: "24"
+  code_id_service_line: "58"
+sales_lead_details_002: 
+  sales_lead_id: "54"
+  client: Prospective client
+  id: "2"
+  notes: ""
+  likelihood: "50"
+  code_id_service_line: "58"

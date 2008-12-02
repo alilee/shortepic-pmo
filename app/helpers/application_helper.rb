@@ -51,6 +51,7 @@ module ApplicationHelper
     when :release : image_tag 'bullet.gif', :size => '20x20'
     when :component : image_tag 'bullet.gif', :size => '20x20'
     when :absence : image_tag 'bullet.gif', :size => '20x20'
+    when :sales_lead : image_tag 'bullet.gif', :size => '20x20'
     else
       #image_tag 'ico-1.gif', :size => "20x20"
       raise NotImplementedError.new(name.to_s)
