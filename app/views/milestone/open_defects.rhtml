@@ -14,6 +14,8 @@
       <th>Due</th>
       <th>Raised by</th>
       <th>Days old</th>
+      <th>Release</th>
+      <th>Last comment</th>
     </tr>
     
     <% @open_defects.each do |d| %>
@@ -30,6 +32,8 @@
         </td>
         <td><%= link_to_item d.test_observation.first_version_updated_by %></td>
         <td><%= (DateTime.now.jd - DateTime.parse(d.test_observation.first_version_updated_at.to_s).jd) %></td>
+        <td><%= d.latest_release.title unless d.latest_release.nil? %></td>
+        <td><%= t d.test_observation.comments[-1].body unless d.test_observation.comments.empty? %></td>
       </tr>
     <% end %>
 

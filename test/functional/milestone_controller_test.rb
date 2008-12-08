@@ -164,5 +164,12 @@ class MilestoneControllerTest < Test::Unit::TestCase
     # check total for all defects
     # assert_select 'div#centrecol td.right', '2', :count => 2
   end
+  
+  def test_open_defects
+    Milestone.find(:all).each do |m|
+      get :open_defects, { :id => m.id }
+      assert_response :success
+    end    
+  end
 
 end
