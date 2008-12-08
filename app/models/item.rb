@@ -191,7 +191,7 @@ class Item < ActiveRecord::Base
   
   # Return a string in CSV format containing the details of the object
   def to_csv
-    csv_comments = comments.collect { |c| "[#{c.person.title} at #{c.created_at.to_formatted_s(:short)}] #{c.body}" }.join("\n\n")
+    csv_comments = "No comments" # comments.collect { |c| "[#{c.person.title} at #{c.created_at.to_formatted_s(:short)}] #{c.body}" }.join("\n\n")
     a = [ id, type, title, parent.title, role.title, person.title, status, priority_code, escalation.title, description, due_on, version, updated_at.to_date, updated_by.title, first_version_updated_at.to_date, first_version_updated_by.title, csv_comments ]
     CSV.generate_line(a)
   end
