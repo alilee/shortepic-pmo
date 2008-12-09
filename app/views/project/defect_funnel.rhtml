@@ -1,0 +1,67 @@
+<div id="centrecol">
+  
+  <h1> Defect funnel </h1>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>External Ref</th>
+        <th>Status</th>
+        <th>Assigned to</th>
+        <th>Due date</th>
+        <th>Priority</th>
+        <th>Phase detected</th>
+        <th>Component</th>
+        <th>Last comment</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr>
+        <th colspan=10>New defects</th>
+      </tr>
+      <% if @new_defects.empty? %>
+        <tr>
+          <td colspan=10>There are no new defects.</td>
+        </tr>
+      <% else %>
+        <%= render :partial => 'funnel_defect', :collection => @new_defects %>
+      <% end %>
+
+      <tr>
+        <th colspan=10>Pending defects</th>
+      </tr>
+      <% if @pending_defects.empty? %>
+        <tr>
+          <td colspan=10>There are no defects under investigation.</td>
+        </tr>
+      <% else %>
+        <%= render :partial => 'funnel_defect', :collection => @pending_defects %>
+      <% end %>
+
+      <% releases = @defects_by_release.keys.sort {|a,b| (a.nil? ? '' : a.title) <=> (b.nil? ? '' : b.title) } %>
+      <% releases.each do |r| %>
+        <% if r.nil? %>
+          <tr>
+            <th colspan=10>Not in a release</th>
+          </tr>
+        <% else %>
+          <tr>
+            <th><%= r.id %></th>
+            <th colspan=2><%= link_to_item r %></th>
+            <th><%= r.status %></th>
+            <th><%= link_to_item r.person %></th>
+            <th><%= r.due_on.strftime(date_format) %></th>
+            <th><%= r.priority_code %></th>
+            <th colspan=3> </th>
+          </tr>
+        <% end %> 
+        <%= render :partial => 'funnel_defect', :collection => @defects_by_release[r] %>
+      <% end %>
+
+    </tbody>
+  </table>
+
+</div>

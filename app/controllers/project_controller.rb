@@ -245,6 +245,17 @@ class ProjectController < ItemController
     send_data buffer, :type => 'text/csv', :filename => "defect_listing-#{Time.now.strftime('%Y%m%d%H%M')}.csv"
   end
   
+  def defect_funnel
+    defects = @project.descendants_by_class(TestObservation)
+    
+    @new_defects = defects.select {|d| d.status.generic_stage == Status::NEW }
+    @pending_defects = defects.select {|d| d.status.generic_stage == Status::PENDING }
+    @in_progress_defects = defects.select {|d| Status.in_progress.include? d.status.generic_stage }
+    
+    s = Set.new(@in_progress_defects)
+    @defects_by_release = s.classify {|d| d.detail.latest_release }  
+  end
+  
   protected
   
   # Loads the required item (initially for security checking) using params[:id] and caches it for other methods.

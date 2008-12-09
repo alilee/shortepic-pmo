@@ -49,4 +49,11 @@ class TestObservationDetail < ActiveRecord::Base
     ra.item_from unless ra.nil?
   end
   
+  def last_component
+    ra = test_observation.associations_to.sort {|a,b| b.item_id_from <=> a.item_id_from }.detect do |a|
+      a.item_from.class.name == 'Component'
+    end
+    ra.item_from unless ra.nil?
+  end
+  
 end

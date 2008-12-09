@@ -1,0 +1,12 @@
+<tr>
+  <td><%= funnel_defect.id %></td>
+  <td><%= link_to_item funnel_defect %></td>
+  <td><%= h funnel_defect.detail.external_reference %></td>
+  <td><%= funnel_defect.status %></td>
+  <td><%= link_to_item funnel_defect.person %></td>
+  <td><%= funnel_defect.due_on.strftime(date_format) %></td>
+  <td><%= funnel_defect.priority_code %></td>
+  <td><%= link_to_item funnel_defect.detail.phase_detected_milestone %></td>
+  <td><%= link_to_item(funnel_defect.detail.last_component) unless funnel_defect.detail.last_component.nil?  %></td>
+  <td><%= tx_no_p(funnel_defect.comments[-1].body) unless funnel_defect.comments.empty? %></td>
+</tr>
