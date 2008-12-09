@@ -8,5 +8,5 @@
   <td><%= funnel_defect.priority_code %></td>
   <td><%= link_to_item funnel_defect.detail.phase_detected_milestone %></td>
   <td><%= link_to_item(funnel_defect.detail.last_component) unless funnel_defect.detail.last_component.nil?  %></td>
-  <td><%= tx_no_p(funnel_defect.comments[-1].body) unless funnel_defect.comments.empty? %></td>
+  <td><%= tx_no_p(truncate(funnel_defect.comments[-1].body, 60)) unless funnel_defect.comments.empty? %></td>
 </tr>
