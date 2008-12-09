@@ -248,12 +248,20 @@ class ProjectController < ItemController
   def defect_funnel
     defects = @project.descendants_by_class(TestObservation)
     
-    @new_defects = defects.select {|d| d.status.generic_stage == Status::NEW }
-    @pending_defects = defects.select {|d| d.status.generic_stage == Status::PENDING }
+    @new_defects = defects.select {|d| d.status.generic_stage == Status::NEW }.sort do |a,b| 
+      [a.priority_code.sequence,a.id] <=> [b.priority_code.sequence,b.id] 
+    end
+    @pending_defects = defects.select {|d| d.status.generic_stage == Status::PENDING }.sort do |a,b| 
+      [a.priority_code.sequence,a.id] <=> [b.priority_code.sequence,b.id] 
+    end
     @in_progress_defects = defects.select {|d| Status.in_progress.include? d.status.generic_stage }
     
     s = Set.new(@in_progress_defects)
-    @defects_by_release = s.classify {|d| d.detail.latest_release }  
+    classified_defects = s.classify {|d| d.detail.latest_release }  
+    @defects_by_release = Hash.new
+    classified_defects.each_pair do |r, ds|
+      @defects_by_release[r] = ds.to_a.sort { |a,b| [a.priority_code.sequence, a.id] <=> [b.priority_code.sequence, b.id] }
+    end
   end
   
   protected
