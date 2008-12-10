@@ -4,7 +4,7 @@
   <td><%= h funnel_defect.detail.external_reference %></td>
   <td><%= funnel_defect.status %></td>
   <td><%= link_to_item funnel_defect.person %></td>
-  <td><%= funnel_defect.due_on.strftime(date_format) %></td>
+  <td <%= overdue_class(funnel_defect) %>> <%= funnel_defect.due_on.strftime(date_format) unless funnel_defect.due_on.nil? %> </td>
   <td><%= funnel_defect.priority_code %></td>
   <td><%= link_to_item funnel_defect.detail.phase_detected_milestone %></td>
   <td><%= link_to_item(funnel_defect.detail.last_component) unless funnel_defect.detail.last_component.nil?  %></td>
