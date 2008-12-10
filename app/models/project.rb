@@ -100,8 +100,8 @@ class Project < Item
     ).collect { |p| p.id }
   end
 
-  def descendants_by_class(class_obj)
-    Item.find_all_by_project_id_and_type(descendant_project_ids << id, class_obj.name)
+  def descendants_by_class(class_obj, options = {})
+    Item.find_all_by_project_id_and_type(descendant_project_ids << id, class_obj.name, options)
   end
   
   def descendant_ids_by_class(class_obj)

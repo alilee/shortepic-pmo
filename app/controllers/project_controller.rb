@@ -246,22 +246,27 @@ class ProjectController < ItemController
   end
   
   def defect_funnel
-    defects = @project.descendants_by_class(TestObservation)
+    defects = @project.descendants_by_class(TestObservation, :include => [:status, :priority_code])
     
     @new_defects = defects.select {|d| d.status.generic_stage == Status::NEW }.sort do |a,b| 
-      [a.priority_code.sequence,a.id] <=> [b.priority_code.sequence,b.id] 
+      [a.priority_code.sequence, a.status.sequence, a.id] <=> [b.priority_code.sequence, b.status.sequence, b.id] 
     end
+    
     @pending_defects = defects.select {|d| d.status.generic_stage == Status::PENDING }.sort do |a,b| 
-      [a.priority_code.sequence,a.id] <=> [b.priority_code.sequence,b.id] 
+      [a.priority_code.sequence, a.status.sequence, a.id] <=> [b.priority_code.sequence, b.status.sequence, b.id] 
     end
+    
     @in_progress_defects = defects.select {|d| Status.in_progress.include? d.status.generic_stage }
     
     s = Set.new(@in_progress_defects)
     classified_defects = s.classify {|d| d.detail.latest_release }  
     @defects_by_release = Hash.new
+
     classified_defects.each_pair do |r, ds|
-      @defects_by_release[r] = ds.to_a.sort { |a,b| [a.priority_code.sequence, a.id] <=> [b.priority_code.sequence, b.id] }
+      @defects_by_release[r] = ds.to_a.sort { |a,b| [a.priority_code.sequence, a.status.sequence, a.id] <=> [b.priority_code.sequence, b.status.sequence, b.id] }
     end
+        
+    @no_release_defects = @defects_by_release.delete(nil)
   end
   
   protected
