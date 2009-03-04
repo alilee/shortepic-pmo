@@ -233,7 +233,8 @@ class ProjectController < ItemController
   end
   
   def defect_listing
-    defects = @project.descendants_by_class(TestObservation)
+    defects = @project.descendants_by_class(TestObservation, :include => :status, 
+            :conditions => ['generic_stage in (?)', Status.incomplete])
 
     buffer = String.new
     buffer << (Item.to_csv_header + ',' + TestObservationDetail.to_csv_header + "\n")
