@@ -1,0 +1,5 @@
+<% tree = requirement_descendants_tree(@requirement.detail) %>
+<% unless tree.empty? %>
+  <h2>Requirements Break-down Structure</h2>
+  <%= tree %>
+<% end %>

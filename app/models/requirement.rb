@@ -26,7 +26,6 @@
 class Requirement < Item
   has_one :detail, :class_name => 'RequirementDetail'
   
-  
   def update_nested_sets(old_item, item_was_new_record)
     super
     

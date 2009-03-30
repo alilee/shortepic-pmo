@@ -270,6 +270,18 @@ class ProjectController < ItemController
     @no_release_defects = @defects_by_release.delete(nil)
   end
   
+  def requirements
+        
+    child_project_ids = @project.self_and_descendant_project_ids
+    parent_ids = @project.self_and_ancestor_ids
+    
+    @requirement_roots = RequirementDetail.find(:all, :include => [:requirement, {:parent_requirement_detail => :requirement}], 
+      :conditions => ['items.project_id in (?) and items.project_id_escalation in (?) and 
+        (parent_requirement_details_requirement_details.requirement_detail_id_parent is null or requirements_requirement_details.project_id not in (?))', 
+        child_project_ids, parent_ids, child_project_ids])
+  
+  end
+  
   protected
   
   # Loads the required item (initially for security checking) using params[:id] and caches it for other methods.

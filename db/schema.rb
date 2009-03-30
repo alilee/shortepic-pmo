@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 18) do
+ActiveRecord::Schema.define(:version => 19) do
 
   create_table "absence_details", :force => true do |t|
     t.integer "absence_id",           :null => false
@@ -279,6 +279,7 @@ ActiveRecord::Schema.define(:version => 18) do
     t.integer "requirement_detail_id_parent"
     t.integer "res_lft"
     t.integer "res_rgt"
+    t.integer "effort"
   end
 
   create_table "risk_details", :force => true do |t|

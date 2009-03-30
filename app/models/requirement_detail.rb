@@ -23,6 +23,7 @@ class RequirementDetail < ActiveRecord::Base
   belongs_to :type_code, :class_name => 'Code', :foreign_key => 'code_id_type'
   belongs_to :area_code, :class_name => 'Code', :foreign_key => 'code_id_area'
   
+  belongs_to :parent_requirement_detail, :class_name => 'RequirementDetail', :foreign_key => 'requirement_detail_id_parent'
   acts_as_nested_set :parent_column => 'requirement_detail_id_parent', :left_column => 'res_lft', :right_column => 'res_rgt'
   
   validates_presence_of :code_id_type, :code_id_area

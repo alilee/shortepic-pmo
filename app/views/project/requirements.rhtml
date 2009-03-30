@@ -1,0 +1,47 @@
+<div id="centrecol">
+
+	<h1>Requirements</h1>
+ 
+  <h2> Requirements </h2>
+
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>Project</th>
+      <th>Assigned to</th>
+      <th>Due date</th>
+      <th>Effort</th>
+    </tr>
+    
+    <% effort_totals = {} %>
+    <% @requirement_roots.each do |r| %>
+      <%= requirement_descendants_tree_row(r, effort_totals) %>
+    <% end %>
+        
+  </table>
+  
+  <h2> Effort totals </h2>
+  
+  <table>
+    <tr>
+      <th>Status</th>
+      <th>Effort</th>
+    </tr>
+    <% total = 0 %>
+    <% effort_totals.each_pair do |k,v| %>
+      <tr>
+        <td><%= k%></td>
+        <td class='right'><%= v %></td>
+      </tr>
+      <% total += v %>
+    <% end %>
+    <tr>
+      <td>Total</td>
+      <td class='right'><%= total %></td>
+    </tr>
+  </table>  
+
+</div>

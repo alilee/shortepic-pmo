@@ -19,6 +19,7 @@ module ProjectHelper
       'defects',
       'defect_funnel',
       'defect_listing',
+      'requirements',
       'all',
       'dump',
       'late',
@@ -33,6 +34,28 @@ module ProjectHelper
        <li>#{link_to_item project} (#{link_to_item project.role})</li>
        #{ descendants.collect {|c| project_descendants_tree(c)}.join }
      </ul>"
+  end
+  
+  # TODO: C - optimise to do one query and use classify to process
+  def requirement_descendants_tree_row(requirement_detail, effort_totals, depth=0)
+    descendants = requirement_detail.children.select { |r| r.requirement.status.alive? }
+    result = "<tr>"
+    result << "<td>#{'&nbsp;&nbsp;&nbsp;' * depth}-&nbsp;#{link_to_item requirement_detail.requirement}</td>"
+    result << "<td>#{requirement_detail.requirement.status}</td>"
+    result << "<td>#{requirement_detail.requirement.priority_code}</td>"
+    result << "<td>#{link_to_item requirement_detail.requirement.parent}</td>"
+    result << "<td>#{link_to_item requirement_detail.requirement.person}</td>"
+    result << "<td #{'class="overdue"' if requirement_detail.requirement.overdue?}>#{requirement_detail.requirement.due_on.to_formatted_s(date_format)}</td>"
+    result << "<td class='right'>#{requirement_detail.effort}</td>"
+    result << "</tr>"
+    effort_totals[requirement_detail.requirement.status.to_s] ||= 0
+    effort_totals[requirement_detail.requirement.status.to_s] += requirement_detail.effort || 0
+    
+    descendants.each do |r_d|
+      result << requirement_descendants_tree_row(r_d, effort_totals, depth+1)
+    end
+
+    result
   end
   
 end
