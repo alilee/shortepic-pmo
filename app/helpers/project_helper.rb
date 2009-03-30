@@ -45,7 +45,7 @@ module ProjectHelper
     result << "<td>#{requirement_detail.requirement.priority_code}</td>"
     result << "<td>#{link_to_item requirement_detail.requirement.parent}</td>"
     result << "<td>#{link_to_item requirement_detail.requirement.person}</td>"
-    result << "<td #{'class="overdue"' if requirement_detail.requirement.overdue?}>#{requirement_detail.requirement.due_on.to_formatted_s(date_format)}</td>"
+    result << "<td #{'class="overdue"' if requirement_detail.requirement.overdue?}>#{requirement_detail.requirement.due_on.to_formatted_s(date_format) if requirement_detail.requirement.due_on}</td>"
     result << "<td class='right'>#{requirement_detail.effort}</td>"
     result << "</tr>"
     effort_totals[requirement_detail.requirement.status.to_s] ||= 0
