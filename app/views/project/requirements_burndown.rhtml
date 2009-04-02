@@ -22,7 +22,7 @@
     <table>
       <tr>
         <th>Date</th>
-        <% statuses = Status.find_all_by_type_name('Requirement', :conditions => ["generic_stage in (?) and enabled = 't'", Status.alive], :order => 'sequence') %>
+        <% statuses = Status.find_all_by_type_name('Requirement', :conditions => ["generic_stage in (?) and enabled = 't'", Status.in_progress], :order => 'sequence') %>
         <% statuses.each do |s| %>
           <th><%= s.value %></th>
         <% end %>
@@ -44,8 +44,9 @@
     <div id="flot" style="width:600px;height:300px">&nbsp;</div>
     <% 
       series = statuses.collect do |s|
-        points = @burndown[s.id].collect do |date_effort_pair|
-          "[ #{date_effort_pair[0].jd}, #{date_effort_pair[1]} ]"
+        dates = @burndown[s.id].keys.sort
+        points = dates.collect do |date|
+          "[ #{date.jd}, #{@burndown[s.id][date]} ]"
         end
         " { label: \"#{s.value}\", data: [ #{points.join(',')} ] } "
       end    
@@ -59,5 +60,8 @@
       jQuery.plot(jQuery("#flot"), data, {});
     </script>
 
+    <h2> Debug </h2>
+    <%= debug @burndown %>
+    
   </body>
 </html>

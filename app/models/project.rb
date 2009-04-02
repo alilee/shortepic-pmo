@@ -23,8 +23,6 @@
 #
 
 # TODO: C - use acts_as_nested_set
-require 'pp'
-
 class Project < Item
   #include SymetrieCom
   
@@ -339,45 +337,33 @@ class Project < Item
   #
   # burndown[status_id][Date.today] means the number of items of that status (or earlier by sequence) as at today
   #
-  def burndown(type_name)
+  def burndown(klass)
+    status_ids = Status.find_all_by_type_name(klass.name, :order => 'sequence, value').collect {|s| s.id }
     deltas = Hash.new
-    status_ids = Status.find_all_by_type_name(type_name, :order => 'sequence, value').collect {|s| s.id }
-    # exclude cancelled
+    status_ids.each { |s| deltas[s] = Hash.new(0) }
+    
     project_ids = self_and_descendant_project_ids
-    items = Item.find_all_by_type(type_name, :include => :status, :conditions => ["generic_stage <> ? and project_id in (?)", Status::WITHDRAWN, project_ids])
+    items = klass.find(:all, :include => [:status, :detail], :conditions => ["generic_stage in (?) and project_id in (?)", Status::alive, project_ids])
     
     items.each do |i|
-      puts "considering item: #{i.title}"
       last_status_id = 0
       weight = block_given? ? yield(i) : 1
       i.versions.each do |v|
-        puts "considering version: #{v.version}"
         if v.version == 1 then
-          puts "first version"
           status_ids.each do |s|
-            puts "updating for index: #{s}"
-            deltas[s] ||= Hash.new
-            deltas[s][v.updated_at.to_date] ||= 0
             deltas[s][v.updated_at.to_date] += weight
-            pp deltas[s][v.updated_at.to_date]
           end
           last_status_id = status_ids.first
-          pp deltas
         end
         
-        puts "bringing forward"
         last_status_order = status_ids.index(last_status_id)
         current_status_order = status_ids.index(v.status_id)
         increment = -1 if last_status_order < current_status_order # moved forward
         increment = +1 if last_status_order > current_status_order # moved backward   
-        puts "last...current index: #{last_status_order}...#{current_status_order}"       
         (last_status_order...current_status_order).each do |i|
-          puts "adjusting for #{i}"
-          deltas[status_ids[i]][v.updated_at.to_date] ||= 0
           deltas[status_ids[i]][v.updated_at.to_date] += increment * weight
         end
         last_status_id = v.status_id   
-        pp deltas
       end
     end
     

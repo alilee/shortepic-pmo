@@ -284,7 +284,7 @@ class ProjectController < ItemController
   
   def requirements_burndown
     
-    @burndown = @project.burndown('Requirement') do |r|
+    @burndown = @project.burndown(Requirement) do |r|
       r.detail.effort || 0
     end
     
