@@ -20,6 +20,7 @@ module ProjectHelper
       'defect_funnel',
       'defect_listing',
       'requirements',
+      'requirements_burndown',
       'all',
       'dump',
       'late',

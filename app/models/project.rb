@@ -23,6 +23,8 @@
 #
 
 # TODO: C - use acts_as_nested_set
+require 'pp'
+
 class Project < Item
   #include SymetrieCom
   
@@ -330,7 +332,77 @@ class Project < Item
   def key_absences
     Absences.find_all_by_status_and_project_id
   end
-
+  
+  #
+  # Generate a table of levels of objects at each status on each day.
+  # Excludes those which end up cancelled
+  #
+  # burndown[status_id][Date.today] means the number of items of that status (or earlier by sequence) as at today
+  #
+  def burndown(type_name)
+    deltas = Hash.new
+    status_ids = Status.find_all_by_type_name(type_name, :order => 'sequence, value').collect {|s| s.id }
+    # exclude cancelled
+    project_ids = self_and_descendant_project_ids
+    items = Item.find_all_by_type(type_name, :include => :status, :conditions => ["generic_stage <> ? and project_id in (?)", Status::WITHDRAWN, project_ids])
+    
+    items.each do |i|
+      puts "considering item: #{i.title}"
+      last_status_id = 0
+      weight = block_given? ? yield(i) : 1
+      i.versions.each do |v|
+        puts "considering version: #{v.version}"
+        if v.version == 1 then
+          puts "first version"
+          status_ids.each do |s|
+            puts "updating for index: #{s}"
+            deltas[s] ||= Hash.new
+            deltas[s][v.updated_at.to_date] ||= 0
+            deltas[s][v.updated_at.to_date] += weight
+            pp deltas[s][v.updated_at.to_date]
+          end
+          last_status_id = status_ids.first
+          pp deltas
+        end
+        
+        puts "bringing forward"
+        last_status_order = status_ids.index(last_status_id)
+        current_status_order = status_ids.index(v.status_id)
+        increment = -1 if last_status_order < current_status_order # moved forward
+        increment = +1 if last_status_order > current_status_order # moved backward   
+        puts "last...current index: #{last_status_order}...#{current_status_order}"       
+        (last_status_order...current_status_order).each do |i|
+          puts "adjusting for #{i}"
+          deltas[status_ids[i]][v.updated_at.to_date] ||= 0
+          deltas[status_ids[i]][v.updated_at.to_date] += increment * weight
+        end
+        last_status_id = v.status_id   
+        pp deltas
+      end
+    end
+    
+    # generate cumulative from deltas
+    cumulative = Hash.new
+    result = Hash.new
+    deltas.each_pair do |delta_status_id,delta_date_series|
+      result[delta_status_id] ||= Hash.new
+      cumulative[delta_status_id] ||= 0
+      dates = delta_date_series.keys.sort
+      increment = 0
+      dates.each do |date|
+        increment = delta_date_series[date]
+        cumulative[delta_status_id] += increment
+        result[delta_status_id][date] = cumulative[delta_status_id]
+      end
+    end 
+    # carry the lines out to today
+    cumulative.each_pair do |status_id, effort|
+      result[status_id][Date.today] = effort
+    end
+    result
+  
+  end
+  
   protected
   
   def project_validations

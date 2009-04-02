@@ -282,6 +282,16 @@ class ProjectController < ItemController
   
   end
   
+  def requirements_burndown
+    
+    @burndown = @project.burndown('Requirement') do |r|
+      r.detail.effort || 0
+    end
+    
+    render :layout => false 
+    
+  end
+  
   protected
   
   # Loads the required item (initially for security checking) using params[:id] and caches it for other methods.

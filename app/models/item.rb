@@ -210,7 +210,7 @@ class Item < ActiveRecord::Base
     old_version = find_version(1)
     old_version.updated_at
   end
-  
+    
   protected
   
   # If the object is attempted to be saved with an escalation of 0 then correct it be the same as

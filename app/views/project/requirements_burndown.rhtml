@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title><%= @page_title || @item.title %></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-au" />
+    <%= javascript_include_tag 'jquery-1.3.2.min.js' %>
+    <script>
+      jQuery.noConflict();
+    </script>    
+    <%= javascript_include_tag 'jquery.flot.js' %>
+    <!--[if IE]><script language="javascript" type="text/javascript" src="excanvas.pack.js"></script><![endif]-->
+	</head>
+
+	<body>
+
+    <h1>Requirements Burndown</h1>
+
+    <h2> Table </h2>
+  
+    <table>
+      <tr>
+        <th>Date</th>
+        <% statuses = Status.find_all_by_type_name('Requirement', :conditions => ["generic_stage in (?) and enabled = 't'", Status.alive], :order => 'sequence') %>
+        <% statuses.each do |s| %>
+          <th><%= s.value %></th>
+        <% end %>
+      </tr>
+    
+      <% dates = @burndown.inject([]) {|m,o| m + o[1].keys }.sort.uniq %>
+      <% dates.each do |d| %>
+        <tr>
+          <td><%= d.to_formatted_s(date_format) %></td>
+          <% statuses.each do |s| %>
+            <td class='right'><%= @burndown[s.id][d] %></td>
+          <% end %>
+        </tr>          
+      <% end %>
+    
+    </table>
+  
+    <h2> Graph</h2>
+    <div id="flot" style="width:600px;height:300px">&nbsp;</div>
+    <% 
+      series = statuses.collect do |s|
+        points = @burndown[s.id].collect do |date_effort_pair|
+          "[ #{date_effort_pair[0].jd}, #{date_effort_pair[1]} ]"
+        end
+        " { label: \"#{s.value}\", data: [ #{points.join(',')} ] } "
+      end    
+      flot_data = series.join(',')
+    %>
+    <script>
+      var data = [ 
+        <%= flot_data %>
+      ]
+        
+      jQuery.plot(jQuery("#flot"), data, {});
+    </script>
+
+  </body>
+</html>
