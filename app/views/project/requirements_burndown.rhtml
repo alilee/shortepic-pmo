@@ -46,7 +46,7 @@
       series = statuses.collect do |s|
         dates = @burndown[s.id].keys.sort
         points = dates.collect do |date|
-          "[ #{date.jd}, #{@burndown[s.id][date]} ]"
+          "[ #{(date.jd - 2440588)*86400000}, #{@burndown[s.id][date]} ]"
         end
         " { label: \"#{s.value}\", data: [ #{points.join(',')} ] } "
       end    
@@ -56,8 +56,16 @@
       var data = [ 
         <%= flot_data %>
       ]
+      var options = { 
+        legend: { position: "nw" }, 
+        xaxis: { mode: "time" }
+      }
         
-      jQuery.plot(jQuery("#flot"), data, {});
+      jQuery.plot(
+        jQuery("#flot"), 
+        data, 
+        options
+      );
     </script>
 
     <h2> Debug </h2>
