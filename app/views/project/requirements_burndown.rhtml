@@ -17,30 +17,7 @@
 
     <h1>Requirements Burndown</h1>
 
-    <h2> Table </h2>
-  
-    <table>
-      <tr>
-        <th>Date</th>
-        <% statuses = Status.find_all_by_type_name('Requirement', :conditions => ["generic_stage in (?) and enabled = 't'", Status.in_progress], :order => 'sequence') %>
-        <% statuses.each do |s| %>
-          <th><%= s.value %></th>
-        <% end %>
-      </tr>
-    
-      <% dates = @burndown.inject([]) {|m,o| m + o[1].keys }.sort.uniq %>
-      <% dates.each do |d| %>
-        <tr>
-          <td><%= d.to_formatted_s(time_format) %></td>
-          <% statuses.each do |s| %>
-            <td class='right'><%= @burndown[s.id][d] %></td>
-          <% end %>
-        </tr>          
-      <% end %>
-    
-    </table>
-  
-    <h2> Graph</h2>
+    <h2>Graph - effort outstanding (select range to zoom)</h2>
     <div id="flot" style="width:600px;height:300px">&nbsp;</div>
     <% 
       series = statuses.collect do |s|
@@ -79,8 +56,5 @@
 
     </script>
 
-    <h2> Debug </h2>
-    <%= debug @burndown %>
-    
   </body>
 </html>
