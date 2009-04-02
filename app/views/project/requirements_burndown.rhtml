@@ -45,8 +45,9 @@
     <% 
       series = statuses.collect do |s|
         dates = @burndown[s.id].keys.sort
+        utc_offset = Time.now.utc_offset
         points = dates.collect do |date|
-          "[ #{(date.to_f)*1000}, #{@burndown[s.id][date]} ]"
+          "[ #{(date.to_f + utc_offset)*1000}, #{@burndown[s.id][date]} ]"
         end
         " { label: \"#{s.value}\", data: [ #{points.join(',')} ] } "
       end    
