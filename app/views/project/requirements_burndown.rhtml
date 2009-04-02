@@ -31,7 +31,7 @@
       <% dates = @burndown.inject([]) {|m,o| m + o[1].keys }.sort.uniq %>
       <% dates.each do |d| %>
         <tr>
-          <td><%= d.to_formatted_s(date_format) %></td>
+          <td><%= d.to_formatted_s(time_format) %></td>
           <% statuses.each do |s| %>
             <td class='right'><%= @burndown[s.id][d] %></td>
           <% end %>
@@ -46,7 +46,7 @@
       series = statuses.collect do |s|
         dates = @burndown[s.id].keys.sort
         points = dates.collect do |date|
-          "[ #{(date.jd - 2440588)*86400000}, #{@burndown[s.id][date]} ]"
+          "[ #{(date.to_f)*1000}, #{@burndown[s.id][date]} ]"
         end
         " { label: \"#{s.value}\", data: [ #{points.join(',')} ] } "
       end    
@@ -58,14 +58,24 @@
       ]
       var options = { 
         legend: { position: "nw" }, 
-        xaxis: { mode: "time" }
+        xaxis: { mode: "time" },
+        selection: { mode: "x" }
       }
-        
-      jQuery.plot(
-        jQuery("#flot"), 
-        data, 
-        options
-      );
+      
+      var placeholder = jQuery("#flot");
+      var plot = jQuery.plot(placeholder, data, options);
+
+      placeholder.bind("plotselected", function (event, ranges) {
+        jQuery.plot(placeholder, data,
+          jQuery.extend(true, {}, options, {
+            xaxis: { min: ranges.xaxis.from, max: ranges.xaxis.to }
+          })
+        );
+      });
+      placeholder.bind("plotunselected", function () {
+        jQuery.plot(placeholder, data, options);
+      });
+
     </script>
 
     <h2> Debug </h2>

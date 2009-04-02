@@ -23,7 +23,6 @@
 #
 
 # TODO: C - use acts_as_nested_set
-require 'pp'
 class Project < Item
   #include SymetrieCom
   
@@ -352,15 +351,13 @@ class Project < Item
       i.versions.each do |v|
         if v.version == 1 then
           status_ids.each do |s|
-            deltas[s][v.updated_at.to_date] += weight
+            deltas[s][v.updated_at] += weight
           end
           last_status_id = status_ids.first
         end
         
         last_status_order = status_ids.index(last_status_id)
         current_status_order = status_ids.index(v.status_id)
-        pp last_status_order
-        pp current_status_order
         if last_status_order <= current_status_order # moved forward
           increment = -1
           low = last_status_order
@@ -371,9 +368,8 @@ class Project < Item
           low = current_status_order
           high = last_status_order
         end
-        puts "#{low}...#{high}"
         (low...high).each do |i|
-          deltas[status_ids[i]][v.updated_at.to_date] += increment * weight
+          deltas[status_ids[i]][v.updated_at] += increment * weight
         end
         last_status_id = v.status_id   
       end
@@ -394,8 +390,9 @@ class Project < Item
       end
     end 
     # carry the lines out to today
+    now = Time.now
     cumulative.each_pair do |status_id, effort|
-      result[status_id][Date.today] = effort
+      result[status_id][now] = effort
     end
     result
   
