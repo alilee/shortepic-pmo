@@ -20,6 +20,7 @@
     <h2>Graph - effort outstanding (select range to zoom)</h2>
     <div id="flot" style="width:600px;height:300px">&nbsp;</div>
     <% 
+      statuses = Status.find_all_by_type_name('Requirement', :conditions => ["generic_stage in (?) and enabled = 't'", Status.in_progress], :order => 'sequence')
       series = statuses.collect do |s|
         dates = @burndown[s.id].keys.sort
         utc_offset = Time.now.utc_offset
