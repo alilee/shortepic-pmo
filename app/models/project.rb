@@ -23,6 +23,7 @@
 #
 
 # TODO: C - use acts_as_nested_set
+require 'pp'
 class Project < Item
   #include SymetrieCom
   
@@ -358,9 +359,20 @@ class Project < Item
         
         last_status_order = status_ids.index(last_status_id)
         current_status_order = status_ids.index(v.status_id)
-        increment = -1 if last_status_order < current_status_order # moved forward
-        increment = +1 if last_status_order > current_status_order # moved backward   
-        (last_status_order...current_status_order).each do |i|
+        pp last_status_order
+        pp current_status_order
+        if last_status_order <= current_status_order # moved forward
+          increment = -1
+          low = last_status_order
+          high = current_status_order
+        end
+        if last_status_order > current_status_order # moved backward
+          increment = +1
+          low = current_status_order
+          high = last_status_order
+        end
+        puts "#{low}...#{high}"
+        (low...high).each do |i|
           deltas[status_ids[i]][v.updated_at.to_date] += increment * weight
         end
         last_status_id = v.status_id   
