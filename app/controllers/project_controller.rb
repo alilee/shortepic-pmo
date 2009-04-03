@@ -271,17 +271,11 @@ class ProjectController < ItemController
   end
   
   def requirements
-        
-    child_project_ids = @project.self_and_descendant_project_ids
-    parent_ids = @project.self_and_ancestor_ids
-    
-    @requirement_roots = RequirementDetail.find(:all, :include => [:requirement, {:parent_requirement_detail => :requirement}], 
-      :conditions => ['items.project_id in (?) and items.project_id_escalation in (?) and 
-        (parent_requirement_details_requirement_details.requirement_detail_id_parent is null or requirements_requirement_details.project_id not in (?))', 
-        child_project_ids, parent_ids, child_project_ids])
-  
+            
+    @requirement_roots = @project.requirement_roots
+      
   end
-  
+    
   def requirements_burndown
     
     @burndown = @project.burndown(Requirement) do |r|

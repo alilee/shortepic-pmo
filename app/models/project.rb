@@ -332,6 +332,25 @@ class Project < Item
   end
   
   #
+  # Find the requirement details rooted in this project.
+  #
+  # A requirement detail is rooted here if it is escalated here (or above)
+  # and it has no parent OR it's parent is not 
+  #
+  def requirement_roots
+    
+    child_project_ids = self_and_descendant_project_ids
+    parent_ids = self_and_ancestor_ids
+    
+    RequirementDetail.find(:all, :include => [:requirement, {:parent_requirement_detail => :requirement}], 
+      :conditions => ['items.project_id in (?) and items.project_id_escalation in (?) and 
+        (parent_requirement_details_requirement_details.requirement_detail_id_parent is null or requirements_requirement_details.project_id not in (?))', 
+        child_project_ids, parent_ids, child_project_ids])
+    
+  end
+  
+  
+  #
   # Generate a table of levels of objects at each status on each day.
   # Excludes those which end up cancelled
   #

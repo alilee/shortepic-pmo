@@ -38,8 +38,12 @@ module ProjectHelper
   end
   
   # TODO: C - optimise to do one query and use classify to process
-  def requirement_descendants_tree_row(requirement_detail, effort_totals, depth=0)
-    descendants = requirement_detail.children.select { |r| r.requirement.status.alive? }
+  def requirement_descendants_tree_row(requirement_detail, effort_totals, options = {})
+    depth = options[:depth] || 0
+    statuses = options[:statuses] || Status.alive
+    statuses = [statuses] unless statuses.is_a?(Array) 
+    
+    descendants = requirement_detail.children.select { |r| statuses.include?(r.requirement.status.generic_stage) }
     result = "<tr>"
     result << "<td>#{'&nbsp;&nbsp;&nbsp;' * depth}-&nbsp;#{link_to_item requirement_detail.requirement}</td>"
     result << "<td>#{requirement_detail.requirement.status}</td>"
@@ -53,7 +57,7 @@ module ProjectHelper
     effort_totals[requirement_detail.requirement.status.to_s] += requirement_detail.effort || 0
     
     descendants.each do |r_d|
-      result << requirement_descendants_tree_row(r_d, effort_totals, depth+1)
+      result << requirement_descendants_tree_row(r_d, effort_totals, options.merge(:depth => (depth+1)))
     end
 
     result
