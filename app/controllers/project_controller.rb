@@ -177,7 +177,7 @@ class ProjectController < ItemController
     end
 	  
 	  # natural 
-	  child_milestones = @project.children_by_class(Milestone)
+	  child_milestones = @project.children_by_class(Milestone, Status::alive)
 	  child_milestones.each do |milestone|
 	    @dot_spec << roadmap_dot_node(milestone, defined, all_milestones)
     end
