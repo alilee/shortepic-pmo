@@ -287,7 +287,10 @@ class ProjectController < ItemController
   end
   
   def sales_funnel
-    @sales_leads = @project.descendants_by_class(SalesLead, :include => [:status, :priority_code], :order => ['statuses.sequence DESC, codes.sequence, due_on'])
+    @sales_leads = @project.descendants_by_class(SalesLead, 
+      :include => [:status, :priority_code],
+      :conditions => ['generic_stage in (?)', Status.incomplete], 
+      :order => ['statuses.sequence DESC, codes.sequence, due_on'])
   end
   
   protected

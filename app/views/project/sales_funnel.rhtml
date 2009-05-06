@@ -30,7 +30,8 @@
             <td> <%= link_to_item item.person %> </td>
             <td <%= overdue_class(item) %>> <%= item.due_on.strftime(date_format) unless item.due_on.nil? %> </td>
             <td> <%= (item.comments[-1].nil? ? item.updated_at : [item.updated_at, item.comments[-1].created_at].max).strftime(date_format) %> </td>
-            <td> <%= tx_no_p(truncate(item.comments[-1].body, 60)) unless item.comments.empty? %> </td>
+            <% last_comment = item.comments[-1] %>
+            <td> <%= tx_no_p("<em>#{last_comment.person.title}, #{last_comment.created_at.strftime(date_format)}:</em> "+truncate(last_comment.body, 45)) unless last_comment.nil? %> </td>
           </tr>
 
         <% end %>
