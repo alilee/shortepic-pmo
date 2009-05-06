@@ -1,0 +1,43 @@
+<div id="centrecol"> 
+
+  <h1>Sales funnel</h1>
+  
+  <% unless @sales_leads.empty? %>
+    <h2>Sales leads</h2>
+  
+    <table>
+
+      <thead>
+        <tr>
+          <th>Title</th>
+      		<th>Priority</th>
+      		<th>Status</th>
+      		<th>Assigned to</th>
+      		<th>Due date</th>
+      		<th>Last update</th>
+      		<th>Last comment</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% last_type = nil %>
+        <% @sales_leads.each do |item| %>
+
+          <tr>
+    				<td> <%= link_to_item(item) %> </td>
+      			<td> <%= item.priority_code.value %> </td>
+            <td> <%= item.status.value %> </td>
+            <td> <%= link_to_item item.person %> </td>
+            <td <%= overdue_class(item) %>> <%= item.due_on.strftime(date_format) unless item.due_on.nil? %> </td>
+            <td> <%= (item.comments[-1].nil? ? item.updated_at : [item.updated_at, item.comments[-1].created_at].max).strftime(date_format) %> </td>
+            <td> <%= tx_no_p(truncate(item.comments[-1].body, 60)) unless item.comments.empty? %> </td>
+          </tr>
+
+        <% end %>
+      </tbody>
+    
+    </table>
+
+  <% end %>
+  
+</div>

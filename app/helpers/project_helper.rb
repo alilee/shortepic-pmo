@@ -21,6 +21,7 @@ module ProjectHelper
       'defect_listing',
       'requirements',
       'requirements_burndown',
+      'sales_funnel',
       'all',
       'dump',
       'late',
