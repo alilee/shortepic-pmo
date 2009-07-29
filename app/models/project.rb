@@ -96,7 +96,7 @@ class Project < Item
   def self_and_descendant_project_ids(status_filter = nil)
     Project.find(:all,
       :include => :status,
-      :conditions => ['lft >= ? and rgt <= ? and (1 = ? or generic_stage in (?))', lft, rgt, status_filter.nil? ? 1 : 0, status_filter || [1]]
+      :conditions => ['lft >= ? and rgt <= ? and (1 = ? or generic_stage in (?))', lft, rgt, status_filter.nil? ? 1 : 0, status_filter || ['not evald']]
     ).collect { |p| p.id }
   end
 
