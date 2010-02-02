@@ -63,7 +63,7 @@ class StatusController < ApplicationController
     
     @transitions = Set.new StatusTransition.find(:all, 
       :conditions => ['((1 = ?) or (type_name = ?)) and ((1 = ?) or (code_id_security_profile = ?))', 
-        type_limit == nil ? 1 : 0, type_limit || 0,
+        type_limit == nil ? 1 : 0, type_limit || '',
         profile_limit == 0 ? 1 : 0, profile_limit],
       :order => 'type_name, status_id_from, status_id_to')
       
